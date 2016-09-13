@@ -1,0 +1,28 @@
+
+.circle{
+	position:relative;
+	border-radius: 50%;
+	width:45px;
+	height: 45px;
+	background-color: black;
+	text-align: center;
+	left:50%;
+	margin-left:-22.5px;
+}
+
+.circle img{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 50%;
+	height: 50%;
+	margin-left:-25%;
+	margin-top:-25%;
+}
+
+.fourClasses-2{
+	position:relative;
+	font-size: 12px;
+	line-height: 12px;
+	color: #333333;
+}

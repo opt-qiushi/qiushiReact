@@ -1,0 +1,148 @@
+
+.focus_out_left{
+	position:relative;
+	font-family: "PingHei";
+	color:white;
+	margin-left:auto;
+	padding-top: 20px;
+	height:400px;
+	overflow: hidden;
+}
+
+.focus_out_right{
+	position:relative;
+	font-family: "PingHei";
+	color:white;
+	margin-left:auto;
+	padding-top:20px;
+	height:400px;
+	overflow: hidden;
+}
+
+.focus_head{
+	height:100%;
+	width:100%;
+}
+
+.focus_head img{
+	position:relative;
+	width:98%;
+	height:100%;
+}
+
+.focus_bottom{
+	position:absolute;
+	width: 98%;
+	margin-left:0px;
+	bottom:0px;
+	background:black;
+	filter:alpha(opacity=80);  
+    -moz-opacity:0.8;  
+    -khtml-opacity: 0.8;  
+    opacity: 0.8;
+    z-index: 1;
+}
+
+.focus_name{
+    padding-top: 10px;
+    font-size: 35px;
+    height: 50px;
+    padding-left: 10px;
+    width: 9em;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+.focus_title{
+    font-size: 24px;
+    height: 68px;
+    padding-left: 12px;
+    width: 12em;
+    overflow: hidden;
+}
+
+.focus_left{
+	width: 50%;
+    float: left;
+	height: 118px;
+}
+
+.focus_right{
+	font-size: 26px;
+    margin-top: 24px;
+    width: 50%;
+    float: left;
+    padding-left: 65px;
+}
+
+.focus_issue{
+	display:inline;
+	float:left;
+	text-align: center;
+}
+
+.focus_right img{
+	margin-left:20px;
+	display:inline;
+	float:left;
+	width:2px;
+}
+
+.focus_fan{
+	margin-left:20px;
+	display:inline;
+	float:left;
+	text-align: center;
+}
+
+#focus{
+	font-size: 16px;
+    padding-top: 12px;
+    border-bottom: solid 0.1px #999999;
+    text-align: center;
+}
+
+
+.rows_left{
+	width: 50%;
+    margin-top: 30px;
+    padding-left: 20px;
+    float: left;
+}
+
+.rows_right{
+	width: 50%;
+    margin-top: 30px;
+    padding-right: 20px;
+    float: right;
+}
+
+#footer{
+	width:100%;
+	height:100px;
+	color:white;
+	background-color:black;
+}
+
+#footer-1{
+	position: relative;
+	top:20px;
+	font-size:35px;
+	width:100%;
+	left:50%;
+	margin-left:-50%;
+	text-align: center;
+}
+
+.blankZone{
+	height:800px;
+}
+
+.bigGallery{
+	padding-bottom:150px;
+}
+
+.empty{
+	text-align: center;
+	margin-top: 100px;
+}

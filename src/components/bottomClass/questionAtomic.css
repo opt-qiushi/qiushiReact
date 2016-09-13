@@ -1,0 +1,145 @@
+
+.dynamicStructure{
+	background-color: white;
+	width: 100%;
+	font-family: "PingHei";
+	text-align: justify;
+}
+
+.dynamicHead{
+	overflow: hidden;
+	padding-top: 20px;
+	padding-left: 20px;
+}
+
+.dynamicHead img{
+	float: left;
+}
+
+.dynamicHead-1 {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.dynamicHead-1-0 {
+	float: left;
+	/*font-size: 14px;*/
+	padding-left: 10px;
+	padding-top: 10px;
+}
+
+.dynamicHead-1-1 {
+	font-size: 14px;
+	color: #999;
+	float:right;
+	margin-right: 10px;
+	padding-top: 10px;
+}
+
+.dynamicBody{
+	clear: both;
+	/*font-size: 14px;*/
+	color: #666666;
+	margin-left: 20px;
+	margin-top: 10px;
+	padding-right:20px;
+}
+
+.dynamicBody p{
+	margin-top:10px;
+}
+
+.dynamicBottom{
+    color: #666666;
+    margin-left: 40px;
+    padding-right: 20px;
+}
+
+.dynamicBottom-0-0{
+	width: 42px;
+	text-align: center;
+    background-color: #0D964C;
+    color: white;
+    margin: 1em 0;
+    padding: 1px 5px;
+}
+
+.dynamicBottom-0-1{
+    margin-left: 10px;
+    color: #0D964C;
+}
+
+.dynamicBottom p{
+	clear:both;
+	font-size:28px;
+	padding-top: 20px;
+}
+
+
+.dynamicStatistic{
+	margin-top: 17px;
+    overflow: hidden;
+    float: right;
+}
+
+
+.dynamicStatistic img{
+	float:left;
+	height: 14px;
+	width: 14px;
+	margin-left:10px;
+}
+
+.dynamicStatistic div{
+	float:left;
+	font-size:14px;
+	margin-left:4px;
+	margin-right: 10px;
+	color:#999999;
+}
+
+.dynamicEnd{
+	clear:both;
+	padding-bottom:30px;
+}
+
+
+.dynamicHeadAvatar{
+	width: 32px;
+	height:32px;
+	border-radius: 50%;
+}
+
+.dynamicHeadAvatar img{
+	width: 32px;
+	height:32px;
+	border-radius: 50%;
+}
+.sign-green{
+	color: #0A964C;
+}
+.dynamicBottom-0:after,.dynamicBottom-0:before,.dynamicBottom:after{
+	content: '.';
+	height: 0;
+	display: block;
+	clear: both;
+	visibility: hidden;
+}
+.dynamicBottom-0-2{
+	float: left;
+    margin-left: 10px;
+}
+.collectBtn{
+    float: left;
+    margin-top: 12px;
+    margin-left: 20px;
+    -webkit-border-radius: 2px;
+    background: white;
+    border: 2px solid #666666;
+    text-align: center;
+    padding: 4px 4px;
+}
+.collectBtn:focus{
+	outline: none;
+}
+    

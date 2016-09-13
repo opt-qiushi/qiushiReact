@@ -1,0 +1,51 @@
+
+.gallery{
+	width: 100%;
+	font-family: "PingHei";
+	font-size: 20px;
+	position: relative;
+	color: white;
+	max-height:150px;
+	overflow: hidden;
+}
+
+.gallery img{
+	width: 100%;
+}
+
+.scrollPage{
+	position:absolute;
+	top:0px;
+	width: 100%;
+	height:100%;
+	background-color: black;
+	opacity:0.4;
+}
+
+.nameTag{
+	position: absolute;
+	width:50%;
+	z-index:2;
+	left: 50%;
+	top: 25%;
+	margin-left:-25%;
+}
+
+
+.name{
+	text-align: center;
+
+
+}
+
+
+.tag{
+	font-size: 12px;
+	text-align:center;
+	line-height: 27px
+}
+
+.tag img{
+	width: 11px;
+	height: 11px;
+}

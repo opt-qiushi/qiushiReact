@@ -1,0 +1,6 @@
+export const QIUSHI = 'QIUSHI'
+export const GUANZHU = 'GUANZHU'
+export const WODE = 'WODE'
+export const DONGTAI = 'DONGTAI'
+export const NOTSHOUYE = 'NOTSHOUYE'
+export const SHOUYE = 'SHOUYE'

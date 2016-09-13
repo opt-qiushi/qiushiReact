@@ -1,0 +1,80 @@
+
+.askercontainer{
+    width: 100%;
+    margin-top: 12px;
+    overflow: hidden;
+}
+
+.askpersonImg{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: solid 1px white;
+    float: left;
+}
+
+#askpersonimg{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.asker{
+	/*width:300px;*/
+    /*width:auto;
+    margin-left:60px;
+	height: 140px;*/
+
+}
+
+.askername{
+    float: left;
+    font-size: 16px;
+    /* padding-top: 20px; */
+    margin-left: 13px;
+}
+
+.askertime{
+    float: right;
+    /* padding-top: 20px; */
+    font-size: 14px;
+    color: #999999;
+}
+
+.question{
+	line-height: 21px;
+	color: #0D964C;
+    margin-top: 18px;
+    letter-spacing: 2px;
+    font-size: 16px;
+}
+
+.answer{
+    line-height: 21px;
+    letter-spacing: 2px;
+    font-size: 16px;
+    margin-top: 18px;
+    text-align: justify;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+}
+
+.askBoxer{
+    color: #999999;
+    border-bottom: 1px solid #999;
+    padding: 25px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+.askItem{
+    text-align: top;
+}
+.askItem img{
+    width: 16px;
+    height: 16px;
+}
+.askItem span{
+    padding-left: 8px;
+    vertical-align: top;
+}

@@ -1,0 +1,22 @@
+.box{
+	background-color: white;
+	margin-top: 12px;
+	color: #333333;
+	/*font-size: 24px;*/
+}
+
+.boxtitle{
+    font-weight: bold;
+    padding-top: 15px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.boxcontent{
+	width: 100%;
+	padding-bottom:50px;
+}
+
+.button{
+	margin-top: 20px;
+}

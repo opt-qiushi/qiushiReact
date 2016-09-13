@@ -1,0 +1,85 @@
+
+.commentBox{
+	background-color: white;
+	margin-top: 12px;
+	width: 100%;
+	font-family: "PingHei";
+}
+
+.commentBox-0{
+	border-bottom: 1px solid #dddddd;
+	overflow: hidden;
+	margin-bottom: 6px;
+}
+.commentBox-head{
+	overflow: hidden;
+    margin-left: 20px;
+}
+.commentImageS{
+	
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    float: left;
+}
+
+.commentImageS img{
+	width:32px;
+	height:32px;
+}
+
+.commentBox-0-1{
+	float:left;
+}
+
+.commentBox-0-1-0{
+	padding-left: 10px;
+	/*font-size: 14px;*/
+	color: #0A964C;
+	text-align: justify;
+}
+
+.commentBox-0-1-1{
+	padding-left: 10px;
+	font-size: 14px;
+	color: #999999;
+}
+
+.commentBox-0-2{
+	float:right;
+	margin-right: 6%;
+}
+
+.commentBox-0-2 img{
+	height: 14px;
+    width: 14px;
+	float:left;
+}
+
+.commentBox-0-2-1{
+	float: left;
+    color: #999999;
+    font-size: 14px;
+    padding-left: 9px;
+}
+
+
+
+.commentBox-1{
+	clear: both;
+    padding-bottom: 12px;
+    padding-top: 15px;
+    margin-left: 60px;
+    /*font-size: 14px;*/
+    color: #333333;
+    text-align: justify;
+}
+
+.commentTitle{
+	color: #999999;
+    /*font-size: 14px;*/
+    height: 46px;
+    line-height: 46px;
+    text-align: center;
+}

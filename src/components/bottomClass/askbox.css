@@ -1,0 +1,28 @@
+.box{
+	background-color: white;
+	margin-top: 12px;
+	color: #333333;
+	/*font-size: 24px;*/
+}
+
+.boxtitle{
+    font-weight: bold;
+    padding-top: 15px;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.boxcontent{
+	padding: 0 15px;
+	width: 100%;
+}
+
+.clickopen{
+    color: #0D964C;
+    padding-bottom: 20px;
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;    
+}
