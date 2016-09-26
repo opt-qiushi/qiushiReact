@@ -46,6 +46,7 @@ export default class UserCenterComp extends Component{
         this.myFocus=this.myFocus.bind(this)
         this.myInformation=this.myInformation.bind(this)
         this.myFeedback=this.myFeedback.bind(this)
+        this.handlePersonalDetail=this.handlePersonalDetail.bind(this)
     }
 
     componentWillMount(){
@@ -87,12 +88,19 @@ export default class UserCenterComp extends Component{
         }.bind(this),500)
     }
 
+    handlePersonalDetail(){
+        this.props.saveGuestId(this.props.userInfo.id)
+        setTimeout(function(){
+            this.props.history.push("/vipDetail")
+        }.bind(this),100)
+    }
+
 	render(){
 		const {userInfo}=this.props
 		return (
 			<div className="my-detail">
               <div className="my-head">
-                <div className="my-head-avatar">
+                <div className="my-head-avatar" onClick={this.handlePersonalDetail} >
                   <img src={userInfo.headimgurl} />
                 </div>
                 <p>{userInfo.name}</p>

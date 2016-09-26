@@ -6,6 +6,7 @@ const initState = {
 	isHome: 1,
 	category: "学术",
 	guestId: "5781f3958d76bd37452d8e63",
+	questionId: "",
 	iconInfo: [
 		{
 			img: 'img/index-on.png',
@@ -134,6 +135,10 @@ export default function status(state = initState, action){
 		case "saveCategory":
 			return Object.assign({}, state, {
 				category: action.data
+			})
+		case "saveQuestionId":
+			return Object.assign({}, state, {
+				questionId: action.data
 			})
 		default:
 			return state

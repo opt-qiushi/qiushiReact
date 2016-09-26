@@ -38,7 +38,7 @@ export default class DongtaiComp extends Component{
 	    var scrollviewContentHeight = document.body.scrollHeight
 
 	    var sum = scrollviewOffsetY+scrollviewFrameHeight
-	    if(sum >= scrollviewContentHeight-5){
+	    if(sum >= scrollviewContentHeight-5 && !this.state.isInfiniteLoading){
 	      return this.handleInfiniteLoad()
 	    }
 	    return 
@@ -59,6 +59,10 @@ export default class DongtaiComp extends Component{
           })
 		window.addEventListener('scroll', this.handleScroll)
 	}
+
+	componentWillUnmount() {
+            window.removeEventListener('scroll', this.handleScroll);
+  }
 
 	handleInfiniteLoad(){
 		if(this.state.pages==1) return 

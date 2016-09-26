@@ -81,8 +81,8 @@ const Wode = React.createClass({
 
 const routes = (
   <Route path="/" component={App}>
-      <Redirect from="qiushi" to="/" />
       <IndexRoute component={Qiushi} />
+      <Route path="qiushi" component={Qiushi} />
       <Route path="guanzhu" component={Guanzhu} />
       <Route path="dongtai" component={Dongtai} />
       <Route path="wode" component={UserCenter} />

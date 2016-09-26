@@ -32,23 +32,29 @@ export default class QuestionAtomic extends Component{
 	render(){
 		const {questions}=this.props
 		//处理回答的段落显示
-		var rows=[]
-		var k=1
-		var newAnswer = questions.answer.replace(/\n/g,"/n").replace(/\r/g,"/n");
-         var answerAtomic = newAnswer.split("/n")
-         answerAtomic[0] = "A: " + answerAtomic[0]
-         answerAtomic.forEach(function(atomic){
-            rows.push(
-              <div key={k}>{atomic}</div>
-            );
-            k++;
-         })
+		var rows=[];
+		var k=1;
+    if(questions.answer){
+      var newAnswer = questions.answer.replace(/\n/g,"/n").replace(/\r/g,"/n");
+      var answerAtomic = newAnswer.split("/n");
+      answerAtomic[0] = "A: " + answerAtomic[0];
+      answerAtomic.forEach(function(atomic){
+        rows.push(
+          <div key={k}>{atomic}</div>
+        );
+        k++;
+      });
+    }else{
+      rows.push(<div></div>);
+    }
+		
 
         //处理追问循环
-        var rows3=[]
-        var i=1
-        questions.addQuestions.forEach(function(addAtomic){
-         	var newAnswer = addAtomic.answer.replace(/\n/ig,"/n").replace(/\r/ig,"/n");
+        var rows3=[];
+        var i=1;
+        if(questions.addQuestions.length > 0){
+          questions.addQuestions.forEach(function(addAtomic){
+          var newAnswer = addAtomic.answer.replace(/\n/ig,"/n").replace(/\r/ig,"/n");
             var answerAtomic = newAnswer.split("/n");
             var rows2=[]
             var j=1
@@ -70,6 +76,10 @@ export default class QuestionAtomic extends Component{
               );
             i++;
          })
+        }else{
+          rows3.push(<div></div>)
+        }
+        
 
 		return (
 			<div  ref="duihuakuang" className="dynamicStructure" onClick={this.handleClick} >

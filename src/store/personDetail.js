@@ -13,7 +13,8 @@ const initState={
 		id:"5785b884ca01f6263d839178",
 		qiushiQuestions:[]
 	},
-	total_pages:1
+	total_pages:1,
+	question: []
 }
 
 export default function personDetail (state=initState, action){

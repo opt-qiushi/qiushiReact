@@ -1,6 +1,4 @@
-const initState={
-  
-}
+const initState=""
 
 export default function questionDetail (state=initState, action){
 	switch(action.type){

@@ -50,9 +50,11 @@ export default class PersonBack extends Component{
   showFollowButton(){
     switch(this.props.person.like){
       case 0:
-            return (<Button style={buttonStyle1} round onTouchTap={this.handleClick}>+关注</Button>)
+            if(this.props.userId==this.props.person.detail.id) return
+            else return (<Button style={buttonStyle1} round onTouchTap={this.handleClick}>+关注</Button>)
       case 1:
-            return (<Button style={buttonStyle2} round onTouchTap={this.handleClick}>已关注</Button>)
+            if(this.props.userId==this.props.person.detail.id) return
+            else return (<Button style={buttonStyle2} round onTouchTap={this.handleClick}>已关注</Button>)
       default:
             return 
     }

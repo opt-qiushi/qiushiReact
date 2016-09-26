@@ -25,7 +25,10 @@ export default function GMTtoTime(value){
   
             if (now.getDate()<10){  
                 var d=0;  
-                d=now.getDate()+1;  
+
+                //更改日期多一天问题
+                //d=now.getDate()+1; 
+                d=now.getDate(); 
                 var date = "0" + d;  
             }else{  
                 var date = now.getDate();  
@@ -45,8 +48,9 @@ export default function GMTtoTime(value){
                 var minute = now.getMinutes();  
             }  
             var timeAfter = hour + ":" + timeArray[1]+":"+timeArray[2];  
-  
-            var timeFinal = dateAfter + "  " + timeAfter;  
+            //更改只显示日期不显示时间
+            // var timeFinal = dateAfter + "  " + timeAfter; 
+            var  timeFinal = dateAfter;
             return timeFinal;  
         }  
     }

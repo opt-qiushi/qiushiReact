@@ -4,7 +4,7 @@ import Gallery from "../containers/gallery.js"
 import GalleryComp from '../components/galleryComp.js'
 import ClassComp from '../containers/classComp'
 import Snackbar from 'material-ui/Snackbar'
-import PicSlider from './picSlider'
+import PicSlider from '../containers/picSlider'
 import CircularProgress from 'material-ui/CircularProgress'
 import io from '../server'
 
@@ -17,7 +17,8 @@ export default class QiushiComp extends Component{
     super(props)
     this.state={
       isInfiniteLoading: false,
-      open: false
+      open: false,
+      isLoading: false
     }
     this.handleScrollToBottom=this.handleScrollToBottom.bind(this)
     this.elementInfiniteLoad=this.elementInfiniteLoad.bind(this)
@@ -38,7 +39,7 @@ export default class QiushiComp extends Component{
     var scrollviewContentHeight = document.body.scrollHeight
 
     var sum = scrollviewOffsetY+scrollviewFrameHeight
-    if(sum >= scrollviewContentHeight-5){
+    if(sum == scrollviewContentHeight && !this.state.isLoading){
       return this.handleScrollToBottom()
     }
     return 
@@ -58,16 +59,17 @@ export default class QiushiComp extends Component{
 
   handleScrollToBottom(){
         this.setState({
-            isInfiniteLoading: true
+            isInfiniteLoading: true,
+            isLoading: true
         })
         if(this.props.pages > this.props.totalPages){
-          this.setState({isInfiniteLoading: false})
+          this.setState({isInfiniteLoading: false, isLoading: false})
           return 
         }
         io.socket.get('/professional/getHomeUsers', {page: this.props.pages+1}, (result, jwr) => {
           setTimeout(function() {
             this.props.galleryLoadingMore(result.professionals)
-            this.setState({isInfiniteLoading: false})
+            this.setState({isInfiniteLoading: false, isLoading: false})
           }.bind(this), 2000)
         })
   }
@@ -95,10 +97,14 @@ export default class QiushiComp extends Component{
      window.addEventListener('scroll', this.handleScroll)
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
+  }
+
   render(){
     return (
         <div className="contentBox">
-              <PicSlider />
+              <PicSlider history={this.props.history} />
              <div className="eightClasses">
                 <div className="fourClasses">
                   <ClassComp categoryName="学术" categoryUrl="img/class/xueshu.png" history={this.props.history} />

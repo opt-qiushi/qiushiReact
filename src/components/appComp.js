@@ -16,12 +16,21 @@ const bottomStyle={
 export default class AppComp extends Component{
   componentWillMount(){
     var userId=cookie.load('userId')
-    console.log(userId)
-    if(!userId) return
+    var guestId=cookie.load('guestId')
+    var questionId=cookie.load('questionId')
+    if(!userId) {
+      location.href="http://www.opt.com.cn/chat1";
+      return 
+    }
     io.socket.post('/professional/'+userId, {}, (result, jwr) => {
-        console.log(result)
          this.props.getUserInformation(result)
     })
+    if(guestId){
+      this.props.saveGuestId(guestId)
+    }
+    if(questionId){
+      this.props.saveQuestionId(questionId)
+    }
   }
 
   render() {

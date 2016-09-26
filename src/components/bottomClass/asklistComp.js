@@ -24,15 +24,10 @@ export default class AsklistComp extends Component{
 			this.props.onDialog()
 			return 
 		} 
-		io.socket.post('/question/getQuestionDetail', {id: this.props.contentAtomic.id}, (result, jwr) => {
-			io.socket.post('/comments/getComments', {questionID: this.props.contentAtomic.id}, (result2, jwr) => {              
-            	this.props.getQuestionDetail(result)
-            	this.props.getCommentDetail(result2)
-            	setTimeout(function(){
-		        	this.props.history.push("/questionDetail")
-		        }.bind(this),500)
-        	})
-        })
+		this.props.saveQuestionId(this.props.contentAtomic.id)
+		setTimeout(function(){
+              this.props.history.push("/questionDetail")
+         }.bind(this),500)
 	}
 
 	render(){

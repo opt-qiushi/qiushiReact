@@ -36,13 +36,15 @@ export default class Category extends Component{
 		var scrollviewContentHeight = document.body.scrollHeight
 
 		var sum = scrollviewOffsetY+scrollviewFrameHeight
-		if(sum >= scrollviewContentHeight-5){
+		if(sum >= scrollviewContentHeight-5 && !this.state.isInfiniteLoading){
 			return this.handleScrollToBottom()
 		}
 		return 
 	}
 
 	componentDidMount(){
+		this.props.notShouye()
+		window.scrollTo(0,0)
 		if(this.state.firstVisit){
 			io.socket.get('/professional/getByClass', {class:this.props.category}, (result, jwr) => {
 		          this.setState({category: result.professionals, totalPages: result.total_pages, pages: 2, firstVisit: false})
@@ -50,6 +52,10 @@ export default class Category extends Component{
 		}
 		window.addEventListener('scroll', this.handleScroll)
 	}
+
+	componentWillUnmount() {
+            window.removeEventListener('scroll', this.handleScroll);
+  }
 
 	handleScrollToBottom(){
 		if(this.state.pages==1) return 

@@ -31,10 +31,17 @@ export function saveGuestId(str){
 	}
 }
 
-export function saveCategory(num){
+export function saveQuestionId(str){
+	return { 
+		type: "saveQuestionId",
+		data: str
+	}
+}
+
+export function saveCategory(context){
 	return { 
 		type: "saveCategory",
-		data: num
+		data: context
 	}
 }
 
