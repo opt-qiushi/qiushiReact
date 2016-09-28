@@ -29,7 +29,7 @@ export default class GalleryComp extends Component{
                     <div className="nameTag">
                       <div className="name">{theOne.name}</div>
                       <div className="tag">
-                        <img src="img/tag-home.png" />{theOne.title}
+                        <img src="./img/tag-home.png" />{theOne.title}
                       </div>
                     </div>
                     <div className="scrollPage"></div>

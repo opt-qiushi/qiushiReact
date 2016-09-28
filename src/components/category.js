@@ -117,7 +117,7 @@ export default class Category extends Component{
      	else{
      		rows.push(
        	 	<div key={i} className="empty">
-         	 <img src="img/empty.png" />
+         	 <img src="./img/empty.png" />
          	 <p>该页面空空如也~</p>
         	</div>
         	)

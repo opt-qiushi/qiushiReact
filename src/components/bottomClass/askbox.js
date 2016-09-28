@@ -72,7 +72,7 @@ export default class Askbox extends Component{
 	        	answerRows2.push(
 	        		<div key={i} className="askBoxer">
                         <div className="askItem">
-                          <img src="img/lock.png" alt="无法观看回答" />
+                          <img src="./img/lock.png" alt="无法观看回答" />
                           <span>我要解锁他的回答</span>
                         </div>
                      </div>
@@ -82,7 +82,7 @@ export default class Askbox extends Component{
 	        	 if(!newAnswer){
 	              return (<div></div>);
 	         	 }
-		          if(newAnswer.length > 50){
+		          if(newAnswer.length && newAnswer.length > 50){
 		              newAnswer = newAnswer.slice(0,50)
 		              newAnswer = newAnswer + '...'
 		          }

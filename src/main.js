@@ -39,6 +39,7 @@ import MyQuestion from './containers/myQuestion'
 import MyInformation from './containers/myInformation'
 import MyFeedback from './containers/myFeedback'
 import myQuestions from './store/myQuestions'
+import ApplyRule from './containers/applyRule'
 import io from './server'
 
 
@@ -77,8 +78,10 @@ const Wode = React.createClass({
     return <h3>我的</h3>
   }
 })
-
-
+// io.socket.get('/config', {}, (result, jwr) => {    
+//   console.log(result)          
+//   sessionStorage.setItem("config",result);
+// })
 const routes = (
   <Route path="/" component={App}>
       <IndexRoute component={Qiushi} />
@@ -93,6 +96,7 @@ const routes = (
       <Route path="myQuestion" component={MyQuestion} />
       <Route path="myInformation" component={MyInformation} />
       <Route path="myFeedback" component={MyFeedback} />
+      <Route path="applyRule" component={ApplyRule}/>
   </Route>
 );
 

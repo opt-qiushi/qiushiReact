@@ -101,7 +101,7 @@ export default class DongtaiComp extends Component{
 		else {
 			rows.push(
 				<div key={i} className="empty">
-					<img src="img/empty.png" />
+					<img src="./img/empty.png" />
 					<p>您的动态空空如也，快去解锁一些答主吧~</p>
 				</div>
 				)

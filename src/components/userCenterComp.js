@@ -114,22 +114,22 @@ export default class UserCenterComp extends Component{
               <List>
                 <ListItem
                     primaryText="修改信息"
-                    leftAvatar={<Avatar src="img/my-personal.png" backgroundColor="white" />}
+                    leftAvatar={<Avatar src="./img/my-personal.png" backgroundColor="white" />}
                      onTouchTap={this.myInformation} />
                 <Divider />
         		<ListItem
         			primaryText="我的提问"
-        			leftAvatar={<Avatar src="img/my-proposal.png" backgroundColor="white" />}
+        			leftAvatar={<Avatar src="./img/my-proposal.png" backgroundColor="white" />}
         			 onTouchTap={this.myQuestion} />
         		<Divider />
         		<ListItem
         			primaryText="我的回答"
-        			leftAvatar={<Avatar src="img/my-answer.png" backgroundColor="white" />}
+        			leftAvatar={<Avatar src="./img/my-answer.png" backgroundColor="white" />}
         			 onTouchTap={this.myAnswer} />
         		<Divider />
                 <ListItem
                     primaryText="我要反馈"
-                    leftAvatar={<Avatar src="img/my-feedback.png" backgroundColor="white" />}
+                    leftAvatar={<Avatar src="./img/my-feedback.png" backgroundColor="white" />}
                      onTouchTap={this.myFeedback} />
                 <Divider />
     			</List>

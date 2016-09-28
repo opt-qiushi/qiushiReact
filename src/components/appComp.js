@@ -19,7 +19,7 @@ export default class AppComp extends Component{
     var guestId=cookie.load('guestId')
     var questionId=cookie.load('questionId')
     if(!userId) {
-      location.href="http://www.opt.com.cn/chat1";
+      // location.href="http://www.opt.com.cn/chat1";
       return 
     }
     io.socket.post('/professional/'+userId, {}, (result, jwr) => {
@@ -31,6 +31,10 @@ export default class AppComp extends Component{
     if(questionId){
       this.props.saveQuestionId(questionId)
     }
+    // io.socket.post('/config/', {}, (result, jwr) => {    
+    //   console.log(result)          
+    //   sessionStorage.setItem("config",result);
+    // })
   }
 
   render() {

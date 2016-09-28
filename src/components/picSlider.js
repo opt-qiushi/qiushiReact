@@ -9,10 +9,14 @@ const picStyle={
 
 export default class PicSlider extends Component{
 	constructor(props){
-		super(props)
+		super(props);
+		this.handleRuzhu=this.handleRuzhu.bind(this)
 		this.handleXueshu=this.handleXueshu.bind(this)
 		this.handleShetuan=this.handleShetuan.bind(this)
 		this.handleZheda=this.handleZheda.bind(this)
+	}
+	handleRuzhu(){
+		location.href = "/applyRule";
 	}
 
 	handleXueshu(){
@@ -39,18 +43,19 @@ export default class PicSlider extends Component{
 	render(){
 		return (
 			<Slider slideSpeed={2000} className="picSlider" style={picStyle}>
+				<Item>
+			      <img
+			        src="./img/4ruzhu.jpg" onClick={this.handleRuzhu}/></Item>
 			    <Item>
 			      <img
-			        src="img/1xuanzhuanye.jpg" onClick={this.handleXueshu} />
+			        src="./img/1xuanzhuanye.jpg" onClick={this.handleXueshu} />
 			    </Item>
 			    <Item><img
-			      src="img/2shetuan.jpg" onClick={this.handleShetuan} /></Item>
+			      src="./img/2shetuan.jpg" onClick={this.handleShetuan} /></Item>
 			    <Item>
 			      <img
-			        src="img/3zheda.jpg" onClick={this.handleZheda} /></Item>
-			    <Item>
-			      <img
-			        src="img/4ruzhu.jpg"/></Item>
+			        src="./img/3zheda.jpg" onClick={this.handleZheda} /></Item>
+			    
 			  </Slider>
 			)
 	}

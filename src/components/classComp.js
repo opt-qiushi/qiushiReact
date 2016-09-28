@@ -26,7 +26,7 @@ export default class classComp extends Component{
   handleClick(){
             this.props.saveCategory(this.props.categoryName)
             setTimeout(function(){
-              this.props.history.push("/category")
+              this.props.history.push("/category?" + "category=xueshu")
             }.bind(this),500)
   }
 

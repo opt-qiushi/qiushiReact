@@ -121,7 +121,7 @@ export default class MyAnswer extends Component{
 		}else{
 			rows1.push(
 	          <div key={i} className="empty">
-	          <img src="img/empty.png" />
+	          <img src="./img/empty.png" />
 	          <p>暂时没有未回答的问题~</p>
 	        </div>
         	)
@@ -136,7 +136,7 @@ export default class MyAnswer extends Component{
 		}else{
 			rows2.push(
 	          <div key={i} className="empty">
-	          <img src="img/empty.png" />
+	          <img src="./img/empty.png" />
 	          <p>您还没有回答过问题~</p>
 	        </div>
         	)

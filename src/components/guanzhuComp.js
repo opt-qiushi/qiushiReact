@@ -104,7 +104,7 @@ export default class GuanzhuComp extends Component{
      else{
         rows.push(
           <div key={i} className="empty">
-          <img src="img/empty.png" />
+          <img src="./img/empty.png" />
           <p>您的关注空空如也，快去关注一些答主吧~</p>
         </div>
         )

@@ -70,7 +70,7 @@ export default class PersonBack extends Component{
 		return (
 		 	 <div className="personback">
                 <div className="backgroundImg">
-                  <img src="img/vipDetail/topBackground.jpg" id="backimg" className="headimg"/>               
+                  <img src="./img/vipDetail/topBackground.jpg" id="backimg" className="headimg"/>               
                    </div>
                 <div className="personbackinfo">
                   <div className="headAvatar">
@@ -82,7 +82,7 @@ export default class PersonBack extends Component{
                   </div>
                   {this.showFollowButton()}
                   <div className="tag">
-                    <img src="img/vipDetail/tag.png" id="tagimg" />
+                    <img src="./img/vipDetail/tag.png" id="tagimg" />
                     {person.detail.title}
                   </div>
                 </div>

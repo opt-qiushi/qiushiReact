@@ -76,7 +76,7 @@ export default class MyQuestion extends Component{
 		}else{
 			rows.push(
 	          <div key={i} className="empty">
-	          <img src="img/empty.png" />
+	          <img src="./img/empty.png" />
 	          <p>暂时没有提出的问题~</p>
 	        </div>
         	)
