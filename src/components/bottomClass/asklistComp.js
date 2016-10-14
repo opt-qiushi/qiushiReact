@@ -26,8 +26,9 @@ export default class AsklistComp extends Component{
 		} 
 		this.props.saveQuestionId(this.props.contentAtomic.id)
 		setTimeout(function(){
-              this.props.history.push("/questionDetail")
-         }.bind(this),500)
+			this.props.history.push("/questionDetail?id="+this.props.contentAtomic.id);
+            // this.props.history.push("/questionDetail")
+        }.bind(this),500)
 	}
 
 	render(){

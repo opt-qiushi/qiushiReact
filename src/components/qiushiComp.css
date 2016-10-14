@@ -39,15 +39,8 @@
 	font-family: "PingHei";
 }
 
-.eightClasses{
+.fourClasses{
 	width: 100%;
 	clear: both;
-}
-
-.fourClasses{
-	width:100%;
-	clear:both;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-bottom: 15px;
+	overflow: hidden;
 }

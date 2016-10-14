@@ -49,15 +49,57 @@ export default class PersonDetailComp extends Component{
     window.scrollTo(0,0)
     var userId=cookie.load('userId')
     if(!userId){
-      // location.href="http://www.opt.com.cn/chat1?redirectUrl=www.opt.com.cn/vipDetail&guestId="+this.props.guestId
+      location.href="http://www.opt.com.cn/chat1?redirectUrl=www.opt.com.cn/qiushi&fromUrl=vipDetail&id="+this.props.guestId
     }
     io.socket.post('/professional/getUserDetail', { from: this.props.userId, 
       id: this.props.guestId }, (result, jwr) => {
-         this.props.getCurrentDetail(result)
-         if(this.props.person.detail.qiushiQuestions!="")
-            this.setState({tenQuestions:(<Paper style={style2} zDepth={2} children={<QiushiQuestionsBinding />} />)})
-   })
-
+        this.props.getCurrentDetail(result)
+        if(this.props.person.detail.qiushiQuestions!=""){
+          this.setState({tenQuestions:(<Paper style={style2} zDepth={2} children={<QiushiQuestionsBinding />} />)})
+        }
+        var headImg = result.detail.headimgurl || result.detail.avatar || "";
+            // if(result.detail.headimgurl){
+            //   headImg = result.detail.headimgurl;
+            // }else{
+            //   headImg = result.detail.avatar;
+            // }
+        (function wxJsApi(intro,headImg){
+              var target = location.href.split("#")[0];
+              //var target = encodeURIComponent(location.href.split("#")[0]);
+              io.socket.get("/config",{targetUrl:target},(result, jwr) =>{
+                //result.debug = true;
+                wx.config(result)
+                wx.ready(function(){
+                  wx.onMenuShareTimeline({
+                      title: intro, // 分享标题
+                      link: '', // 分享链接
+                      imgUrl: headImg, // 分享图标
+                      success: function () { 
+                          // 用户确认分享后执行的回调函数
+                      },
+                      cancel: function () { 
+                          // 用户取消分享后执行的回调函数
+                      }
+                  });
+                  wx.onMenuShareAppMessage({
+                      title: '求士', // 分享标题
+                      desc: intro, // 分享描述
+                      link: '', // 分享链接
+                      imgUrl: headImg, // 分享图标
+                      type: '', // 分享类型,music、video或link，不填默认为link
+                      dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                      success: function () { 
+                          // 用户确认分享后执行的回调函数
+                      },
+                      cancel: function () { 
+                          // 用户取消分享后执行的回调函数
+                      }
+                  });
+                  //wx.hideAllNonBaseMenuItem(); 
+                });  
+              });      
+            })(result.detail.intro,headImg)  
+    })
   }
 
   showUserInput(){
@@ -75,10 +117,10 @@ export default class PersonDetailComp extends Component{
       else return
   }
   toIndex(){
-    location.href = "/qiushi";
-    // setTimeout(function(){
-    //   this.props.history.push("/qiushi")
-    // }.bind(this),300);
+    // location.href = "/qiushi";
+    setTimeout(function(){
+      this.props.history.push("/qiushi")
+    }.bind(this),300);
   }
 
 	render(){

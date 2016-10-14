@@ -14,8 +14,14 @@ const initState ={
 			question:"",
 			answer:""
 		}],
+		from:{
+			avatar:"",
+			headimgurl:"",
+			name:""
+		},
 		to:{
 			avatar:"",
+			headimgurl:"",
 			name:""
 		}
 	}]

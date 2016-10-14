@@ -5,16 +5,12 @@ import { Router, Route, IndexRoute, Redirect, Link } from 'react-router'
 
 
 const buttonStyle={
-  height: '100%',
-  minWidth: '10px',
+  height: '80px',
   width:'25%',
-  display: 'inline',
   float: 'left',
   textAlign: 'center',
-  paddingTop: '10px',
-  paddingLeft: '15px',
-  paddingRight: '15px',
-  lineHeight: '20px'
+  paddingLeft: '10px',
+  paddingRight: '10px'
 }
 
 export default class classComp extends Component{
@@ -26,7 +22,7 @@ export default class classComp extends Component{
   handleClick(){
             this.props.saveCategory(this.props.categoryName)
             setTimeout(function(){
-              this.props.history.push("/category?" + "category=xueshu")
+              this.props.history.push("/category")
             }.bind(this),500)
   }
 
@@ -34,8 +30,7 @@ export default class classComp extends Component{
 		const {categoryName, categoryUrl}=this.props
 		return (
   			     <FlatButton className="fourClasses-1" style={buttonStyle} onTouchTap={this.handleClick} >
-                   <div className="circle"><img src = {categoryUrl} /></div>
-                   <font className="fourClasses-2" >{categoryName}</font>
+                   <div className="circle">{categoryName}</div>
              </FlatButton>
 		)
 	}

@@ -23,7 +23,7 @@ export default class QuestionAtomic extends Component{
 
   componentDidMount(){
     if(this.props.shenglue){
-      this.refs.displayNode.style.height="150px"
+      // this.refs.displayNode.style.height="150px"
       this.refs.displayNode.style.maxHeight="150px"
       this.refs.displayNode.style.overflow="hidden"
     }
@@ -37,7 +37,7 @@ export default class QuestionAtomic extends Component{
     if(questions.answer){
       var newAnswer = questions.answer.replace(/\n/g,"/n").replace(/\r/g,"/n");
       var answerAtomic = newAnswer.split("/n");
-      answerAtomic[0] = "A: " + answerAtomic[0];
+      answerAtomic[0] = "A：" + answerAtomic[0];
       answerAtomic.forEach(function(atomic){
         rows.push(
           <div key={k}>{atomic}</div>
@@ -45,7 +45,7 @@ export default class QuestionAtomic extends Component{
         k++;
       });
     }else{
-      rows.push(<div></div>);
+      rows.push(<div key="-1"></div>);
     }
 		
 
@@ -58,6 +58,7 @@ export default class QuestionAtomic extends Component{
             var answerAtomic = newAnswer.split("/n");
             var rows2=[]
             var j=1
+            answerAtomic[0] = "A：" + answerAtomic[0];
             answerAtomic.forEach(function(atomic){
               rows2.push(
                 <div key={j}>{atomic}</div>
@@ -67,43 +68,58 @@ export default class QuestionAtomic extends Component{
             rows3.push(
                 <div key={i} className="dynamicBottom">
                   <div className="dynamicBottom-0">
-                    <div className="dynamicBottom-0-0">追问</div>
-                    <div className="dynamicBottom-0-1">{addAtomic.question}</div>
+                    <div className="dynamicBottom-0-1">
+                      <div className="dynamicBottom-0-0">追问</div>
+                      Q：{addAtomic.question}
+                    </div>
                   </div>
-                  <div className="dynamicBottom-0-0">回答</div>
                   <div className="dynamicBottom-0-2">{rows2}</div>
                 </div>
               );
             i++;
          })
         }else{
-          rows3.push(<div></div>)
+          rows3.push(<div key="-1"></div>)
         }
-        
-
+    var fromHeadImgUrl = questions.from.avatar || questions.from.headimgurl || "";    
+    var toHeadImgUrl = questions.to.avatar || questions.to.headimgurl || "";
 		return (
 			<div  ref="duihuakuang" className="dynamicStructure" onClick={this.handleClick} >
                 <div className="dynamicHead">
                     <span className="dynamicHeadAvatar" >
-                      <img src={questions.to.avatar} />
+                      <img src={fromHeadImgUrl} />
                     </span>
                       <span className="dynamicHead-1">
                         <span className="dynamicHead-1-0">
-                          {questions.to.name}
+                          {questions.from.name}
                         </span>
                         <span className="dynamicHead-1-1">
                           {GMTtoTime(questions.createdAt)}
                         </span>
                       </span>
                 </div>
+                <div className="dynamicBody">
+                  <p className="dynamic-question">
+                    Q：{questions.question}
+                  </p>
+                </div>
+                <div className="dynamicHead">
+                    <div className="dynamicHeadAvatar" >
+                      <img src={toHeadImgUrl} />
+                    </div>
+                      <div className="dynamicHead-1">
+                        <span className="dynamicHead-1-0">
+                          {questions.to.name}
+                        </span>
+                        <div className="dynamicHead-1-1">
+                          {questions.to.title}
+                        </div>
+                      </div>
+                </div>
+                <div className="dynamicBody">
+                  {rows}
+                </div>
                 <div ref="displayNode" >
-                  <div className="dynamicBody">
-                    <p className="sign-green">
-                      Q: {questions.question}
-                    </p>
-                    {/*<p>A: {this.props.dynamicQuestion.answer}</p>*/}
-                    {rows}
-                  </div>
                   {rows3}
                 </div>
                 <div className="dynamicStatistic">

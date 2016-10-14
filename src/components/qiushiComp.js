@@ -20,6 +20,7 @@ export default class QiushiComp extends Component{
       open: false,
       isLoading: false
     }
+    // console.log(this.props)
     this.handleScrollToBottom=this.handleScrollToBottom.bind(this)
     this.elementInfiniteLoad=this.elementInfiniteLoad.bind(this)
     this.handleRequestOpen=this.handleRequestOpen.bind(this)
@@ -88,36 +89,48 @@ export default class QiushiComp extends Component{
   }
 
   componentDidMount(){
+    //当首页url带参数时跳转到指定页面
+    var url = location.search; //获取url中"?"符后的字串
+    var theRequest = new Object();
+    if (url.indexOf("?") != -1) {
+        var str = url.substr(1);
+        var strs = str.split("&");
+        for(var i = 0; i < strs.length; i ++) {
+            theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+        }
+        if(theRequest.fromUrl === "vipDetail"){
+          this.props.saveGuestId(theRequest.id);
+          this.props.history.push("/vipDetail?id="+theRequest.id);
+        }else if(theRequest.fromUrl === "questionDetail"){
+          this.props.saveQuestionId(theRequest.id);
+          this.props.history.push("/questionDetail?id="+theRequest.id);
+        }
+
+    }
     this.props.changeQiushi()
     this.props.shouye()
     window.scrollTo(0,0)
-     io.socket.get('/professional/getHomeUsers', {}, (result, jwr) => {
-         this.props.galleryUpdate(result)
-     })
+    io.socket.get('/professional/getHomeUsers', {id:localStorage.getItem('userId')}, (result, jwr) => {
+        this.props.galleryUpdate(result)
+    })
      window.addEventListener('scroll', this.handleScroll)
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll)
   }
-
   render(){
+    // io.socket.get('/professional/getHomeUsers', {id:this.props.userInfo.id}, (result, jwr) => {
+    //     this.props.galleryUpdate(result)
+    // })
     return (
         <div className="contentBox">
               <PicSlider history={this.props.history} />
-             <div className="eightClasses">
-                <div className="fourClasses">
-                  <ClassComp categoryName="学术" categoryUrl="img/class/xueshu.png" history={this.props.history} />
-                  <ClassComp categoryName="社团" categoryUrl="img/class/shetuan.png" history={this.props.history} />
-                  <ClassComp categoryName="创业" categoryUrl="img/class/chuangtou.png" history={this.props.history} />
-                  <ClassComp categoryName="电脑" categoryUrl="img/class/diannao.png" history={this.props.history} />
-                </div>
-                <div className="fourClasses">
-                  <ClassComp categoryName="美妆" categoryUrl="img/class/meizhuang.png" history={this.props.history} />
-                  <ClassComp categoryName="摄影" categoryUrl="img/class/sheying.png" history={this.props.history} />
-                  <ClassComp categoryName="美食" categoryUrl="img/class/meishi.png" history={this.props.history} />
-                  <ClassComp categoryName="其他" categoryUrl="img/class/qita.png" history={this.props.history} />
-                </div>
+             <div className="fourClasses">
+                <ClassComp categoryName="学术" history={this.props.history} />
+                <ClassComp categoryName="创业" history={this.props.history} />
+                <ClassComp categoryName="美食" history={this.props.history} />
+                <ClassComp categoryName="其他" history={this.props.history} />
              </div>
              <div className="recommend">
                 <p>人气推荐</p>

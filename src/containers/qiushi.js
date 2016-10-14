@@ -6,6 +6,7 @@ import * as actions  from '../actions/homepage'
 //将state.counter绑定到props的counter
 function mapStateToProps(state) {
   return {
+    userInfo:state.userInfo,
     person: state.galleryReducer.professionals,
     pages:state.galleryReducer.currentPage,
     totalPages: state.galleryReducer.totalPages

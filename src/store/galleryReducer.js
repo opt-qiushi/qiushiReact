@@ -2,20 +2,7 @@
 const initState={
 	currentPage: 1,
 	totalPages: 1,
-	professionals:[
-		{
-			id:0,
-			avatar:"",
-			name:"",
-			title:""
-		},
-		{
-			id:1,
-			avatar:"",
-			name:"",
-			title:""
-		}
-	]
+	professionals:[]
 }
 
 export default function galleryReducer (state=initState, action){

@@ -45,7 +45,6 @@ import io from './server'
 
 injectTapEventPlugin();
 
-
 const reducer = combineReducers({
   status,
   galleryReducer,
@@ -64,8 +63,6 @@ const reducer = combineReducers({
 const store = createStore(
   reducer
 )
-
-
 
 
 const history = syncHistoryWithStore(browserHistory, store)

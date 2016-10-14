@@ -16,21 +16,23 @@ const bottomStyle={
 export default class AppComp extends Component{
   componentWillMount(){
     var userId=cookie.load('userId')
-    var guestId=cookie.load('guestId')
-    var questionId=cookie.load('questionId')
+    // var guestId=cookie.load('guestId')
+    // var questionId=cookie.load('questionId')
+    userId = '57a7ffb64fe7f46f7d144305'
     if(!userId) {
-      // location.href="http://www.opt.com.cn/chat1";
+      location.href="http://www.opt.com.cn/chat1";
       return 
     }
+    localStorage.setItem('userId',userId);
     io.socket.post('/professional/'+userId, {}, (result, jwr) => {
          this.props.getUserInformation(result)
     })
-    if(guestId){
-      this.props.saveGuestId(guestId)
-    }
-    if(questionId){
-      this.props.saveQuestionId(questionId)
-    }
+    // if(guestId){
+    //   this.props.saveGuestId(guestId)
+    // }
+    // if(questionId){
+    //   this.props.saveQuestionId(questionId)
+    // }
     // io.socket.post('/config/', {}, (result, jwr) => {    
     //   console.log(result)          
     //   sessionStorage.setItem("config",result);

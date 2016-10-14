@@ -7,7 +7,8 @@ import * as actions  from '../actions/homepage'
 function mapStateToProps(state) {
   return {
     person: state.galleryReducer.professionals,
-    value: state.status
+    value: state.status,
+    userInfo:state.userInfo,
   }
 }
 //将action的所有方法绑定到props上

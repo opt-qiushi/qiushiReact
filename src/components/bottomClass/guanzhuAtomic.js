@@ -17,7 +17,8 @@ export default class GuanzhuAtomic extends Component{
 	handleClick(){
 	         this.props.saveGuestId(this.props.focusPerson.id)
 	         setTimeout(function(){
-		        	this.props.history.push("/vipDetail")
+	         		this.props.history.push("/vipDetail?id="+this.props.focusPerson.id);
+		        	// this.props.history.push("/vipDetail")
 		     }.bind(this),500)
 	}
 

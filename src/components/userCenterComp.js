@@ -91,7 +91,7 @@ export default class UserCenterComp extends Component{
     handlePersonalDetail(){
         this.props.saveGuestId(this.props.userInfo.id)
         setTimeout(function(){
-            this.props.history.push("/vipDetail")
+            this.props.history.push("/vipDetail?id="+this.props.userInfo.id);
         }.bind(this),100)
     }
 
