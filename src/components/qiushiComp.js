@@ -67,7 +67,7 @@ export default class QiushiComp extends Component{
           this.setState({isInfiniteLoading: false, isLoading: false})
           return 
         }
-        io.socket.get('/professional/getHomeUsers', {page: this.props.pages+1}, (result, jwr) => {
+        io.socket.get('/professional/getHomeUsers', {id:localStorage.getItem('userId'),page: this.props.pages+1}, (result, jwr) => {
           setTimeout(function() {
             this.props.galleryLoadingMore(result.professionals)
             this.setState({isInfiniteLoading: false, isLoading: false})
@@ -90,6 +90,7 @@ export default class QiushiComp extends Component{
 
   componentDidMount(){
     //当首页url带参数时跳转到指定页面
+    localStorage.setItem('fromUrl',location.href.split("#")[0]);
     var url = location.search; //获取url中"?"符后的字串
     var theRequest = new Object();
     if (url.indexOf("?") != -1) {
@@ -127,14 +128,14 @@ export default class QiushiComp extends Component{
         <div className="contentBox">
               <PicSlider history={this.props.history} />
              <div className="fourClasses">
-                <ClassComp categoryName="学术" history={this.props.history} />
-                <ClassComp categoryName="创业" history={this.props.history} />
-                <ClassComp categoryName="美食" history={this.props.history} />
-                <ClassComp categoryName="其他" history={this.props.history} />
+                <ClassComp categoryName="学术" categoryUrl="./img/class/index-xueshu.gif" history={this.props.history} />
+                <ClassComp categoryName="创业" categoryUrl="./img/class/index-chuangye.gif" history={this.props.history} />
+                <ClassComp categoryName="美食" categoryUrl="./img/class/index-meishi.gif" history={this.props.history} />
+                <ClassComp categoryName="其他" categoryUrl="./img/class/index-qita.gif" history={this.props.history} />
              </div>
-             <div className="recommend">
-                <p>人气推荐</p>
-             </div>
+             {/*<div className="recommend">
+                             <p>人气推荐</p>
+                          </div>*/}
              <Snackbar
                 open={this.state.open}
                 message="没有更多内容了"

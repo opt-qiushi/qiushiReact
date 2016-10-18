@@ -15,12 +15,25 @@ const bottomStyle={
 
 export default class AppComp extends Component{
   componentWillMount(){
+    function getQueryString(name) {
+          var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+          var r = window.location.search.substr(1).match(reg);
+          if (r != null) return unescape(r[2]); return null;
+    }
     var userId=cookie.load('userId')
     // var guestId=cookie.load('guestId')
     // var questionId=cookie.load('questionId')
     userId = '57a7ffb64fe7f46f7d144305'
     if(!userId) {
-      location.href="http://www.opt.com.cn/chat1";
+      var tempHref = location.href;
+      if(tempHref.indexOf("vipDetail") !== -1){
+        location.href="http://www.opt.com.cn/chat1?redirectUrl=www.opt.com.cn/qiushi&fromUrl=vipDetail&id="+getQueryString("id")
+      }else if(tempHref.indexOf("questionDetail") !== -1){
+        location.href="http://www.opt.com.cn/chat1?redirectUrl=www.opt.com.cn/qiushi&fromUrl=questionDetail&id="+getQueryString("id")
+      }else{
+        location.href="http://www.opt.com.cn/chat1";
+      }
+      // location.href="http://www.opt.com.cn/chat1?redirectUrl=www.opt.com.cn/qiushi&fromUrl=vipDetail&id="+this.props.guestId
       return 
     }
     localStorage.setItem('userId',userId);

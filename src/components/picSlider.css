@@ -1,3 +1,6 @@
+.am-slider-default .am-control-nav {
+    bottom: 0px;
+}
 .am-viewport{
 	overflow: hidden;
 }

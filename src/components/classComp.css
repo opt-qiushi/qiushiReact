@@ -1,10 +1,32 @@
 
-.circle{
+/*.circle{
 	position: relative;
+	display: inline-block;
     border-radius: 50%;
     width: 70px;
     height: 70px;
     border: 1px solid #0a964c;
     color: #0a964c;
     line-height: 70px;
+}*/
+.circle{
+	position: relative;
+	display: inline-block;
+	text-align: center;
+    /*border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    border: 1px solid #0a964c;
+    color: #0a964c;
+    line-height: 70px;*/
+}
+.picture{
+	width: 55px;
+	height: 55px;
+}
+.name{
+	margin-top: -10px;	
+}
+.name>span{
+	font-size: 15px;
 }

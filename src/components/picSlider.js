@@ -16,7 +16,7 @@ export default class PicSlider extends Component{
 		this.handleZheda=this.handleZheda.bind(this)
 	}
 	handleRuzhu(){
-		location.href = "/applyRule";
+		this.props.history.push("/applyRule")
 	}
 
 	handleXueshu(){

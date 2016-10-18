@@ -65,9 +65,9 @@ export default class PersonDetailComp extends Component{
             // }
         (function wxJsApi(intro,headImg){
               var target = location.href.split("#")[0];
-              //var target = encodeURIComponent(location.href.split("#")[0]);
-              io.socket.get("/config",{targetUrl:target},(result, jwr) =>{
-                //result.debug = true;
+              // var target = encodeURIComponent(location.href.split("#")[0]);
+              io.socket.get("/config",{targetUrl:localStorage.getItem('fromUrl')},(result, jwr) =>{
+                // result.debug = true;
                 wx.config(result)
                 wx.ready(function(){
                   wx.onMenuShareTimeline({
@@ -119,7 +119,8 @@ export default class PersonDetailComp extends Component{
   toIndex(){
     // location.href = "/qiushi";
     setTimeout(function(){
-      this.props.history.push("/qiushi")
+      location.href = "/qiushi";
+      // this.props.history.push("/qiushi")
     }.bind(this),300);
   }
 

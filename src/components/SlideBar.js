@@ -30,7 +30,7 @@ class SlideBar extends Component {
 		const { value, onQiushi, onGuanzhu, onDongtai, onWode }=this.props
 		return (
 			<div className="slideBar" >
-				<Link to="/qiushi">
+				<Link to="/qiushi/">
 					<IconStyle imgUrl={value.iconInfo[0].img} colorInfo={value.iconInfo[0].color} title="求士" onTouch={this.handleClick} />
 				</Link>
 				<Link to="/guanzhu">
