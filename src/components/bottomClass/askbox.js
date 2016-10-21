@@ -82,10 +82,10 @@ export default class Askbox extends Component{
 	        	 if(!newAnswer){
 	              return (<div></div>);
 	         	 }
-		          if(newAnswer.length && newAnswer.length > 50){
-		              newAnswer = newAnswer.slice(0,50)
-		              newAnswer = newAnswer + '...'
-		          }
+		          // if(newAnswer.length && newAnswer.length > 50){
+		          //     newAnswer = newAnswer.slice(0,50)
+		          //     newAnswer = newAnswer + '...'
+		          // }
 		          newAnswer = newAnswer.replace(/\n/g,"/n").replace(/\r/g,"/n")
 		          var answerAtomic = newAnswer.split("/n")
 		          answerAtomic[0] = "A:" + answerAtomic[0]
@@ -95,7 +95,7 @@ export default class Askbox extends Component{
 		            )
 		            j++
 		          })
-		          answerRows2.push(<div key="j" className="answer">{answerRows}</div>)
+		          answerRows2.push(<div key="j" className="qiushi-answer" >{answerRows}</div>)
 	      	}
 			rows.push(
 				<AsklistCompBinding history={this.props.history} key={i} contentAtomic={contentAtomic} answerRow={answerRows2} flag={flag} onDialog={this.handleClick} />

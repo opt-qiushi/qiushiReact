@@ -7,6 +7,7 @@ import UserInputBinding from '../containers/userInputBinding'
 import cookie from 'react-cookie'
 import Paper from 'material-ui/Paper'
 import RaisedButton from 'material-ui/RaisedButton'
+import FlatButton from 'material-ui/FlatButton'
 import "./personalDetailComp.css"
 import io from '../server'
 
@@ -26,7 +27,7 @@ const style2 = {
   minHeight: '100px'
 };
 
-const RaisedButtonStyle = {
+const FlatButtonStyle = {
   display:"inline-block",
   position: "fixed",
   right: "0",
@@ -47,10 +48,10 @@ export default class PersonDetailComp extends Component{
   componentWillMount(){
     this.props.notShouye()
     window.scrollTo(0,0)
-    var userId=cookie.load('userId')
-    if(!userId){
-      location.href="http://www.opt.com.cn/chat1?redirectUrl=www.opt.com.cn/qiushi&fromUrl=vipDetail&id="+this.props.guestId
-    }
+    // var userId=cookie.load('userId')
+    // if(!userId){
+    //   location.href="https://www.opt.com.cn/chat1?redirectUrl=www.opt.com.cn/qiushi&fromUrl=vipDetail&id="+this.props.guestId
+    // }
     io.socket.post('/professional/getUserDetail', { from: this.props.userId, 
       id: this.props.guestId }, (result, jwr) => {
         this.props.getCurrentDetail(result)
@@ -127,7 +128,7 @@ export default class PersonDetailComp extends Component{
 	render(){
 		return (
 		 	<div className="personalDetail">
-        <RaisedButton style={RaisedButtonStyle} backgroundColor="#0A964C" labelColor="white" label="返回首页" onTouchTap={this.toIndex}/>
+        <FlatButton style={FlatButtonStyle} backgroundColor="#0A964C" labelStyle={{color:"white"}} label="返回首页" onTouchTap={this.toIndex}/>
         
  		    <Paper style={style} zDepth={2} children={<PersonBackBinding />} />
         {this.showIntroduction()}

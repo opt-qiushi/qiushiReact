@@ -44,7 +44,7 @@
 .question{
 	line-height: 21px;
 	color: #0D964C;
-    margin-top: 18px;
+    margin-top: 12px;
     letter-spacing: 2px;
     font-size: 16px;
 }
@@ -77,4 +77,38 @@
 .askItem span{
     padding-left: 8px;
     vertical-align: top;
+}
+.qiushi-question{
+    line-height: 21px;
+    color: #0D964C;
+    margin-top: 12px;
+    letter-spacing: 2px;
+    font-size: 16px;
+    margin-left: 45px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e1e1e1;
+    text-align: left;
+}
+.qiushi-answer{
+    line-height: 21px;
+    letter-spacing: 2px;
+    font-size: 16px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    margin-left: 45px;
+    /*max-height: 105px;*/
+    text-align: left;
+    overflow: hidden;
+}
+.openArea{
+    text-align: center;
+    padding: 10px 0;
+}
+.openArea > img{
+    width: 16px;
+    height: 8px;
+}
+.answer-container{
+    overflow: hidden;
 }

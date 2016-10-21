@@ -20,7 +20,6 @@ export default class QiushiComp extends Component{
       open: false,
       isLoading: false
     }
-    // console.log(this.props)
     this.handleScrollToBottom=this.handleScrollToBottom.bind(this)
     this.elementInfiniteLoad=this.elementInfiniteLoad.bind(this)
     this.handleRequestOpen=this.handleRequestOpen.bind(this)

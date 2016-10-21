@@ -15,7 +15,10 @@ const style={
 export default class AsklistComp extends Component{
 	constructor(props){
 		super(props)
-		this.handleClick=this.handleClick.bind(this)
+		this.state = {isOpen:true,hasOpen:false}
+		this.handleClick = this.handleClick.bind(this)
+		this.handleStateChange = this.handleStateChange.bind(this)
+		this.fromPersonPage = this.fromPersonPage.bind(this)
 	}
 
 
@@ -30,28 +33,73 @@ export default class AsklistComp extends Component{
             // this.props.history.push("/questionDetail")
         }.bind(this),500)
 	}
-
+	handleStateChange(e){
+        e.stopPropagation()
+        var flag = this.state.isOpen;
+        if(!flag){
+        	this.refs.qiushiAnswer.style.maxHeight = 'none';
+        }else{
+        	this.refs.qiushiAnswer.style.maxHeight = 118 + 'px';
+        }
+        flag = !flag;
+        this.setState({isOpen:flag})
+    }
+    fromPersonPage(e){
+    	e.stopPropagation();
+    	this.props.saveGuestId(this.props.contentAtomic.from.id)
+    	this.props.history.push("/vipDetail");
+    	// this.props.history.push("/vipDetail?id=" + this.props.contentAtomic.from.id);
+    }
+    componentDidMount(){
+    	if(this.refs.qiushiAnswer.offsetHeight > 106){
+    		this.refs.qiushiAnswer.style.maxHeight = 118 + 'px';
+    		this.setState({isOpen:false,hasOpen:true})
+    	}
+    }
 	render(){
 		const {contentAtomic, answerRow}=this.props
+		var openArea = [];
+		if(this.state.hasOpen && !this.state.isOpen){
+			openArea.length = 0;
+			openArea.push(<img src="./img/向下箭头.png" key="down"/>)
+		}else if(this.state.hasOpen && this.state.isOpen){
+			openArea.length = 0;
+			openArea.push(<img src="./img/向上箭头.png" key="up" />);
+		}
+		var fromAvatar = contentAtomic.from.avatar || contentAtomic.from.headimgurl || '';
+		var toAvatar = contentAtomic.to.avatar || contentAtomic.to.headimgurl || '';
 		return (
+			<div>
 			<FlatButton style={style} onTouchTap={this.handleClick} >
-	              		<div className="askercontainer">
-		                  <div className="askpersonImg">
-		                    <img src={contentAtomic.from.avatar} id="askpersonimg" />
-		                  </div>
-		                  <div className="asker">
-		                    <div className="askername">{contentAtomic.from.name}</div>
-		                    <div className="askertime">{GMTtoTime(contentAtomic.createdAt)}</div>
-		                  </div>
-		                </div>
-		                <div>
-		                  <div className="question">
-		                    <b>Q</b>:{contentAtomic.question}
-		                  </div>
-		                  {answerRow}
-		                </div>
-		                <Divider   />
-	          </FlatButton>
+          		<div className="askercontainer">
+                  <div className="askpersonImg">
+                    <img src={fromAvatar} id="askpersonimg" onTouchTap={this.fromPersonPage}/>
+                  </div>
+                  <div className="asker">
+                    <div className="askername">{contentAtomic.from.name}</div>
+                    <div className="askertime">{GMTtoTime(contentAtomic.createdAt)}</div>
+                  </div>
+                </div>
+                <div className="qiushi-question">
+                  <b>Q</b>:{contentAtomic.question}
+                </div>
+                <div className="askercontainer">
+                  <div className="askpersonImg">
+                    <img src={toAvatar} id="askpersonimg" />
+                  </div>
+                  <div className="asker">
+                    <div className="askername">{contentAtomic.to.name}</div>
+                  </div>
+                </div>
+                <div ref="qiushiAnswer" className="answer-container">
+					{answerRow}
+                </div>
+	        </FlatButton>
+            <div className="openArea" onTouchTap={this.handleStateChange}>
+              	{openArea}
+            </div>
+            <Divider   />
+            </div>
 			)
 	}
 }

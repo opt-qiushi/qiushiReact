@@ -27,13 +27,12 @@ export default class AppComp extends Component{
     if(!userId) {
       var tempHref = location.href;
       if(tempHref.indexOf("vipDetail") !== -1){
-        location.href="http://www.opt.com.cn/chat1?redirectUrl=www.opt.com.cn/qiushi&fromUrl=vipDetail&id="+getQueryString("id")
+        location.href="https://www.opt.com.cn/chat1?redirectUrl=www.opt.com.cn/qiushi&fromUrl=vipDetail&id="+getQueryString("id")
       }else if(tempHref.indexOf("questionDetail") !== -1){
-        location.href="http://www.opt.com.cn/chat1?redirectUrl=www.opt.com.cn/qiushi&fromUrl=questionDetail&id="+getQueryString("id")
+        location.href="https://www.opt.com.cn/chat1?redirectUrl=www.opt.com.cn/qiushi&fromUrl=questionDetail&id="+getQueryString("id")
       }else{
-        location.href="http://www.opt.com.cn/chat1";
+        location.href="https://www.opt.com.cn/chat1";
       }
-      // location.href="http://www.opt.com.cn/chat1?redirectUrl=www.opt.com.cn/qiushi&fromUrl=vipDetail&id="+this.props.guestId
       return 
     }
     localStorage.setItem('userId',userId);

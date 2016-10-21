@@ -99,8 +99,8 @@ export default class UserCenterComp extends Component{
 		const {userInfo}=this.props
 		return (
 			<div className="my-detail">
-              <div className="my-head">
-                <div className="my-head-avatar" onClick={this.handlePersonalDetail} >
+              <div className="my-head" onTouchTap={this.handlePersonalDetail} >
+                <div className="my-head-avatar" >
                   <img src={userInfo.headimgurl} />
                 </div>
                 <p>{userInfo.name}</p>

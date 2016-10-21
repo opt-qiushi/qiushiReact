@@ -10,15 +10,18 @@ export default class QuestionAtomic extends Component{
   }
 
   handleClick(){
-    io.socket.post('/question/getQuestionDetail', {id: this.props.questions.id}, (result, jwr) => {
-      io.socket.post('/comments/getComments', {questionID: this.props.questions.id}, (result2, jwr) => {              
-              this.props.getQuestionDetail(result)
-              this.props.getCommentDetail(result2)
-              setTimeout(function(){
-              this.props.history.push("/questionDetail")
-            }.bind(this),500)
-          })
+    //判断是问题详情页还是动态页面
+    if(this.props.shenglue){
+      io.socket.post('/question/getQuestionDetail', {id: this.props.questions.id}, (result, jwr) => {
+        io.socket.post('/comments/getComments', {questionID: this.props.questions.id}, (result2, jwr) => {              
+                this.props.getQuestionDetail(result)
+                this.props.getCommentDetail(result2)
+                setTimeout(function(){
+                this.props.history.push("/questionDetail")
+              }.bind(this),500)
         })
+      })
+    }
   }
 
   componentDidMount(){
@@ -83,8 +86,9 @@ export default class QuestionAtomic extends Component{
         }
     var fromHeadImgUrl = questions.from.avatar || questions.from.headimgurl || "";    
     var toHeadImgUrl = questions.to.avatar || questions.to.headimgurl || "";
+    console.log("questionAtomic")
 		return (
-			<div  ref="duihuakuang" className="dynamicStructure" onClick={this.handleClick} >
+			<div  ref="duihuakuang" className="dynamicStructure" onTouchTap={this.handleClick} >
                 <div className="dynamicHead">
                     <span className="dynamicHeadAvatar" >
                       <img src={fromHeadImgUrl} />
