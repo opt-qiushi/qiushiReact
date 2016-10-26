@@ -156,3 +156,17 @@ export function getUserInformation(state){
 		data: state
 	}
 }
+
+export function getCollection(state){
+	return {
+		type: "getCollection",
+		data: state
+	}
+}
+
+export function getCollectionMore(state){
+	return {
+		type: "getCollectionMore",
+		data: state
+	}
+}

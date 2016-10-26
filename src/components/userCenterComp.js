@@ -47,6 +47,7 @@ export default class UserCenterComp extends Component{
         this.myInformation=this.myInformation.bind(this)
         this.myFeedback=this.myFeedback.bind(this)
         this.handlePersonalDetail=this.handlePersonalDetail.bind(this)
+        this.myCollection=this.myCollection.bind(this)
     }
 
     componentWillMount(){
@@ -87,6 +88,11 @@ export default class UserCenterComp extends Component{
             this.props.history.push("/myFeedback")
         }.bind(this),500)
     }
+    myCollection(){
+        setTimeout(function(){
+            this.props.history.push("/collection")
+        }.bind(this),500)
+    }
 
     handlePersonalDetail(){
         this.props.saveGuestId(this.props.userInfo.id)
@@ -117,16 +123,21 @@ export default class UserCenterComp extends Component{
                     leftAvatar={<Avatar src="./img/my-personal.png" backgroundColor="white" />}
                      onTouchTap={this.myInformation} />
                 <Divider />
-        		<ListItem
-        			primaryText="我的提问"
-        			leftAvatar={<Avatar src="./img/my-proposal.png" backgroundColor="white" />}
-        			 onTouchTap={this.myQuestion} />
-        		<Divider />
-        		<ListItem
-        			primaryText="我的回答"
-        			leftAvatar={<Avatar src="./img/my-answer.png" backgroundColor="white" />}
-        			 onTouchTap={this.myAnswer} />
-        		<Divider />
+        		{/*<ListItem
+                                    primaryText="我的提问"
+                                    leftAvatar={<Avatar src="./img/my-proposal.png" backgroundColor="white" />}
+                                     onTouchTap={this.myQuestion} />
+                                <Divider />
+                                <ListItem
+                                    primaryText="我的回答"
+                                    leftAvatar={<Avatar src="./img/my-answer.png" backgroundColor="white" />}
+                                     onTouchTap={this.myAnswer} />
+                                <Divider />*/}
+                <ListItem
+                    primaryText="我的收藏"
+                    leftAvatar={<Avatar src="./img/my-reserve.png" backgroundColor="white" />}
+                     onTouchTap={this.myCollection} />
+                <Divider />                
                 <ListItem
                     primaryText="我要反馈"
                     leftAvatar={<Avatar src="./img/my-feedback.png" backgroundColor="white" />}

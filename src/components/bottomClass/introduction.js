@@ -16,7 +16,7 @@ export default class Introduction extends Component{
       })
     }else{
       rows.push(
-          <p>主人很懒，什么都没有留下</p>
+          <p key="0">主人很懒，什么都没有留下</p>
       )
     }
     

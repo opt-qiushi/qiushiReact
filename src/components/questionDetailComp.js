@@ -36,7 +36,7 @@ export default class QuestionDetailComp extends Component{
   }
 
   showQuestion(){
-    if(this.props.questions!="") return <Paper style={style} zDepth={2} children={<QuestionAtomicBinding />} />
+    if(this.props.questions!="") return <Paper style={style} zDepth={2} children={<QuestionAtomicBinding history={this.props.history}/>} />
       else return
   }
 

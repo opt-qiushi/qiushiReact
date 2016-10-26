@@ -48,15 +48,17 @@ export default class PersonDetailComp extends Component{
   componentWillMount(){
     this.props.notShouye()
     window.scrollTo(0,0)
-    // var userId=cookie.load('userId')
-    // if(!userId){
-    //   location.href="https://www.opt.com.cn/chat1?redirectUrl=www.opt.com.cn/qiushi&fromUrl=vipDetail&id="+this.props.guestId
-    // }
+    var userId=cookie.load('userId')
+    if(!userId){
+      location.href="https://www.opt.com.cn/chat1?redirectUrl=www.opt.com.cn/qiushi&fromUrl=vipDetail&id="+this.props.guestId
+    }
     io.socket.post('/professional/getUserDetail', { from: this.props.userId, 
       id: this.props.guestId }, (result, jwr) => {
         this.props.getCurrentDetail(result)
         if(this.props.person.detail.qiushiQuestions!=""){
           this.setState({tenQuestions:(<Paper style={style2} zDepth={2} children={<QiushiQuestionsBinding />} />)})
+        }else{
+          this.setState({tenQuestions:(<div></div>)})
         }
         var headImg = result.detail.headimgurl || result.detail.avatar || "";
             // if(result.detail.headimgurl){
@@ -102,23 +104,21 @@ export default class PersonDetailComp extends Component{
             })(result.detail.intro,headImg)  
     })
   }
-
   showUserInput(){
     if(this.props.userId!=this.props.person.detail.id) return <Paper style={style2} zDepth={2} children={<UserInputBinding />} />
       else return 
   }
 
   showIntroduction(){
-    if(this.props.person.detail.introduction!="") return <Paper style={style2} zDepth={2} children={<IntroductionBinding />} />
+    if(this.props.person.detail.introduction!="") return <Paper style={style2} zDepth={2} children={<IntroductionBinding />}/>
       else return
   }
 
   showQuestions(){
-    if(this.props.person.question!="") return <Paper style={style2} zDepth={2} children={<AskboxBinding  history={this.props.history} />} />
+    if(this.props.person.question.length!=0) return <Paper style={style2} zDepth={2} children={<AskboxBinding  history={this.props.history} />} />
       else return
   }
   toIndex(){
-    // location.href = "/qiushi";
     setTimeout(function(){
       location.href = "/qiushi";
       // this.props.history.push("/qiushi")

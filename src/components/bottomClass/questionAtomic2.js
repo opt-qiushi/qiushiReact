@@ -107,14 +107,14 @@ export default class QuestionAtomic2 extends Component{
                   </p>
                   {/*<p>A: {this.props.dynamicQuestion.answer}</p>*/}
                 </div>
-                <div className="dynamicStatistic">
-                    <img src="./img/question_detail_addCollect.png" alt="收藏数" />
-                    <div>{questions.collectNum}</div>
-                    <img src="./img/question_detail_commentNum.png" />
-                    <div>{questions.commentNum}</div>
-                    <img src="./img/question_detail_watch.png" />
-                    <div>{questions.watchNum}</div>
-                </div>
+                {/*<div className="dynamicStatistic">
+                                    <img src="./img/question_detail_addCollect.png" alt="收藏数" />
+                                    <div>{questions.collectNum}</div>
+                                    <img src="./img/question_detail_commentNum.png" />
+                                    <div>{questions.commentNum}</div>
+                                    <img src="./img/question_detail_watch.png" />
+                                    <div>{questions.watchNum}</div>
+                                </div>*/}
                 <div className="dynamicEnd"></div>
                 <Dialog
                   title="开始回答"

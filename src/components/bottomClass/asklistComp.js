@@ -18,7 +18,6 @@ export default class AsklistComp extends Component{
 		this.state = {isOpen:true,hasOpen:false}
 		this.handleClick = this.handleClick.bind(this)
 		this.handleStateChange = this.handleStateChange.bind(this)
-		this.fromPersonPage = this.fromPersonPage.bind(this)
 	}
 
 
@@ -44,12 +43,6 @@ export default class AsklistComp extends Component{
         flag = !flag;
         this.setState({isOpen:flag})
     }
-    fromPersonPage(e){
-    	e.stopPropagation();
-    	this.props.saveGuestId(this.props.contentAtomic.from.id)
-    	this.props.history.push("/vipDetail");
-    	// this.props.history.push("/vipDetail?id=" + this.props.contentAtomic.from.id);
-    }
     componentDidMount(){
     	if(this.refs.qiushiAnswer.offsetHeight > 106){
     		this.refs.qiushiAnswer.style.maxHeight = 118 + 'px';
@@ -73,7 +66,7 @@ export default class AsklistComp extends Component{
 			<FlatButton style={style} onTouchTap={this.handleClick} >
           		<div className="askercontainer">
                   <div className="askpersonImg">
-                    <img src={fromAvatar} id="askpersonimg" onTouchTap={this.fromPersonPage}/>
+                    <img src={fromAvatar} id="askpersonimg"/>
                   </div>
                   <div className="asker">
                     <div className="askername">{contentAtomic.from.name}</div>

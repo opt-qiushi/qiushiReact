@@ -38,8 +38,10 @@ import MyAnswer from './containers/myAnswer'
 import MyQuestion from './containers/myQuestion'
 import MyInformation from './containers/myInformation'
 import MyFeedback from './containers/myFeedback'
+import Collection from './containers/collection'
 import myQuestions from './store/myQuestions'
 import ApplyRule from './containers/applyRule'
+import collection from './store/collection'
 import io from './server'
 
 
@@ -55,6 +57,7 @@ const reducer = combineReducers({
   dongtai,
   guanzhu,
   myQuestions,
+  collection,
   routing: routerReducer
 })
 
@@ -94,6 +97,7 @@ const routes = (
       <Route path="myInformation" component={MyInformation} />
       <Route path="myFeedback" component={MyFeedback} />
       <Route path="applyRule" component={ApplyRule}/>
+      <Route path="collection" component={Collection} />
   </Route>
 );
 

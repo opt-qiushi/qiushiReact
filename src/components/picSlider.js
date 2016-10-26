@@ -45,7 +45,7 @@ export default class PicSlider extends Component{
 			<Slider slideSpeed={2000} className="picSlider" style={picStyle}>
 				<Item>
 			      <img
-			        src="./img/4ruzhu.jpg" onClick={this.handleRuzhu}/></Item>
+			        src="./img/4ruzhu.jpg" onClick={this.handleRuzhu}/></Item>	        
 			    <Item>
 			      <img
 			        src="./img/1xuanzhuanye.jpg" onClick={this.handleXueshu} />

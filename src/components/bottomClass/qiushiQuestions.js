@@ -14,6 +14,7 @@ export default class QiushiQuestions extends Component{
 	}
 
 	showQuestions(){
+		if(this.props.content[0]){
 		var rows=[]
 		for(var i=0;i<this.state.num;i++){
 			var temp=this.props.content[i]
@@ -38,6 +39,9 @@ export default class QiushiQuestions extends Component{
 			)
 		}
 		return rows
+		}else{
+			return [<div key="0"></div>]
+		}
 	}
 
 	handleClick(){
