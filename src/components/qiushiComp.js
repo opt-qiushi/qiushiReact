@@ -127,10 +127,10 @@ export default class QiushiComp extends Component{
         <div className="contentBox">
               <PicSlider history={this.props.history} />
              <div className="fourClasses">
-                <ClassComp categoryName="学术" categoryUrl="./img/class/index-xueshu.gif" history={this.props.history} />
-                <ClassComp categoryName="创业" categoryUrl="./img/class/index-chuangye.gif" history={this.props.history} />
-                <ClassComp categoryName="美食" categoryUrl="./img/class/index-meishi.gif" history={this.props.history} />
-                <ClassComp categoryName="其他" categoryUrl="./img/class/index-qita.gif" history={this.props.history} />
+                <ClassComp categoryName="学术" categoryUrl="./img/class/index-xueshu.png" history={this.props.history} />
+                <ClassComp categoryName="创业" categoryUrl="./img/class/index-chuangye.png" history={this.props.history} />
+                <ClassComp categoryName="美食" categoryUrl="./img/class/index-meishi.png" history={this.props.history} />
+                <ClassComp categoryName="其他" categoryUrl="./img/class/index-qita.png" history={this.props.history} />
              </div>
              {/*<div className="recommend">
                              <p>人气推荐</p>
