@@ -25,19 +25,38 @@ export default class GalleryComp extends Component{
       e.preventDefault();
       e.stopPropagation();
       if(!this.state.isFocus){
-        io.socket.get('/professional/follow', {from:this.props.userInfo.id, to:this.props.theOne.id, flag:1 }, (result, jwr) => {
-          var flag = this.state.isFocus;
-          flag = !flag;
-          this.setState({isFocus:flag});
-        });
+        var apiFlag = 1;
+      }else{
+        var apiFlag = 0;
       }
-      else{
-        io.socket.get('/professional/follow', {from:this.props.userInfo.id, to:this.props.theOne.id, flag:0 }, (result, jwr) => {
-          var flag = this.state.isFocus;
-          flag = !flag;
-          this.setState({isFocus:flag});
-        });
-      }
+      io.socket.get('/professional/follow', {from:this.props.userInfo.id, to:this.props.theOne.id, flag:apiFlag }, (result, jwr) => {
+        var flag = this.state.isFocus;
+        flag = !flag;
+        this.setState({isFocus:flag});
+        io.socket.get('/professional/getHomeUsers', {id:localStorage.getItem('userId')}, (result, jwr) => {
+          this.props.galleryUpdate(result)
+        })
+      });
+      // if(!this.state.isFocus){
+      //   io.socket.get('/professional/follow', {from:this.props.userInfo.id, to:this.props.theOne.id, flag:1 }, (result, jwr) => {
+      //     var flag = this.state.isFocus;
+      //     flag = !flag;
+      //     this.setState({isFocus:flag});
+      //     io.socket.get('/professional/getHomeUsers', {id:localStorage.getItem('userId')}, (result, jwr) => {
+      //       this.props.galleryUpdate(result)
+      //     })
+      //   });
+      // }
+      // else{
+      //   io.socket.get('/professional/follow', {from:this.props.userInfo.id, to:this.props.theOne.id, flag:0 }, (result, jwr) => {
+      //     var flag = this.state.isFocus;
+      //     flag = !flag;
+      //     this.setState({isFocus:flag});
+      //     io.socket.get('/professional/getHomeUsers', {id:localStorage.getItem('userId')}, (result, jwr) => {
+      //       this.props.galleryUpdate(result)
+      //     })
+      //   });
+      // }
   }
   render(){
     const {theOne} = this.props
