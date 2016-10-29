@@ -43,7 +43,7 @@ export default class ApplyRule extends Component{
 				    </section>
 				    <section className="item">
 				        <div className="white-block"></div>
-				        <div className="rule-inf">任何建议欢迎再[我要反馈]一栏进行用户反馈意见提交。</div>
+				        <div className="rule-inf">任何建议欢迎在[我要反馈]一栏进行用户反馈意见提交。</div>
 				        <br/>
 				        <br/>
 				        <div className="rule-inf">感谢您的关注！</div>

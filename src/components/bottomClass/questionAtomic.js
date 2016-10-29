@@ -261,7 +261,6 @@ export default class QuestionAtomic extends Component{
                     <img src="./img/question_detail_addCollect.png" alt="收藏数" />
                 </div>
                 <div className="dynamicEnd"></div>
-                <UploadImg/>
             </div>
 			)
 	}
