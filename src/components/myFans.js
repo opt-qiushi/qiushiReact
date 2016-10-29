@@ -23,7 +23,7 @@ export default class MyFans extends Component{
 			firstVisit: true
 		}
 		// this.handleInfiniteLoad=this.handleInfiniteLoad.bind(this)
-    	this.elementInfiniteLoad=this.elementInfiniteLoad.bind(this)
+    	// this.elementInfiniteLoad=this.elementInfiniteLoad.bind(this)
     	// this.handleScrollToBottom=this.handleScrollToBottom.bind(this)
     	// this.showLoading=this.showLoading.bind(this)
     	// this.handleScroll=this.handleScroll.bind(this)
@@ -48,7 +48,8 @@ export default class MyFans extends Component{
 		if(this.state.firstVisit){
 			io.socket.get('/professional/getFollowers', {id:this.props.userInfo.id}, (result, jwr) => {
 		          // this.setState({fans: result.professionals, totalPages: result.total_pages, pages: 2, firstVisit: false})
-		          this.setState({fans: result.professionals})
+		          console.log(result)
+		          this.setState({fans: result})
 		    })
 		}
 		// window.addEventListener('scroll', this.handleScroll)
@@ -107,7 +108,7 @@ export default class MyFans extends Component{
 	render(){
 		var rows=[]
 		var i=1
-      	if (this.state.fans!=""){
+      	if (this.state.fans!="" && this.state.fans.length>0){
 	        this.state.fans.forEach(function(focusPerson){
 	          rows.push(
 	              <GuanzhuAtomic key={i} focusPerson={focusPerson} history={this.props.history}/>
@@ -137,7 +138,7 @@ export default class MyFans extends Component{
 								{rows}
 								</Infinite>*/}
 				<div>{rows}</div>
-				{this.showLoading()}
+				{/*this.showLoading()*/}
 			</List>
 			)
 	}

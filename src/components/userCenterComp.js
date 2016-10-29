@@ -48,6 +48,7 @@ export default class UserCenterComp extends Component{
         this.myFeedback=this.myFeedback.bind(this)
         this.handlePersonalDetail=this.handlePersonalDetail.bind(this)
         this.myCollection=this.myCollection.bind(this)
+        this.myFans=this.myFans.bind(this)
     }
 
     componentWillMount(){
@@ -58,7 +59,11 @@ export default class UserCenterComp extends Component{
               this.props.getUserInformation(result)
         })
     }
-
+    myFans(){
+        setTimeout(function(){
+            this.props.history.push("/myFans")
+        }.bind(this),500)
+    }
     myAnswer(){
         setTimeout(function(){
             this.props.history.push("/myAnswer")
@@ -118,7 +123,7 @@ export default class UserCenterComp extends Component{
               </div>
               <div className="tab-bar">
                 <FlatButton style={style} className="tab-bar-0" onTouchTap={this.myFocus} ><div className="tab-bar-0-0">{userInfo.focusNum}</div><p>关注</p></FlatButton>
-                <FlatButton style={style} className="tab-bar-0" ><div className="tab-bar-0-0">{userInfo.fansNum}</div><p>粉丝</p></FlatButton>
+                <FlatButton style={style} className="tab-bar-0" onTouchTap={this.myFans}><div className="tab-bar-0-0">{userInfo.fansNum}</div><p>粉丝</p></FlatButton>
                 <FlatButton style={style} className="tab-bar-0" onTouchTap={this.myAnswer} ><div className="tab-bar-0-0">{userInfo.answerNum}</div><p>回答</p></FlatButton>
                 <FlatButton style={style} className="tab-bar-0" onTouchTap={this.myQuestion} ><div className="tab-bar-0-0">{userInfo.questionNum}</div><p>提问</p></FlatButton>
               </div>

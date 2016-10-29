@@ -23,7 +23,7 @@ export default class AppComp extends Component{
     var userId=cookie.load('userId')
     // var guestId=cookie.load('guestId')
     // var questionId=cookie.load('questionId')
-    userId = '57a7ffb64fe7f46f7d144305'
+    // userId = '57a7ffb64fe7f46f7d144305'
     if(!userId) {
       var tempHref = location.href;
       if(tempHref.indexOf("vipDetail") !== -1){
