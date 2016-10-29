@@ -83,6 +83,11 @@ export default class UserCenterComp extends Component{
         }.bind(this),500)
     }
 
+    myFans(){
+        setTimeout(function(){
+            this.props.history.push("/myFans")
+        }.bind(this),500)
+    }
     myFeedback(){
         setTimeout(function(){
             this.props.history.push("/myFeedback")

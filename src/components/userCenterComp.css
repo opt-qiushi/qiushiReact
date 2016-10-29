@@ -15,11 +15,11 @@
 
 .my-head-avatar{
 	position:relative;
-	width:53px;
-	height:53px;
+	width:80px;
+	height:80px;
 	top:50px;
 	left:50%;
-	margin-left:-26.5px;
+	margin-left:-40px;
 	text-align: center;
 	border-radius:50%;
     overflow: hidden;
@@ -27,8 +27,8 @@
 }
 
 .my-head-avatar img{
-	width:53px;
-	height:53px;
+	width: 80px;
+    height: 80px;
 }
 
 .my-head p{

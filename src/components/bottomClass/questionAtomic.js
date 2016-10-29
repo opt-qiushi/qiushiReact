@@ -3,6 +3,7 @@ import GMTtoTime from './gmtToTime'
 import './questionAtomic.css'
 import io from '../../server'
 import FlatButton from 'material-ui/FlatButton'
+import UploadImg from './UploadImg'
 //问题详情，动态页面的问题
 const focusLabelStyle = {
   color: "#0A964C"
@@ -169,8 +170,6 @@ export default class QuestionAtomic extends Component{
     }else{
       rows.push(<div key="-1"></div>);
     }
-		
-
         //处理追问循环
         var rows3=[];
         var i=1;
@@ -262,6 +261,7 @@ export default class QuestionAtomic extends Component{
                     <img src="./img/question_detail_addCollect.png" alt="收藏数" />
                 </div>
                 <div className="dynamicEnd"></div>
+                <UploadImg/>
             </div>
 			)
 	}

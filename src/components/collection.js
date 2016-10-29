@@ -92,8 +92,6 @@ export default class Collection extends Component{
 		const {qList}=this.props
 		var rows=[]
 		var i=1
-		console.log("qList:")
-		console.log(qList)
 		if(qList && qList.length >0){
 			qList.forEach(function(qListAtomic){
 				rows.push(
