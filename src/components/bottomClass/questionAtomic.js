@@ -3,7 +3,6 @@ import GMTtoTime from './gmtToTime'
 import './questionAtomic.css'
 import io from '../../server'
 import FlatButton from 'material-ui/FlatButton'
-import UploadImg from './UploadImg'
 //问题详情，动态页面的问题
 const focusLabelStyle = {
   color: "#0A964C"

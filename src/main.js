@@ -43,8 +43,9 @@ import myQuestions from './store/myQuestions'
 import ApplyRule from './containers/applyRule'
 import collection from './store/collection'
 import MyFans from './containers/myFans'
+import SquareQuestion from './components/bottomClass/squareQuestion'
+import UploadImg from './components/bottomClass/uploadImg'
 import io from './server'
-import ImgUpload from './components/bottomClass/uploadImg.js'
 
 
 injectTapEventPlugin();
@@ -101,7 +102,8 @@ const routes = (
       <Route path="applyRule" component={ApplyRule}/>
       <Route path="collection" component={Collection} />
       <Route path="myFans" component={MyFans}/>
-      <Route path="upload" component={ImgUpload}/>
+      <Route path="square" component={SquareQuestion}/>
+      <Route path="upload" component={UploadImg}/>
   </Route>
 );
 

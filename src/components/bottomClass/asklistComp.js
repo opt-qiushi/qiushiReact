@@ -74,7 +74,7 @@ export default class AsklistComp extends Component{
                   </div>
                 </div>
                 <div className="qiushi-question">
-                  <b>Q</b>:{contentAtomic.question}
+                  Q：{contentAtomic.question}
                 </div>
                 <div className="askercontainer">
                   <div className="askpersonImg">

@@ -15,16 +15,16 @@ const style = {
   width: "100%",
   textAlign: 'center',
   display: 'inline-block',
-  backgroundColor: 'white'
+  backgroundColor: 'white',
 };
 
 const style2 = {
-  marginTop: "24px",
+  marginTop: "12px",
   width: "100%",
   textAlign: 'center',
   display: 'inline-block',
   backgroundColor: 'white',
-  minHeight: '100px'
+  minHeight: '100px',
 };
 
 const FlatButtonStyle = {
