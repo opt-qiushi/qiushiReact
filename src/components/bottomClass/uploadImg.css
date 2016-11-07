@@ -19,3 +19,14 @@ input[type=file] {
   font-size: 10pt;
   cursor: pointer;
 }
+.add-img{
+  display: inline-block;
+  height: 80px;
+  width: 80px;
+  border: 1px solid lightgray;
+  color: black;
+  text-align: center;
+  line-height: 70px;
+  font-size: 50px;
+  font-weight: lighter;
+}

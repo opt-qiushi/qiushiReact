@@ -6,7 +6,7 @@ const initState={
 		answerNum:0,
 		avatar:"img/vipDetail/hosthead.png",
 		fansNum:0,
-		introduction:"测试",
+		introduction:"",
 		name:"",
 		questionNum:0,
 		title:"",

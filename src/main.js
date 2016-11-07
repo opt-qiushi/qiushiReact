@@ -43,7 +43,8 @@ import myQuestions from './store/myQuestions'
 import ApplyRule from './containers/applyRule'
 import collection from './store/collection'
 import MyFans from './containers/myFans'
-import SquareQuestion from './components/bottomClass/squareQuestion'
+import Square from './components/square'
+import SquareAskQuestion from './components/squareAskQuestion'
 import UploadImg from './components/bottomClass/uploadImg'
 import io from './server'
 
@@ -102,7 +103,8 @@ const routes = (
       <Route path="applyRule" component={ApplyRule}/>
       <Route path="collection" component={Collection} />
       <Route path="myFans" component={MyFans}/>
-      <Route path="square" component={SquareQuestion}/>
+      <Route path="square" component={Square}/>
+      <Route path="squareAskQuestion" component={SquareAskQuestion}/>
       <Route path="upload" component={UploadImg}/>
   </Route>
 );

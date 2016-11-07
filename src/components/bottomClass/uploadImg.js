@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import FlatButton from 'material-ui/FlatButton';
+import cookie from 'react-cookie'
+import io from '../../server'
 import './uploadImg.css'
 
 var appServer = 'https://www.opt.com.cn/getSTS';
@@ -12,10 +14,15 @@ var STS = window.OSS.STS;
 
 var applyTokenDo = function (func) {
   var url = appServer;
+  var userId = localStorage.getItem('userId');
+  var toServer = 'img/' + userId;
   return urllib.request(url, {
-    method: 'GET',
+    method: 'POST',
+    data: { prefix:toServer}
   }).then(function (result) {
     var creds = JSON.parse(result.data);
+    var opt = {maxAge:60*15}
+    cookie.save('creds',creds,opt)
     var client = new OSS({
       region: region,
       accessKeyId: creds.AccessKeyId,
@@ -23,20 +30,24 @@ var applyTokenDo = function (func) {
       stsToken: creds.SecurityToken,
       bucket: bucket
     });
-
+    // const Now = new Date().getTime() + 60*1000*15;
+    
     return func(client);
   });
 };
 var uploadFile = function (client) {
     var file = document.getElementById('imgFile').files[0];
     // var key = document.getElementById('object-key-file').value.trim() || 'object';
-    var key = localStorage.getItem('userId') +"|"+ new Date().getTime() +"|"+ 'index.jpg';
+    var key = 'img/' + localStorage.getItem('userId') +"|"+ new Date().getTime() +"|"+ 'index.jpg';
+    key = 'img/' + localStorage.getItem('userId') +　"*"
+    // key = "1234";
     console.log(file.name + ' => ' + key);
 
     return client.multipartUpload(key, file, {
       progress: progress
     }).then(function (res) {
         console.log('upload success: %j', res);
+        console.log(res.name)
         // return listFiles(client);
       });
 };
@@ -52,18 +63,42 @@ export default class UploadImg extends Component{
  constructor(props) {
     super(props);
     this.state = {file: '',imagePreviewUrl: '',imagePreviewName: ''};
+    this.startRecord = this.startRecord.bind(this)
   }
 
-  componentDidMount(){
+  componentWillMount(){
+    io.socket.get("/config",{targetUrl:localStorage.getItem('fromUrl')},(result, jwr) =>{
+      // result.debug = true;
+      wx.config(result)
+      wx.ready(function(){
 
+      });  
+    });      
   }
-
+  startRecord(){
+    console.log(this)
+  }
   _handleSubmit(e) {
     e.preventDefault();
     // TODO: do something with -> this.state.file
-    
+    if(cookie.load('creds')){
+      var creds = cookie.load('creds')
+      var bucket = 'qiushi-oss';
+      var region = 'oss-cn-hangzhou';
+      var client = new OSS({
+      region: region,
+      accessKeyId: creds.AccessKeyId,
+      accessKeySecret: creds.AccessKeySecret,
+      stsToken: creds.SecurityToken,
+      bucket: bucket
+      });
+      uploadFile(client)
+      
+    }else{
+      applyTokenDo(uploadFile);
+    }
 
-    applyTokenDo(uploadFile);
+    
   }
 
   _handleImageChange(e) {
@@ -95,7 +130,7 @@ export default class UploadImg extends Component{
     return (
       <div className="previewComponent">
         <form onSubmit={(e)=>this._handleSubmit(e)}>
-          <div><label htmlFor="imgFile">选择图片</label></div>
+          <div><label htmlFor="imgFile" className="add-img">+</label></div>
           <input className="fileInput" type="file" id="imgFile" onChange={(e)=>this._handleImageChange(e)} />
           <div className="imgPreview">
 	        {$imagePreview}
@@ -107,7 +142,7 @@ export default class UploadImg extends Component{
           </div>
           <button className="submitButton" type="submit" onClick={(e)=>this._handleSubmit(e)}>上传</button>
         </form>
-        
+        <button onTouchTap={this.startRecord}>开始录音</button>
       </div>
     )
   }

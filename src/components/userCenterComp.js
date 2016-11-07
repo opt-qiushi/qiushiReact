@@ -5,6 +5,7 @@ import { Router, Route, IndexRoute, Redirect, Link } from 'react-router'
 import Divider from 'material-ui/Divider'
 import Avatar from 'material-ui/Avatar'
 import Subheader from 'material-ui/Subheader'
+import ErWeiMaArea from './bottomClass/erweimaArea'
 import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble'
 // import CommunicationChatBubble from 'material-ui/svg-icons/navigation/arrow-forward'
 import './userCenterComp.css'
@@ -115,6 +116,7 @@ export default class UserCenterComp extends Component{
 		const {userInfo}=this.props
 		return (
 			<div className="my-detail">
+              <ErWeiMaArea/>
               <div className="my-head" onTouchTap={this.handlePersonalDetail} >
                 <div className="my-head-avatar" >
                   <img src={userInfo.headimgurl} />
@@ -130,7 +132,7 @@ export default class UserCenterComp extends Component{
               <List>
                 <ListItem
                     primaryText="修改信息"
-                    leftAvatar={<Avatar src="./img/my-personal.png" backgroundColor="white" />}
+                    /* leftAvatar={<Avatar src="./img/my-personal.png" backgroundColor="white" />}*/
                      onTouchTap={this.myInformation} />
                 <Divider />
         		{/*<ListItem
@@ -145,12 +147,12 @@ export default class UserCenterComp extends Component{
                                 <Divider />*/}
                 <ListItem
                     primaryText="我的收藏"
-                    leftAvatar={<Avatar src="./img/my-reserve.png" backgroundColor="white" />}
+                    /* leftAvatar={<Avatar src="./img/my-reserve.png" backgroundColor="white" />}*/
                      onTouchTap={this.myCollection} />
                 <Divider />                
                 <ListItem
                     primaryText="我要反馈"
-                    leftAvatar={<Avatar src="./img/my-feedback.png" backgroundColor="white" />}
+                   /* leftAvatar={<Avatar src="./img/my-feedback.png" backgroundColor="white" />}*/
                      onTouchTap={this.myFeedback} />
                 <Divider />
     			</List>

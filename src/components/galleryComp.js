@@ -18,7 +18,9 @@ export default class GalleryComp extends Component{
   }
 
   showAvatar(){
-      if(this.props.theOne.avatar) return this.props.theOne.avatar
+      // console.log(this.props.theOne)
+      if(this.props.theOne.indexAvatar) return this.props.theOne.indexAvatar
+      else if(this.props.theOne.avatar) return this.props.theOne.avatar
       else return this.props.theOne.headimgurl
   }
   handleFocus(e){

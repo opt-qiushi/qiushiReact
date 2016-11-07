@@ -1,0 +1,31 @@
+.erweima-area {
+    text-align: center;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    height: 400px;
+    /* height: 1400px; */
+    /* background: url(../img/focusAreaBackground.jpg); */
+    background: white;
+    z-index: 99;
+    font-size: 40px;
+    color: #0A964c;
+    border-radius: 15px;
+    border: 1px solid #333;
+}
+.erweima-area-bg {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+.erweima-area-right {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 10px;
+    top: 10px;
+}
