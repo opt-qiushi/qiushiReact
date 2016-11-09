@@ -67,9 +67,9 @@ export default class PersonDetailComp extends Component{
             //   headImg = result.detail.avatar;
             // }
         (function wxJsApi(intro,headImg){
-              var target = location.href.split("#")[0];
-              // var target = encodeURIComponent(location.href.split("#")[0]);
-              io.socket.get("/config",{targetUrl:localStorage.getItem('fromUrl')},(result, jwr) =>{
+              var target = localStorage.getItem('fromUrl')
+              // var target = encodeURIComponent(localStorage.getItem('fromUrl'));
+              io.socket.get("/config",{targetUrl:target},(result, jwr) =>{
                 // result.debug = true;
                 wx.config(result)
                 wx.ready(function(){
