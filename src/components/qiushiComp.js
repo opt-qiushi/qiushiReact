@@ -11,14 +11,19 @@ import io from '../server'
 const circularStyle={
   textAlign: "center"
 }
-
+const bottomStyle={
+  textAlign: "center",
+  height:"50px",
+  lineHeight:"50px"
+}
 export default class QiushiComp extends Component{
   constructor(props){
     super(props)
     this.state={
       isInfiniteLoading: false,
       open: false,
-      isLoading: false
+      isLoading: false,
+      toBottom: false
     }
     this.handleScrollToBottom=this.handleScrollToBottom.bind(this)
     this.elementInfiniteLoad=this.elementInfiniteLoad.bind(this)
@@ -29,6 +34,12 @@ export default class QiushiComp extends Component{
   }
 
   showLoading(){
+    if(this.state.toBottom){
+      setTimeout(function() {
+          this.setState({toBottom: false})
+      }.bind(this), 2000)
+      return <div style={bottomStyle}>已无更多内容</div>
+    }
     if(this.state.isInfiniteLoading) return this.elementInfiniteLoad()
       else return 
   }
@@ -62,14 +73,14 @@ export default class QiushiComp extends Component{
             isInfiniteLoading: true,
             isLoading: true
         })
-        if(this.props.pages > this.props.totalPages){
-          this.setState({isInfiniteLoading: false, isLoading: false})
+        if(this.props.pages >= this.props.totalPages){
+          this.setState({isInfiniteLoading: false, isLoading: false,toBottom: true})
           return 
         }
         io.socket.get('/professional/getHomeUsers', {id:localStorage.getItem('userId'),page: this.props.pages+1}, (result, jwr) => {
           setTimeout(function() {
             this.props.galleryLoadingMore(result.professionals)
-            this.setState({isInfiniteLoading: false, isLoading: false})
+            this.setState({isInfiniteLoading: false, isLoading: false,toBottom: false})
           }.bind(this), 2000)
         })
   }

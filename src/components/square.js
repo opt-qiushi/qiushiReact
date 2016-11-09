@@ -17,14 +17,14 @@ export default class Square extends Component{
     
   }
   askQuestion(){
-    
+    location.href = "./squareAskQuestion"
   }
 	render(){
 		var rows=[];
     // var fromHeadImgUrl = questions.from.avatar || questions.from.headimgurl || ""; 
 		return (
 			<div >
-        <SquareQuestion/>
+        <SquareQuestion readyAsk="true"/>
         <FlatButton label="立即提问" onTouchTap={this.askQuestion}/>
       </div>
 			)

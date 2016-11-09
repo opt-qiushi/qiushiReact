@@ -68,7 +68,7 @@
 }
 .gallery-tag {
 	display: inline-block;
-    width: 10%;
+    min-width: 10%;
     color: #0A964C;
     text-align: left;
     line-height: 20px;
@@ -77,21 +77,23 @@
 }
 .gallery-fans{
 	display: inline-block;
-    width: 17%;
+    min-width: 17%;
     color: #999;
     text-align: center;
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
     height: 20px;
     margin-top: 10px;
+    padding: 0 5px;
 }
 .gallery-answerNum{
 	height: 20px;
 	color: #999;
 	display: inline-block;
-    width: 17%;
+    min-width: 17%;
     line-height: 20px;
     text-align: center;
+    padding-left: 5px;
 }
 .gallery-focusbtn {
     box-sizing: border-box;

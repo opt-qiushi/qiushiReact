@@ -35,30 +35,10 @@ export default class GalleryComp extends Component{
         var flag = this.state.isFocus;
         flag = !flag;
         this.setState({isFocus:flag});
-        io.socket.get('/professional/getHomeUsers', {id:localStorage.getItem('userId')}, (result, jwr) => {
-          this.props.galleryUpdate(result)
-        })
+        // io.socket.get('/professional/getHomeUsers', {id:localStorage.getItem('userId')}, (result, jwr) => {
+        //   this.props.galleryUpdate(result)
+        // })
       });
-      // if(!this.state.isFocus){
-      //   io.socket.get('/professional/follow', {from:this.props.userInfo.id, to:this.props.theOne.id, flag:1 }, (result, jwr) => {
-      //     var flag = this.state.isFocus;
-      //     flag = !flag;
-      //     this.setState({isFocus:flag});
-      //     io.socket.get('/professional/getHomeUsers', {id:localStorage.getItem('userId')}, (result, jwr) => {
-      //       this.props.galleryUpdate(result)
-      //     })
-      //   });
-      // }
-      // else{
-      //   io.socket.get('/professional/follow', {from:this.props.userInfo.id, to:this.props.theOne.id, flag:0 }, (result, jwr) => {
-      //     var flag = this.state.isFocus;
-      //     flag = !flag;
-      //     this.setState({isFocus:flag});
-      //     io.socket.get('/professional/getHomeUsers', {id:localStorage.getItem('userId')}, (result, jwr) => {
-      //       this.props.galleryUpdate(result)
-      //     })
-      //   });
-      // }
   }
   render(){
     const {theOne} = this.props
@@ -75,15 +55,15 @@ export default class GalleryComp extends Component{
     }
     var focusArea = [];
     if(this.state.isFocus){
-      focusArea.push(<span className="gallery-focusbtn" onClick={this.handleFocus} key="1">已关注</span>)
+      focusArea.push(<span className="gallery-focusbtn" onTouchTap={this.handleFocus} key="1">已关注</span>)
     }else{
-      focusArea.push(<span className="gallery-focusbtn" onClick={this.handleFocus} key="0">+ 关注</span>)
+      focusArea.push(<span className="gallery-focusbtn" onTouchTap={this.handleFocus} key="0">+ 关注</span>)
     }
     //为了实现分享功能添加的参数字符串
     var targetUrl = "/vipDetail?id=" + theOne.id;
     return (  
               <Link to={targetUrl}>
-                <div className="gallery" onClick={this.handleClick}>
+                <div className="gallery" onTouchTap={this.handleClick}>
                   <img id="gallery_img" src={this.showAvatar()} />
                   {/*<div className="nameTag">
                                         <div className="name">{theOne.name}</div>

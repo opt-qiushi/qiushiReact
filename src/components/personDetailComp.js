@@ -60,7 +60,7 @@ export default class PersonDetailComp extends Component{
         }else{
           this.setState({tenQuestions:(<div></div>)})
         }
-        var headImg = result.detail.headimgurl || result.detail.avatar || "";
+        var headImg = result.detail.avatar || result.detail.headimgurl || "";
             // if(result.detail.headimgurl){
             //   headImg = result.detail.headimgurl;
             // }else{

@@ -45,6 +45,7 @@ import collection from './store/collection'
 import MyFans from './containers/myFans'
 import Square from './components/square'
 import SquareAskQuestion from './components/squareAskQuestion'
+import SquareQA from './components/squareQA'
 import UploadImg from './components/bottomClass/uploadImg'
 import io from './server'
 
@@ -105,6 +106,7 @@ const routes = (
       <Route path="myFans" component={MyFans}/>
       <Route path="square" component={Square}/>
       <Route path="squareAskQuestion" component={SquareAskQuestion}/>
+      <Route path="squareQA" component={SquareQA}/>
       <Route path="upload" component={UploadImg}/>
   </Route>
 );

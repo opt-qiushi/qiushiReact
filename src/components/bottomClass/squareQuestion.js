@@ -17,7 +17,10 @@ export default class SquareQuestion extends Component{
   }
 
 	render(){
-		var rows=[];
+    var rows= [];
+    if(this.props.readyAsk){
+      rows.push(<div className="square-answer-line" key="1"><FlatButton style={FlatButtonStyle} hoverColor="#0A964C" rippleColor="#0A964C" backgroundColor="#0A964C" labelStyle={{color:"white"}} label="立即回答" /></div>)
+    }
     // var fromHeadImgUrl = questions.from.avatar || questions.from.headimgurl || ""; 
 		return (
 			<div  ref="duihuakuang" className="squareStructure" >
@@ -44,10 +47,7 @@ export default class SquareQuestion extends Component{
                     Q：如何看待高考是唯一的出路？
                   </p>
                 </div>
-                <div className="square-answer-line">
-                  <FlatButton style={FlatButtonStyle} hoverColor="#0A964C" rippleColor="#0A964C" backgroundColor="#0A964C" labelStyle={{color:"white"}} label="立即回答" />
-                </div>
-                
+                {rows}
                 <div className="squareEnd"></div>
             </div>
 			)

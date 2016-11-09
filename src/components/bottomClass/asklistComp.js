@@ -59,8 +59,8 @@ export default class AsklistComp extends Component{
 			openArea.length = 0;
 			openArea.push(<img src="./img/向上箭头.png" key="up" />);
 		}
-		var fromAvatar = contentAtomic.from.avatar || contentAtomic.from.headimgurl || '';
-		var toAvatar = contentAtomic.to.avatar || contentAtomic.to.headimgurl || '';
+		var fromAvatar = contentAtomic.from.avatar || contentAtomic.from.headimgurl || 'img/vipDetail/hosthead.png';
+		var toAvatar = contentAtomic.to.avatar || contentAtomic.to.headimgurl || 'img/vipDetail/hosthead.png';
 		return (
 			<div>
 			<FlatButton style={style} onTouchTap={this.handleClick} >
