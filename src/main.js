@@ -43,11 +43,15 @@ import myQuestions from './store/myQuestions'
 import ApplyRule from './containers/applyRule'
 import collection from './store/collection'
 import MyFans from './containers/myFans'
-import Square from './components/square'
 import SquareAskQuestion from './components/squareAskQuestion'
-import SquareQA from './components/squareQA'
+import SquareQuestionDetail from './components/squareQuestionDetail'
 import UploadImg from './components/bottomClass/uploadImg'
 import io from './server'
+import square from './store/square'
+import Square from './components/square'
+import SquareBinding from './containers/squareBinding'
+import currentSquare from './store/currentSquare'
+import SquareQuestionDetailBinding from './containers/squareQuestionBinding'
 
 
 injectTapEventPlugin();
@@ -63,6 +67,8 @@ const reducer = combineReducers({
   guanzhu,
   myQuestions,
   collection,
+  square,
+  currentSquare,
   routing: routerReducer
 })
 
@@ -104,9 +110,9 @@ const routes = (
       <Route path="applyRule" component={ApplyRule}/>
       <Route path="collection" component={Collection} />
       <Route path="myFans" component={MyFans}/>
-      <Route path="square" component={Square}/>
+      <Route path="square" component={SquareBinding}/>
       <Route path="squareAskQuestion" component={SquareAskQuestion}/>
-      <Route path="squareQA" component={SquareQA}/>
+      <Route path="squareQuestionDetail" component={SquareQuestionDetailBinding}/>
       <Route path="upload" component={UploadImg}/>
   </Route>
 );

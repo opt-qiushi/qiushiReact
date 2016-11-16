@@ -170,3 +170,16 @@ export function getCollectionMore(state){
 		data: state
 	}
 }
+
+export function changeCurrentSquare(state){
+	return {
+		type: "changeCurrentSquare",
+		data: state
+	}
+}
+export function applySquare(state){
+	return{
+		type: "applySquare",
+		data: state
+	}
+}

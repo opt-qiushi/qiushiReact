@@ -77,7 +77,7 @@ export default class Collection extends Component{
         }
         io.socket.get('/professional/getCollects', {id: localStorage.getItem('userId'), page: this.state.pages}, (result, jwr) => {
           setTimeout(function() {
-          	this.props.getDongtaiMore(result)
+          	this.props.getCollectionMore(result)
             var temp=this.state.pages+1
             this.setState({isInfiniteLoading: false, pages: temp})
           }.bind(this), 1500)

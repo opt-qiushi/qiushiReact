@@ -47,7 +47,7 @@ export default class QiushiComp extends Component{
   handleScroll(){
     var scrollviewOffsetY = document.body.scrollTop
     var scrollviewFrameHeight = document.body.clientHeight
-    var scrollviewContentHeight = document.body.scrollHeight - 200;
+    var scrollviewContentHeight = document.body.scrollHeight - 300;
 
     var sum = scrollviewOffsetY+scrollviewFrameHeight
     if(sum >= scrollviewContentHeight && !this.state.isLoading){
