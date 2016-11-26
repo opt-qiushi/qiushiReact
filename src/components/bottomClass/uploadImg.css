@@ -9,6 +9,13 @@ input[type=file] {
 	height: 80px;
 	width: 80px;
 }
+.imgPreview:after{
+  clear: both;
+  height: 0;
+  width: 0;
+  content: '.';
+  display: block;
+}
 .submitButton{
   padding: 12px;
   margin-left: 10px;
@@ -29,4 +36,31 @@ input[type=file] {
   line-height: 70px;
   font-size: 50px;
   font-weight: lighter;
+}
+.delete-preview{
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 999;
+    /* float: right; */
+    font-size: 20px;
+    /* vertical-align: top; */
+    line-height: 12px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #0a964c;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+}
+.preview-img-container{
+  display: inline-block;
+  position: relative;
+  
+}
+.preview-img-position{
+  width: 33.33%;
+  float: left;
+  text-align: center;
 }

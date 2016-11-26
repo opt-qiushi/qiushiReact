@@ -4,57 +4,6 @@ import cookie from 'react-cookie'
 import io from '../../server'
 import './uploadImg.css'
 
-var appServer = 'https://www.opt.com.cn/getSTS';
-var bucket = 'qiushi-oss';
-var region = 'oss-cn-hangzhou';
-var urllib = window.OSS.urllib;
-var Buffer = window.OSS.Buffer;
-var OSS = window.OSS.Wrapper;
-var STS = window.OSS.STS;
-
-var applyTokenDo = function (func) {
-  var url = appServer;
-  var userId = localStorage.getItem('userId');
-  var toServer = 'img/' + userId;
-  return urllib.request(url, {
-    method: 'POST',
-    data: { prefix:toServer}
-  }).then(function (result) {
-    var creds = JSON.parse(result.data);
-    var opt = {maxAge:60*15}
-    cookie.save('creds',creds,opt)
-    var client = new OSS({
-      region: region,
-      accessKeyId: creds.AccessKeyId,
-      accessKeySecret: creds.AccessKeySecret,
-      stsToken: creds.SecurityToken,
-      bucket: bucket
-    });
-    console.log(client)
-    // const Now = new Date().getTime() + 60*1000*15;
-    
-    return func(client);
-  });
-};
-var uploadFile = function (client) {
-    var file = document.getElementById('imgFile').files[0];
-    // var key = document.getElementById('object-key-file').value.trim() || 'object';
-    var key = 'img/' + localStorage.getItem('userId') +"|"+ new Date().getTime() +"|"+ 'index.jpg';
-    // key = 'img/' + localStorage.getItem('userId') +　"*"
-    // key = "1234";
-    console.log(file.name + ' => ' + key);
-
-    return client.multipartUpload(key, file, {
-      progress: progress
-    }).then(function (res) {
-        console.log('upload success: %j', res);
-        console.log(res.name)
-        //回调函数更新数据库
-
-
-        // return listFiles(client);
-      });
-};
 var progress = function (p) {
   return function (done) {
     var bar = document.getElementById('progress-bar');
@@ -66,14 +15,17 @@ var progress = function (p) {
 export default class UploadImg extends Component{
  constructor(props) {
     super(props);
-    this.state = {file: '',imagePreviewUrl: '',imagePreviewName: ''};
+    this.state = {imageUrl: [],imageName: []};
     this.startRecord = this.startRecord.bind(this)
     this.stopRecord = this.stopRecord.bind(this)
     this.playVoice = this.playVoice.bind(this)
     this.uploadVoice = this.uploadVoice.bind(this)
     this.start = this.start.bind(this)
     this.stop = this.stop.bind(this)
-    this.deleteTest = this.deleteTest.bind(this)
+    // this.deleteTest = this.deleteTest.bind(this)
+    this.deletePreview = this.deletePreview.bind(this)
+    this.uploadFile = this.uploadFile.bind(this)
+    this.deleteFile = this.deleteFile.bind(this)
     this.id = ''
   }
 
@@ -186,67 +138,159 @@ export default class UploadImg extends Component{
       }
     });
   }
-  _handleSubmit(e) {
-    e.preventDefault();
-    // TODO: do something with -> this.state.file
-    if(cookie.load('creds')){
-      var creds = cookie.load('creds')
-      var bucket = 'qiushi-oss';
-      var region = 'oss-cn-hangzhou';
-      var client = new OSS({
+  applyTokenDo(func,name){
+  var appServer = 'https://www.opt.com.cn/getSTS';
+  var bucket = 'qiushi-oss';
+  var region = 'oss-cn-hangzhou';
+  var urllib = window.OSS.urllib;
+  var Buffer = window.OSS.Buffer;
+  var OSS = window.OSS.Wrapper;
+  var STS = window.OSS.STS;
+
+  var url = appServer;
+  var userId = localStorage.getItem('userId');
+  var toServer = 'img/' + userId;
+  return urllib.request(url, {
+    method: 'POST',
+    data: { prefix:toServer}
+  }).then(function (result) {
+    // sessionStorage.setItem('creds',result.data)
+    var creds = JSON.parse(result.data);
+    var opt = {maxAge:60*15}
+    // cookie.save('creds',creds,opt)
+    
+    var client = new OSS({
       region: region,
       accessKeyId: creds.AccessKeyId,
       accessKeySecret: creds.AccessKeySecret,
       stsToken: creds.SecurityToken,
       bucket: bucket
-      });
-      uploadFile(client)
+    });
+    // const Now = new Date().getTime() + 60*1000*15;
+    // console.log("applyTokenDo:",client)
+    return func(client,name);
+    });
+  };
+  uploadFile(client){
+    // console.log("client:",client)
+    var file = document.getElementById('imgFile').files[0];
+    // var key = document.getElementById('object-key-file').value.trim() || 'object';
+    var key = 'img/' + localStorage.getItem('userId') +"|"+ new Date().getTime() +"|"+ 'index.jpg';
+    // key = 'img/' + localStorage.getItem('userId') +　"*"
+    // key = "1234";
+    console.log(file.name + ' => ' + key);
+    var that = this;
+    // return client.multipartUpload(key, file, {
+    client.multipartUpload(key, file, {
+      progress: progress
+    }).then(function (res){
+        console.log('upload success: %j', res);
+        // //回调函数
+        var OSSUrl = 'http://qiushi-oss.oss-cn-hangzhou.aliyuncs.com/' + res.name;
+        var imageUrl = that.state.imageUrl;
+        var imageName = that.state.imageName;
+        imageUrl.push(OSSUrl);
+        imageName.push(res.name);
+        that.setState({imageUrl:imageUrl,imageName:imageName});
+      })
+  };
+  _handleSubmit(e) {
+    // e.preventDefault();
+    // // TODO: do something with -> this.state.file
+    // if(cookie.load('creds')){
+    //   var creds = cookie.load('creds')
+    //   var bucket = 'qiushi-oss';
+    //   var region = 'oss-cn-hangzhou';
+    //   var client = new OSS({
+    //   region: region,
+    //   accessKeyId: creds.AccessKeyId,
+    //   accessKeySecret: creds.AccessKeySecret,
+    //   stsToken: creds.SecurityToken,
+    //   bucket: bucket
+    //   });
+    //   this.uploadFile(client)
       
-    }else{
-      applyTokenDo(uploadFile);
-    }
+    // }else{
+    //   this.applyTokenDo(this.uploadFile);
+    // }
 
     
   }
 
   _handleImageChange(e) {
     e.preventDefault();
-
-    let reader = new FileReader();
-    let file = e.target.files[0];
-    this.setState({"imagePreviewName":file.name})
-    reader.onloadend = () => {
-
-      this.setState({
-        file: file,
-        imagePreviewUrl: reader.result
-      });
-    }
-
-    reader.readAsDataURL(file)
+    // var credsStr = 
+    // var creds = JSON.parse(sessionStorage.getItem('creds'))
+    // if(cookie.load('creds')){
+    //   var creds = cookie.load('creds')
+    //   var bucket = 'qiushi-oss';
+    //   var region = 'oss-cn-hangzhou';
+    //   var client = new OSS({
+    //   region: region,
+    //   accessKeyId: creds.AccessKeyId,
+    //   accessKeySecret: creds.AccessKeySecret,
+    //   stsToken: creds.SecurityToken,
+    //   bucket: bucket
+    //   });
+    //   this.uploadFile(client)
+      
+    // }else{
+    //   this.applyTokenDo(this.uploadFile);
+    // }
+    this.applyTokenDo(this.uploadFile);
   }
-  deleteTest(){
-      var creds = cookie.load('creds');
-      var bucket = 'qiushi-oss';
-      var region = 'oss-cn-hangzhou';
-      var client = new OSS({
-      region: region,
-      accessKeyId: creds.AccessKeyId,
-      accessKeySecret: creds.AccessKeySecret,
-      stsToken: creds.SecurityToken,
-      bucket: bucket
+  deleteFile(client,name){
+      // var creds = JSON.parse(sessionStorage.getItem('creds'))
+      // var creds = cookie.load('creds');
+      // var bucket = 'qiushi-oss';
+      // var region = 'oss-cn-hangzhou';
+      // var client = new OSS({
+      // region: region,
+      // accessKeyId: creds.AccessKeyId,
+      // accessKeySecret: creds.AccessKeySecret,
+      // stsToken: creds.SecurityToken,
+      // bucket: bucket
+      // });
+      // client.delete('img/57e1f7c527fc2e2b5edc1953|1479976308470|index.jpg').then(function (res) {
+      //   console.log('delete complete')
+      // });
+      client.delete(name).then(function (res) {
+        console.log('delete complete')
       });
-      client.delete('img/57e1f7c527fc2e2b5edc1953|1479976308470|index.jpg').then(function (res) {
-        console.log(res)
-      });
+  }
+  deletePreview(j){
+    var {imageUrl,imageName} = this.state;
+    var [targetUrl,targetName] = [imageUrl[j],imageName[j]]
+    // var creds = JSON.parse(sessionStorage.getItem('creds'))
+    // // if(cookie.load('creds')){
+    // if(creds){
+    //   // var creds = cookie.load('creds')
+    //   var bucket = 'qiushi-oss';
+    //   var region = 'oss-cn-hangzhou';
+    //   var client = new OSS({
+    //   region: region,
+    //   accessKeyId: creds.AccessKeyId,
+    //   accessKeySecret: creds.AccessKeySecret,
+    //   stsToken: creds.SecurityToken,
+    //   bucket: bucket
+    //   });
+    //   this.deleteFile(client,targetName)
+      
+    // }else{
+    //   this.applyTokenDo(this.deleteFile,name);
+    // }
+    this.applyTokenDo(this.deleteFile,name);
   }
   render() {
-    let {imagePreviewUrl} = this.state;
-    let $imagePreview = null;
-    if (imagePreviewUrl) {
-      $imagePreview = (<div><img src={imagePreviewUrl} /><span>{this.state.imagePreviewName}</span></div>);
+    let {imageUrl,imageName} = this.state;
+    let $imagePreview = [];
+    if (imageUrl.length>0) {
+      for(let j=0;j<imageUrl.length;j++){
+        $imagePreview.push(<div key={j} className='preview-img-position'><span className="preview-img-container"><img src={imageUrl[j]} /><span className="delete-preview" onTouchTap={this.deletePreview.bind(this,j)}>x</span></span></div>);
+      }
+      
     } else {
-      $imagePreview = (<div className="previewText">还未选择图片</div>);
+      $imagePreview = (<div className="previewText">请选择图片</div>);
     }
 
     return (
