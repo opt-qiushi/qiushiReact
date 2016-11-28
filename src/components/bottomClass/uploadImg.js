@@ -4,14 +4,14 @@ import cookie from 'react-cookie'
 import io from '../../server'
 import './uploadImg.css'
 
-var progress = function (p) {
-  return function (done) {
-    var bar = document.getElementById('progress-bar');
-    bar.style.width = Math.floor(p * 100) + '%';
-    bar.innerHTML = Math.floor(p * 100) + '%';
-    done();
-  }
-};
+// var progress = function (p) {
+//   return function (done) {
+//     var bar = document.getElementById('progress-bar');
+//     bar.style.width = Math.floor(p * 100) + '%';
+//     bar.innerHTML = Math.floor(p * 100) + '%';
+//     done();
+//   }
+// };
 export default class UploadImg extends Component{
  constructor(props) {
     super(props);
@@ -22,7 +22,6 @@ export default class UploadImg extends Component{
     this.uploadVoice = this.uploadVoice.bind(this)
     this.start = this.start.bind(this)
     this.stop = this.stop.bind(this)
-    // this.deleteTest = this.deleteTest.bind(this)
     this.deletePreview = this.deletePreview.bind(this)
     this.uploadFile = this.uploadFile.bind(this)
     this.deleteFile = this.deleteFile.bind(this)
@@ -138,7 +137,7 @@ export default class UploadImg extends Component{
       }
     });
   }
-  applyTokenDo(func,name){
+  applyTokenDo(func,name,j){
   var appServer = 'https://www.opt.com.cn/getSTS';
   var bucket = 'qiushi-oss';
   var region = 'oss-cn-hangzhou';
@@ -154,12 +153,11 @@ export default class UploadImg extends Component{
     method: 'POST',
     data: { prefix:toServer}
   }).then(function (result) {
-    // sessionStorage.setItem('creds',result.data)
     var creds = JSON.parse(result.data);
     var opt = {maxAge:60*15}
-    // cookie.save('creds',creds,opt)
+    cookie.save('creds',creds,opt)
     
-    var client = new OSS({
+    var client = new  OSS({
       region: region,
       accessKeyId: creds.AccessKeyId,
       accessKeySecret: creds.AccessKeySecret,
@@ -167,12 +165,10 @@ export default class UploadImg extends Component{
       bucket: bucket
     });
     // const Now = new Date().getTime() + 60*1000*15;
-    // console.log("applyTokenDo:",client)
-    return func(client,name);
+    return func(client,name,j);
     });
   };
   uploadFile(client){
-    // console.log("client:",client)
     var file = document.getElementById('imgFile').files[0];
     // var key = document.getElementById('object-key-file').value.trim() || 'object';
     var key = 'img/' + localStorage.getItem('userId') +"|"+ new Date().getTime() +"|"+ 'index.jpg';
@@ -180,11 +176,9 @@ export default class UploadImg extends Component{
     // key = "1234";
     console.log(file.name + ' => ' + key);
     var that = this;
-    // return client.multipartUpload(key, file, {
-    client.multipartUpload(key, file, {
-      progress: progress
-    }).then(function (res){
-        console.log('upload success: %j', res);
+    return client.multipartUpload(key, file, 
+      // {progress: progress}
+    ).then(function (res){
         // //回调函数
         var OSSUrl = 'http://qiushi-oss.oss-cn-hangzhou.aliyuncs.com/' + res.name;
         var imageUrl = that.state.imageUrl;
@@ -195,91 +189,69 @@ export default class UploadImg extends Component{
       })
   };
   _handleSubmit(e) {
-    // e.preventDefault();
-    // // TODO: do something with -> this.state.file
-    // if(cookie.load('creds')){
-    //   var creds = cookie.load('creds')
-    //   var bucket = 'qiushi-oss';
-    //   var region = 'oss-cn-hangzhou';
-    //   var client = new OSS({
-    //   region: region,
-    //   accessKeyId: creds.AccessKeyId,
-    //   accessKeySecret: creds.AccessKeySecret,
-    //   stsToken: creds.SecurityToken,
-    //   bucket: bucket
-    //   });
-    //   this.uploadFile(client)
-      
-    // }else{
-    //   this.applyTokenDo(this.uploadFile);
-    // }
-
+    
     
   }
 
   _handleImageChange(e) {
     e.preventDefault();
-    // var credsStr = 
-    // var creds = JSON.parse(sessionStorage.getItem('creds'))
-    // if(cookie.load('creds')){
-    //   var creds = cookie.load('creds')
-    //   var bucket = 'qiushi-oss';
-    //   var region = 'oss-cn-hangzhou';
-    //   var client = new OSS({
-    //   region: region,
-    //   accessKeyId: creds.AccessKeyId,
-    //   accessKeySecret: creds.AccessKeySecret,
-    //   stsToken: creds.SecurityToken,
-    //   bucket: bucket
-    //   });
-    //   this.uploadFile(client)
-      
-    // }else{
-    //   this.applyTokenDo(this.uploadFile);
-    // }
-    this.applyTokenDo(this.uploadFile);
-  }
-  deleteFile(client,name){
+    if(this.state.imageUrl.length>=3){
+      alert('抱歉，图片数量不能超过三张')
+    }else{
       // var creds = JSON.parse(sessionStorage.getItem('creds'))
-      // var creds = cookie.load('creds');
-      // var bucket = 'qiushi-oss';
-      // var region = 'oss-cn-hangzhou';
-      // var client = new OSS({
-      // region: region,
-      // accessKeyId: creds.AccessKeyId,
-      // accessKeySecret: creds.AccessKeySecret,
-      // stsToken: creds.SecurityToken,
-      // bucket: bucket
-      // });
-      // client.delete('img/57e1f7c527fc2e2b5edc1953|1479976308470|index.jpg').then(function (res) {
-      //   console.log('delete complete')
-      // });
-      client.delete(name).then(function (res) {
-        console.log('delete complete')
-      });
+      var creds = cookie.load('creds')
+      if(creds){
+        var bucket = 'qiushi-oss';
+        var region = 'oss-cn-hangzhou';
+        var OSS = window.OSS.Wrapper;
+        var client = new OSS({
+        region: region,
+        accessKeyId: creds.AccessKeyId,
+        accessKeySecret: creds.AccessKeySecret,
+        stsToken: creds.SecurityToken,
+        bucket: bucket
+        });
+        this.uploadFile(client)
+      }else{
+        this.applyTokenDo(this.uploadFile);
+      }
+    }
+  }
+  deleteFile(client,name,j){
+    var that = this;    
+    client.delete(name).then(function (res) {
+      var {imageUrl,imageName} = that.state;
+      // console.log("before delete",imageUrl)
+      imageUrl.splice(j,1)
+      imageName.splice(j,1)
+      // console.log("after delete",imageUrl)
+      that.setState({imageUrl:imageUrl,imageName:imageName})
+      var file = document.getElementById('imgFile');
+      file.value = '';
+    });
   }
   deletePreview(j){
     var {imageUrl,imageName} = this.state;
     var [targetUrl,targetName] = [imageUrl[j],imageName[j]]
     // var creds = JSON.parse(sessionStorage.getItem('creds'))
-    // // if(cookie.load('creds')){
-    // if(creds){
-    //   // var creds = cookie.load('creds')
-    //   var bucket = 'qiushi-oss';
-    //   var region = 'oss-cn-hangzhou';
-    //   var client = new OSS({
-    //   region: region,
-    //   accessKeyId: creds.AccessKeyId,
-    //   accessKeySecret: creds.AccessKeySecret,
-    //   stsToken: creds.SecurityToken,
-    //   bucket: bucket
-    //   });
-    //   this.deleteFile(client,targetName)
+    var creds = cookie.load('creds')
+    if(creds){
+      var bucket = 'qiushi-oss';
+      var region = 'oss-cn-hangzhou';
+      var OSS = window.OSS.Wrapper;
+      var client = new OSS({
+      region: region,
+      accessKeyId: creds.AccessKeyId,
+      accessKeySecret: creds.AccessKeySecret,
+      stsToken: creds.SecurityToken,
+      bucket: bucket
+      });
+      this.deleteFile(client,targetName,j)
       
-    // }else{
-    //   this.applyTokenDo(this.deleteFile,name);
-    // }
-    this.applyTokenDo(this.deleteFile,name);
+    }else{
+      this.applyTokenDo(this.deleteFile,name,j);
+    }
+    // this.applyTokenDo(this.deleteFile,name);
   }
   render() {
     let {imageUrl,imageName} = this.state;
@@ -295,18 +267,17 @@ export default class UploadImg extends Component{
 
     return (
       <div className="previewComponent">
-        <span onTouchTap={this.deleteTest}>删除OSS测试</span>
         <form onSubmit={(e)=>this._handleSubmit(e)}>
           <div><label htmlFor="imgFile" className="add-img">+</label></div>
           <input className="fileInput" type="file" id="imgFile" onChange={(e)=>this._handleImageChange(e)} />
           <div className="imgPreview">
 	        {$imagePreview}
 	        </div>
-          <div className="progress">
-            <div id="progress-bar" className="progress-bar" style={{minWidth: "2em"}}>
-              0%
-            </div>
-          </div>
+          {/*<div className="progress">
+                      <div id="progress-bar" className="progress-bar" style={{minWidth: "2em"}}>
+                        0%
+                      </div>
+                    </div>*/}
           <button className="submitButton" type="submit" onClick={(e)=>this._handleSubmit(e)}>上传</button>
         </form>
         <button onTouchTap={this.startRecord}>开始录音</button>
