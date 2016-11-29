@@ -49,7 +49,6 @@ export default class SquareAskQuestion extends Component{
 			// this.setState({open:true})
 		}else{
 			io.socket.post("/squareQuestion",{from:userId,question:content,reward:this.state.value1,duration:this.state.value2},(result,jwr)=>{
-				console.log(result)
 				if(result.data === "success"){
 					this.setState({open:true,openContent:'提问成功'})
 					// window.history.pushState('/squareQuestionDetail')
@@ -62,6 +61,7 @@ export default class SquareAskQuestion extends Component{
 	}
 	handleClose(){
 		this.setState({open:false})
+		this.props.history.push("/square")
 		// setTimeout(function(){
   //           this.props.history.push("/Wode")
   //       }.bind(this),500)
