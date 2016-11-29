@@ -3,7 +3,7 @@ import GMTtoTime from './gmtToTime'
 import './squareAnswerPool.css'
 import io from '../../server'
 import FlatButton from 'material-ui/FlatButton'
-import SquareAnswerAtomic from './squareAnswerAtomic'
+import SquareAnswerAtomic from '../../containers/squareAnswerAtomic'
 //广场问题
 const FlatButtonStyle = {
   

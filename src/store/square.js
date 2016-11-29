@@ -5,13 +5,7 @@ const initState = [
 	},
 	reward:"-",
 	answerNum:"-",
-	question:"-"},
-	{deadline:"-",
-	"from":{
-		name: ""
-	},
-	reward:"-",
-	answerNum:"-",
+	flag: true,
 	question:"-"}
 ]
 var toBeDelete = {minute:"290",
@@ -22,10 +16,10 @@ var toBeDelete = {minute:"290",
 export default function square(state = initState, action){
 	switch(action.type){
 		case "applySquare":
-			// return Object.assign({}, state, 
-			// 		action.data
-			// 	)
 			return action.data
+		case "addSquare":
+			var temp=state.concat(action.data)
+			return temp
 		default:
 			return state
 	}

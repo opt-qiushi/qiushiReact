@@ -177,9 +177,38 @@ export function changeCurrentSquare(state){
 		data: state
 	}
 }
+
+export function addCurrentSquare(state){
+	return {
+		type: "addCurrentSquare",
+		data: state
+	}
+}
+
 export function applySquare(state){
 	return{
 		type: "applySquare",
+		data: state
+	}
+}
+
+export function addSquare(state){
+	return{
+		type: "addSquare",
+		data: state
+	}
+}
+
+export function adjustDataset(first , second){
+	return {
+		type: "adjustDataset",
+		data: {from: first, to: second}
+	}
+}
+
+export function addSquareSelect(state){
+	return {
+		type: "addSquareSelect",
 		data: state
 	}
 }

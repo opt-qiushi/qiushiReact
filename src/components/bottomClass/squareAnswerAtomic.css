@@ -40,6 +40,19 @@
 	/*padding-top: 10px;*/
 }
 
+.squareAnswerHead-1-1-1 {
+	display: inline-block;
+	font-size: 13px;
+	color: white;
+	background: #0A964C;
+	border: 1px solid #0A964C;
+	padding: 5px 10px;
+	float:right;
+	margin-right: 15px;
+	font-family: 'HanHei SC', 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+	/*padding-top: 10px;*/
+}
+
 .squareAnswerBody{
 	clear: both;
 	/*font-size: 14px;*/
@@ -112,4 +125,10 @@
 	float: left;
 	font-size: 13px;
 	padding-left: 10px;
+}
+
+li.placeholder {background: rgb(255,240,120);}
+li.placeholder:before {
+  content: "Drop here";
+  color: rgb(225,210,90);
 }
