@@ -50,6 +50,7 @@ export default class UserCenterComp extends Component{
         this.handlePersonalDetail=this.handlePersonalDetail.bind(this)
         this.myCollection=this.myCollection.bind(this)
         this.myFans=this.myFans.bind(this)
+        this.voiceTest=this.voiceTest.bind(this)
     }
 
     componentWillMount(){
@@ -59,6 +60,9 @@ export default class UserCenterComp extends Component{
         io.socket.post('/professional/'+this.props.userInfo.id,{},(result, jwr) => {
               this.props.getUserInformation(result)
         })
+    }
+    voiceTest(){
+        this.props.history.push("/upload")
     }
     myFans(){
         setTimeout(function(){
@@ -156,6 +160,7 @@ export default class UserCenterComp extends Component{
                      onTouchTap={this.myFeedback} />
                 <Divider />
     			</List>
+                <div style={{height:30 + 'px',marginTop: 50}} onTouchTap={this.voiceTest}></div>
             </div>
             )
 	}

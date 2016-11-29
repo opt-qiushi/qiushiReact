@@ -68,10 +68,66 @@ export default class PersonDetailComp extends Component{
             // }
         (function wxJsApi(intro,headImg){
               var target = localStorage.getItem('fromUrl')
+
               // var target = encodeURIComponent(localStorage.getItem('fromUrl'));
               io.socket.get("/config",{targetUrl:target},(result, jwr) =>{
                 // result.debug = true;
                 wx.config(result)
+                wx.error(function(res){
+                  // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+                  var url = location.href.split('#')[0];
+                  console.log('enter error')
+                  localStorage.setItem('fromUrl',url);
+                  console.log(localStorage.getItem('fromUrl'))
+                  //错误后重新发送url
+
+
+
+
+
+                  var target = localStorage.getItem('fromUrl')
+                  io.socket.get("/config",{targetUrl:target},(result, jwr) =>{
+                // result.debug = true;
+                wx.config(result)
+                wx.error(function(res){
+                  console.log('enter error two')
+                })
+                wx.ready(function(){
+                  wx.onMenuShareTimeline({
+                      title: intro, // 分享标题
+                      link: '', // 分享链接
+                      imgUrl: headImg, // 分享图标
+                      success: function () { 
+                          // 用户确认分享后执行的回调函数
+                      },
+                      cancel: function () { 
+                          // 用户取消分享后执行的回调函数
+                      }
+                  });
+                  wx.onMenuShareAppMessage({
+                      title: '求士', // 分享标题
+                      desc: intro, // 分享描述
+                      link: '', // 分享链接
+                      imgUrl: headImg, // 分享图标
+                      type: '', // 分享类型,music、video或link，不填默认为link
+                      dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                      success: function () { 
+                          // 用户确认分享后执行的回调函数
+                      },
+                      cancel: function () { 
+                          // 用户取消分享后执行的回调函数
+                      }
+                  });
+                  //wx.hideAllNonBaseMenuItem(); 
+                });  
+              });
+
+
+
+
+
+
+                });
                 wx.ready(function(){
                   wx.onMenuShareTimeline({
                       title: intro, // 分享标题
