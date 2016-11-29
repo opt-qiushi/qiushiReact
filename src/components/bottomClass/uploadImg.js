@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import FlatButton from 'material-ui/FlatButton';
+import React, { Component, PropTypes } from 'react'
+import FlatButton from 'material-ui/FlatButton'
 import cookie from 'react-cookie'
 import io from '../../server'
 import './uploadImg.css'
@@ -20,8 +20,6 @@ export default class UploadImg extends Component{
     this.stopRecord = this.stopRecord.bind(this)
     this.playVoice = this.playVoice.bind(this)
     this.uploadVoice = this.uploadVoice.bind(this)
-    this.start = this.start.bind(this)
-    this.stop = this.stop.bind(this)
     this.deletePreview = this.deletePreview.bind(this)
     this.uploadFile = this.uploadFile.bind(this)
     this.deleteFile = this.deleteFile.bind(this)
@@ -52,15 +50,6 @@ export default class UploadImg extends Component{
         });
       });  
     });      
-  }
-  start(){
-    alert('start')
-    this.refs.audio.play();
-    //this.refs.audio.duration
-  }
-  stop(){
-    alert('stop')
-    this.refs.audio.pause();
   }
   //开始录音接口
   startRecord(e){
@@ -141,6 +130,7 @@ export default class UploadImg extends Component{
   var appServer = 'https://www.opt.com.cn/getSTS';
   var bucket = 'qiushi-oss';
   var region = 'oss-cn-hangzhou';
+  var endpoint = 'https://qiushi-oss.oss-cn-hangzhou.aliyuncs.com';
   var urllib = window.OSS.urllib;
   var Buffer = window.OSS.Buffer;
   var OSS = window.OSS.Wrapper;
@@ -157,46 +147,56 @@ export default class UploadImg extends Component{
     var opt = {maxAge:60*15}
     cookie.save('creds',creds,opt)
     
-    var client = new  OSS({
+    var client = new OSS({
       region: region,
       accessKeyId: creds.AccessKeyId,
       accessKeySecret: creds.AccessKeySecret,
       stsToken: creds.SecurityToken,
-      bucket: bucket
+      bucket: bucket,
+      endpoint: endpoint,
+      secure:true
     });
     // const Now = new Date().getTime() + 60*1000*15;
-    return func(client,name,j);
+    // return func(client,name,j);
+    return func(client);
     });
   };
   uploadFile(client){
+    console.log(client)
     var file = document.getElementById('imgFile').files[0];
+    // var fileValue = document.getElementById('imgFile').value;
     // var key = document.getElementById('object-key-file').value.trim() || 'object';
     var key = 'img/' + localStorage.getItem('userId') +"|"+ new Date().getTime() +"|"+ 'index.jpg';
     // key = 'img/' + localStorage.getItem('userId') +　"*"
     // key = "1234";
     console.log(file.name + ' => ' + key);
     var that = this;
-    return client.multipartUpload(key, file, 
-      // {progress: progress}
-    ).then(function (res){
-        // //回调函数
+    return client.multipartUpload(key, file).then(function (res){
+    // return client.put(key, fileValue).then(function (res){
         var OSSUrl = 'http://qiushi-oss.oss-cn-hangzhou.aliyuncs.com/' + res.name;
         var imageUrl = that.state.imageUrl;
         var imageName = that.state.imageName;
         imageUrl.push(OSSUrl);
         imageName.push(res.name);
         that.setState({imageUrl:imageUrl,imageName:imageName});
+        alert("end")
       })
+    // return client.multipartUpload(key, file, 
+    //   // {progress: progress}
+    // ).then(function (res){
+    //     var OSSUrl = 'http://qiushi-oss.oss-cn-hangzhou.aliyuncs.com/' + res.name;
+    //     var imageUrl = that.state.imageUrl;
+    //     var imageName = that.state.imageName;
+    //     imageUrl.push(OSSUrl);
+    //     imageName.push(res.name);
+    //     that.setState({imageUrl:imageUrl,imageName:imageName});
+    //     alert("end")
+    //   })
   };
-  _handleSubmit(e) {
-    
-    
-  }
 
   _handleImageChange(e) {
     e.preventDefault();
     if(this.state.imageUrl.length>=3){
-      alert('抱歉，图片数量不能超过三张')
     }else{
       // var creds = JSON.parse(sessionStorage.getItem('creds'))
       var creds = cookie.load('creds')
@@ -267,31 +267,21 @@ export default class UploadImg extends Component{
 
     return (
       <div className="previewComponent">
-        <form onSubmit={(e)=>this._handleSubmit(e)}>
-          <div><label htmlFor="imgFile" className="add-img">+</label></div>
-          <input className="fileInput" type="file" id="imgFile" onChange={(e)=>this._handleImageChange(e)} />
-          <div className="imgPreview">
-	        {$imagePreview}
-	        </div>
-          {/*<div className="progress">
-                      <div id="progress-bar" className="progress-bar" style={{minWidth: "2em"}}>
-                        0%
-                      </div>
-                    </div>*/}
-          <button className="submitButton" type="submit" onClick={(e)=>this._handleSubmit(e)}>上传</button>
-        </form>
-        <button onTouchTap={this.startRecord}>开始录音</button>
-        <button onTouchTap={this.stopRecord}>停止录音</button>
-        <button onTouchTap={this.playVoice}>播放录音</button>
-        <button onTouchTap={this.uploadVoice}>上传录音</button>
-        <div>
-          <audio src="http://qiushi-oss.oss-cn-hangzhou.aliyuncs.com/voices/id.mp3" ref="audio">
-            Don't support audio
-          </audio>
-          <span onTouchTap={this.start}>开始播放</span>
-          <span onTouchTap={this.stop}>暂停播放</span>
-        </div>
-        
+      <div className="add-img-title">添加图片：</div>
+      <div><label htmlFor="imgFile" className="add-img">+</label></div>
+      <input className="fileInput" type="file" id="imgFile" accept="image/*" onChange={(e)=>this._handleImageChange(e)} />
+      <div className="imgPreview">
+      {$imagePreview}
+      </div>
+      {/*<div className="progress">
+                  <div id="progress-bar" className="progress-bar" style={{minWidth: "2em"}}>
+                    0%
+                  </div>
+                </div>*/}
+      <button onTouchTap={this.startRecord}>开始录音</button>
+      <button onTouchTap={this.stopRecord}>停止录音</button>
+      <button onTouchTap={this.playVoice}>播放录音</button>
+      <button onTouchTap={this.uploadVoice}>上传录音</button>
       </div>
     )
   }

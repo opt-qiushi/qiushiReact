@@ -36,6 +36,7 @@ input[type=file] {
   line-height: 70px;
   font-size: 50px;
   font-weight: lighter;
+  margin-left: 25px;
 }
 .delete-preview{
     position: absolute;
@@ -87,4 +88,11 @@ input[type=file] {
     -webkit-transition: width .6s ease;
     -o-transition: width .6s ease;
     transition: width .6s ease;
+}
+.add-img-title{
+  color: #999;
+  font-size: 12px;
+  padding-left: 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
