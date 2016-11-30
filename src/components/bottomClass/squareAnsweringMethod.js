@@ -70,7 +70,12 @@ export default class SquareAnsweringMethod extends Component{
 					    </div>
 					)
 			case 2:
-				return
+				return (
+						<div className="voiceArea">
+							<img src="./img/"/>
+							<span className="voice-title">点击开始录音，做多可录60S</span>
+						</div>
+					)
 			default:
 				return
 		}
