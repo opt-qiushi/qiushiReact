@@ -182,6 +182,7 @@ export default class Square extends Component{
 	render(){
     const {squareQuestion}=this.props
 
+
     // var fromHeadImgUrl = questions.from.avatar || questions.from.headimgurl || ""; 
 		return (
 			<div >

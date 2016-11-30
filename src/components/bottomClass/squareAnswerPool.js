@@ -23,7 +23,7 @@ export default class SquareAnswerPool extends Component{
         <div>
           <div className="pool-head">回答池</div>
           <div className="pool-head-desc">（被采纳的答案会被设定收费收听，并获得一定比例赏金）</div>
-          <SquareAnswerAtomic/>
+          <SquareAnswerAtomic pageCategory={this.props.pageCategory}/>
         </div>
 			)
 	}

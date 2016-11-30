@@ -158,7 +158,7 @@ export default class UploadImg extends Component{
     });
     // const Now = new Date().getTime() + 60*1000*15;
     // return func(client,name,j);
-    return func(client);
+    return func(client,name,j);
     });
   };
   uploadFile(client){

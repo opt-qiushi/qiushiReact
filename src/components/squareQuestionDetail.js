@@ -35,11 +35,47 @@ const allStyle={
 export default class SquareQuestionDetail extends Component{
 	constructor(props){
 		super(props)
+		this.state={
+			pageCategory: 2
+		}
+		this.hasAdoptArea=this.hasAdoptArea.bind(this)
+		this.buttonField=this.buttonField.bind(this)
+		this.adoptQuestion=this.adoptQuestion.bind(this)
+		this.answerQuestion=this.answerQuestion.bind(this)
 	}
 
 
 	  componentDidMount(){
-	  	
+	  	 io.socket.get('/squareType', {questionId: this.props.squareQuestion.id, userId: localStorage.getItem('userId')}, (result, jwr) => {
+            this.setState({pageCategory: result.pageCategory})
+   
+        })
+	  }
+
+	  hasAdoptArea(){
+	  	if(this.state.pageCategory==1 || this.state.pageCategory==4 || this.state.pageCategory==5)
+	  	return <SquareSelectPool pageCategory={this.state.pageCategory} />
+	  	else return
+	  }
+
+	  answerQuestion(){
+	  	this.props.history.push("/upload")
+	  }
+
+	  adoptQuestion(){
+
+	  }
+
+	  buttonField(){
+	  	if(this.state.pageCategory==1)
+
+	  	return <div style={allStyle.squareToAnswer} onTouchTap={this.adoptQuestion}><span className="squareToAskQuestion-inner">提交采纳</span></div>
+
+	  	else if(this.state.pageCategory==2 && this.props.squareQuestion.state==0)
+
+	  	return <div style={allStyle.squareToAnswer} onTouchTap={this.answerQuestion}><span className="squareToAskQuestion-inner">我要回答</span></div>
+
+	  	else return
 	  }
 
 
@@ -49,9 +85,9 @@ export default class SquareQuestionDetail extends Component{
 			<div>
 			<div style={allStyle.placeHolder}></div>
 			<SquareQuestion style={allStyle.questionBox} squareQuestion={squareQuestion} />
-			<SquareSelectPool />
-			<SquareAnswerPool squareQuestion={squareQuestion}/>
-			<div style={allStyle.squareToAnswer} onTouchTap={this.askQuestion}><span className="squareToAskQuestion-inner">提交采纳</span></div>
+			{this.hasAdoptArea()}
+			<SquareAnswerPool squareQuestion={squareQuestion} pageCategory={this.state.pageCategory} />
+			{this.buttonField()}
 			</div>
 		)
 	}

@@ -12,6 +12,7 @@ export default class SquareQuestion extends Component{
   constructor(props){
     super(props)
     this.enterQuestionDetail = this.enterQuestionDetail.bind(this)
+    this.showTime = this.showTime.bind(this)
   }
 
   componentDidMount(){
@@ -22,21 +23,34 @@ export default class SquareQuestion extends Component{
       this.props.onChange(this.props.squareQuestion)
     }
   }
+
+  showTime(){
+    if(this.props.squareQuestion.state==2){
+      return 
+    }
+    var deadline = Date.parse(this.props.squareQuestion.deadLine);
+    var nowTime = Date.now();
+    var lastTime = (deadline-nowTime)/(1000*60);
+    var lastTimeHour = lastTime/60;
+    var lastTimeMinute = lastTime%60;
+    var showTime = '';
+    if(lastTime<=0){
+      showTime = "0分钟"
+    }else if(lastTime>0){
+      if(lastTimeHour<=0) showTime = lastTimeMinute + '分钟'
+      else showTime = lastTimeHour + "小时" + lastTimeMinute + '分钟'
+    }
+
+    return '剩余'+showTime
+  }
+
 	render(){
     var rows= []
     const {squareQuestion}=this.props
-    if(this.props.readyAsk){
+    if(this.props.readyAsk && squareQuestion.state==0){
       rows.push(<div className="square-answer-line" key="1"><FlatButton style={FlatButtonStyle} hoverColor="#0A964C" rippleColor="#0A964C" backgroundColor="#FFF" labelStyle={{color:"#0A964C"}} label="立即回答" /></div>)
     }
-    var deadline = Date.parse(squareQuestion.deadline);
-    var nowTime = Date.now();
-    var lastTime = (deadline-nowTime)/(1000*60*60);
-    var showTime = '-';
-    if(lastTime<0){
-      showTime = "0"
-    }else if(lastTime>0){
-      showTime = lastTime.toFixed(2)
-    }
+    
     
     // var fromHeadImgUrl = questions.from.avatar || questions.from.headimgurl || ""; 
 		return (
@@ -49,7 +63,8 @@ export default class SquareQuestion extends Component{
                       {squareQuestion.from.name}
                     </span>
                     <span className="squareHead-1-1">
-                      剩余{showTime}小时
+                      {this.showTime()}
+                      
                     </span>
                     <br/>
                     <span className="squareHead-2-0">

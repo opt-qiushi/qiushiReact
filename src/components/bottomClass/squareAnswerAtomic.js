@@ -114,7 +114,7 @@ export default class SquareAnswerAtomic extends Component{
       var i=1
       this.props.squareQuestion.answer.forEach(function(squareAtomic){
          rows.push(
-            <SquareAfrica key={i} squareAtomic={squareAtomic} adoptNum={this.state.adoptNum} onAddNum={this.addAdoptNum} onMinusNum={this.minusAdoptNum} />
+            <SquareAfrica key={i} squareAtomic={squareAtomic} adoptNum={this.state.adoptNum} onAddNum={this.addAdoptNum} onMinusNum={this.minusAdoptNum} pageCategory={this.props.pageCategory}/>
           )
         i++
       }.bind(this))
