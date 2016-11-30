@@ -124,7 +124,7 @@ export default class Square extends Component{
     window.addEventListener('scroll', this.handleScroll)
   }
   askQuestion(){
-    location.href = "./squareAskQuestion"
+    this.props.history.push("/squareAskQuestion")
   }
 
   showSolved(){

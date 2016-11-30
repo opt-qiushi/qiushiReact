@@ -28,16 +28,18 @@ export default class SquareAskQuestion extends Component{
 		this.handleSendQuestion = this.handleSendQuestion.bind(this)
 		this.handleChangeContent = this.handleChangeContent.bind(this)
 		this.handleClose=this.handleClose.bind(this)
+		this.handleChange1=this.handleChange1.bind(this)
+		this.handleChange2=this.handleChange2.bind(this)
 	}
 
-	handleChange1 = (event, index, value1) => this.setState({value1});
-	handleChange2 = (event, index, value2) => this.setState({value2});
-	/*handleChange1(event, index, value1){
+	// handleChange1 = (event, index, value1) => this.setState({value1});
+	// handleChange2 = (event, index, value2) => this.setState({value2});
+	handleChange1(event, index, value1){
 		this.setState(value1)
 	}
 	handleChange2(event, index, value2){
 		this.setState(value2)
-	}*/
+	}
 	handleChangeContent(event){
 		this.setState({content: event.target.value})
 	}
