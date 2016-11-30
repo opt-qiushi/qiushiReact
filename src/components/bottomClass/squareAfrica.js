@@ -41,8 +41,11 @@ export default class SquareAfrica extends Component{
 
   adoptAnswer(){
 <<<<<<< HEAD
+<<<<<<< HEAD
     if(this.props.pageCategory !=2){
 =======
+=======
+>>>>>>> origin/devJUE
     /* 记得改回1 */
     if(this.props.pageCategory !=1){
 >>>>>>> origin/devJUE

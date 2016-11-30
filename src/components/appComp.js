@@ -24,9 +24,12 @@ export default class AppComp extends Component{
     // var guestId=cookie.load('guestId')
     var questionId=cookie.load('questionId')
 <<<<<<< HEAD
+<<<<<<< HEAD
     // userId = '57a7ffb64fe7f46f7d144305'
     userId = '57e1f7c527fc2e2b5edc1953'
 =======
+=======
+>>>>>>> origin/devJUE
     userId = '57a7ffb64fe7f46f7d144305'
     // userId = '57e1f7c527fc2e2b5edc1953'
 >>>>>>> origin/devJUE
