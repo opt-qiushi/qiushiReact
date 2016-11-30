@@ -63,7 +63,6 @@ export default class SquareAfrica extends Component{
 
   render(){
     const {squareAtomic}=this.props
-    console.log(squareAtomic)
     const actionButton = [
         <FlatButton
             label="确定"

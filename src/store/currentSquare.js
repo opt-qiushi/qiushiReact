@@ -59,6 +59,42 @@ export default function currentSquare(state = initState, action){
 			return Object.assign({}, state, 
 					ok
 				)
+		case 'changeNumber':
+			var temp=state.selectData.concat()
+			var temp2
+			temp.forEach(function(selectAtomic,i){
+				// console.log(i, selectAtomic.id, action.data.id)
+				if(selectAtomic.id==action.data.id){
+					temp.splice(i,1)
+					temp2=selectAtomic
+				}
+			})
+			temp.splice(0, 0, temp2)
+			var ok={
+				selectData: temp
+			}
+			return Object.assign({}, state, 
+					ok
+				)
+		case 'clearSelectData':
+			var temp=state.selectData.concat()
+			var temp2=[]
+			var ok={
+				selectData: temp2,
+				adoptNum: 0
+			}
+			return Object.assign({}, state, 
+					ok
+				)
+		case 'setSelectData':
+			var temp=[]
+			temp=temp.concat(action.data)
+			var ok={
+				selectData: temp
+			}
+			return Object.assign({}, state, 
+					ok
+				)
 		default:
 			return state
 	}

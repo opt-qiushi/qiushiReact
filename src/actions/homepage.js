@@ -219,3 +219,23 @@ export function deleteSquareSelect(data){
 		data: data
 	}
 }
+
+export function changeNumber(data){
+	return {
+		type: "changeNumber",
+		data: data
+	}
+}
+
+export function clearSelectData(){
+	return {
+		type: "clearSelectData"
+	}
+}
+
+export function setSelectData(data){
+	return {
+		type: "setSelectData",
+		data: data
+	}
+}

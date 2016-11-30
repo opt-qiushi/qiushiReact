@@ -5,7 +5,10 @@ import io from '../../server'
 import FlatButton from 'material-ui/FlatButton'
 import CircularProgress from 'material-ui/CircularProgress'
 import Draggable, {DraggableCore} from 'react-draggable' // Both at the same time
-import SquareAsian from './squareAsian'
+// import SquareAsian from './squareAsian'
+import SquareAsian from '../../containers/squareAsian'
+
+
 //广场问题
 const circularStyle={
   textAlign: "center"
@@ -39,10 +42,10 @@ export default class SquareAnswerAtomic extends Component{
     var i=1
     this.props.squareQuestion.forEach(function(squareAtomic){
          rows.push(
-            <SquareAsian key={i} squareAtomic={squareAtomic} />
+            <SquareAsian key={i} squareAtomic={squareAtomic} pageCategory={this.props.pageCategory} />
           )
         i++
-    })
+    }.bind(this))
 		return (
         <div>
            <div className="squareAnswerStructure" >

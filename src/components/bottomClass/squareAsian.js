@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import './squareAnswerAtomic.css'
-import GMTtoTime from './gmtToTime'
+import GMTtoTime2 from './gmtToTime2'
 
 export default class SquareAsian extends Component{
   constructor(props){
@@ -16,12 +16,28 @@ export default class SquareAsian extends Component{
     this.handleClose=this.handleClose.bind(this)
     this.isLock=this.isLock.bind(this)
     this.handleOpen=this.handleOpen.bind(this)
+    this.changeNumber=this.changeNumber.bind(this)
+    this.putTop=this.putTop.bind(this)
     // this.changeStateWord=this.changeStateWord.bind(this)
     
   }
 
+  putTop(){
+    if(this.props.pageCategory==1) 
+      return (
+                    <span className="squareAnswerHead-1-1-1" onTouchTap={this.changeNumber} >
+                      置顶
+                    </span>
+                    )
+    else return
+  }
+
   handleClose(){
     this.setState({open: false})
+  }
+
+  changeNumber(){
+    this.props.changeNumber(this.props.squareAtomic)
   }
 
   // changeStateWord(){
@@ -73,7 +89,7 @@ export default class SquareAsian extends Component{
     if(this.props.pageCategory == 5){
       return <span onTouchTap={this.handleOpen}>请点击解锁</span>
     }else{
-      return <span>A: + {this.props.squareAtomic.answer}</span>
+      return <span>A: {this.props.squareAtomic.answer}</span>
     }
     
   }
@@ -100,15 +116,15 @@ export default class SquareAsian extends Component{
                       {squareAtomic.from.name}
                     </span>
                     {/*this.adoptAnswer()*/}
+                    {this.putTop()}
                     <br/>
                     <span className="squareAnswerHead-2-0">
-                      {GMTtoTime(squareAtomic.createdAt)}
+                      {GMTtoTime2(squareAtomic.createdAt)}
                     </span>
                     
                 </div>
                 <div className="squareAnswerBody">
                   <p className="squareAnswer-question">
-                    A：{}
                     {this.isLock()}
                   </p>
                 </div>
