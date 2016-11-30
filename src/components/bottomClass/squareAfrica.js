@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import './squareAnswerAtomic.css'
-import GMTtoTime from './gmtToTime'
+import GMTtoTime2 from './gmtToTime2'
 
 export default class SquareAfrica extends Component{
   constructor(props){
@@ -63,6 +63,7 @@ export default class SquareAfrica extends Component{
 
   render(){
     const {squareAtomic}=this.props
+    console.log(squareAtomic)
     const actionButton = [
         <FlatButton
             label="确定"
@@ -81,7 +82,7 @@ export default class SquareAfrica extends Component{
                     {this.adoptAnswer()}
                     <br/>
                     <span className="squareAnswerHead-2-0">
-                      {GMTtoTime(squareAtomic.createdAt)}
+                      {GMTtoTime2(squareAtomic.createdAt)}
                     </span>
                     
                 </div>

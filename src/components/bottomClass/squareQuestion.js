@@ -36,16 +36,16 @@ export default class SquareQuestion extends Component{
     var lastTimeMinute = parseInt(lastTime%60);
     var showTime = '';
     if(lastTime<=0 || isNaN(lastTime)){
-      showTime = "0分钟"
+      showTime = "征集答案已完成"
     }else if(lastTime>0){
       if(lastTimeHour<=0) {
-        if(lastTimeMinute==0) showTime = lastTimeSecond+"秒"
-        else showTime = lastTimeMinute + '分钟'
+        if(lastTimeMinute==0) showTime = '剩余'+lastTimeSecond+"秒"
+        else showTime = '剩余'+lastTimeMinute + '分钟'
       }
-      else showTime = lastTimeHour + "小时" + lastTimeMinute + '分钟'
+      else showTime = '剩余'+lastTimeHour + "小时" + lastTimeMinute + '分钟'
     }
 
-    return '剩余'+showTime
+    return showTime
   }
 
 	render(){
@@ -61,7 +61,7 @@ export default class SquareQuestion extends Component{
 			<div  ref="duihuakuang" className="squareStructure" onTouchTap={this.enterQuestionDetail}>
                 <div className="squareHead">
                     <span className="squareHeadAvatar" >
-                      <img src="./img/empty.png"  />
+                      <img src={squareQuestion.from.avatar}  />
                     </span>
                     <span className="squareHead-1-0">
                       {squareQuestion.from.name}

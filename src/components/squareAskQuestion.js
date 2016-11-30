@@ -24,7 +24,7 @@ const rightSelectStyle = {
 export default class SquareAskQuestion extends Component{
 	constructor(props){
 		super(props)
-		this.state = {value1:100,value2:3,content:'',open:false,openContent:'请输入您的问题'}
+		this.state = {value1:100,value2:30,content:'',open:false,openContent:'请输入您的问题'}
 		this.handleSendQuestion = this.handleSendQuestion.bind(this)
 		this.handleChangeContent = this.handleChangeContent.bind(this)
 		this.handleClose=this.handleClose.bind(this)
@@ -48,19 +48,24 @@ export default class SquareAskQuestion extends Component{
 			window.history.pushState({},'/square')
 			// this.setState({open:true})
 		}else{
-			io.socket.post("/squareQuestion",{from:userId,question:content,reward:this.state.value1,duration:this.state.value2},(result,jwr)=>{
+			console.log("OK")
+			io.socket.post("/squareQuestion", {from:userId,question:content,reward:this.state.value1,duration:this.state.value2},(result,jwr)=>{
+				console.log(result)
 				if(result.data === "success"){
 					this.setState({open:true,openContent:'提问成功'})
+					console.log(this.props.history)
 					// window.history.pushState('/squareQuestionDetail')
 				}else{
 					this.setState({open:true,openContent:'网络错误，请重试'})
 				}
 			})
+			console.log("TED")
 		}
 		
 	}
 	handleClose(){
 		this.setState({open:false})
+
 		this.props.history.push("/square")
 		// setTimeout(function(){
   //           this.props.history.push("/Wode")

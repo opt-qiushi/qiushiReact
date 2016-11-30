@@ -26,8 +26,12 @@ export default class SquareAnsweringMethod extends Component{
 		console.log(this.props.squareQuestion.id,this.state.content)
 		io.socket.post('/squareAnswer', {questId: this.props.squareQuestion.id, from: localStorage.getItem('userId'),answer:this.state.content}, (result, jwr) => {
             console.log(result)
-            this.setState({pageCategory: result.pageCategory})
-   
+            io.socket.get('/squareQuest?questId='+this.props.squareQuestion.id+'&page=1', {}, (result, jwr) => {
+	          setTimeout(function() {
+	            this.props.addCurrentSquare(result.question.answer)
+	            this.props.history.push('/squareQuestionDetail')
+	          }.bind(this), 1000)
+	      	})
         })
 	}
 	onTextChange(event){

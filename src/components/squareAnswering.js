@@ -3,7 +3,10 @@ import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper'
 import io from '../server'
 import SquareQuestion from './bottomClass/squareQuestion'
-import SquareAnsweringMethod from './bottomClass/SquareAnsweringMethod'
+// import SquareAnsweringMethod from './bottomClass/SquareAnsweringMethod'
+import SquareAnsweringMethod from '../containers/SquareAnsweringMethod'
+
+
 
 const allStyle={
 	squareToAnswer:{
@@ -71,7 +74,7 @@ export default class SquareQuestionDetail extends Component{
 			<div>
 			<div style={allStyle.placeHolder}></div>
 			<SquareQuestion style={allStyle.questionBox} squareQuestion={squareQuestion} />
-		    <SquareAnsweringMethod onChangeValue={this.changeValue} squareQuestion={squareQuestion} /> 
+		    <SquareAnsweringMethod onChangeValue={this.changeValue}  history={this.props.history} /> 
 			{this.buttonField()}
 			</div>
 		)
