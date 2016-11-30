@@ -53,6 +53,7 @@ export default class SquareQuestionDetail extends Component{
 	  }
 
 	  hasAdoptArea(){
+	  	/* 这里记得改回1 */
 	  	if(this.state.pageCategory==1 || this.state.pageCategory==4 || this.state.pageCategory==5)
 	  	return <SquareSelectPool pageCategory={this.state.pageCategory} />
 	  	else return

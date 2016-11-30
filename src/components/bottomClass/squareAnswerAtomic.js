@@ -31,8 +31,6 @@ export default class SquareAnswerAtomic extends Component{
         page: 2,
         totalPages: 2,
         word: "采纳",
-        wordState: 0,
-        adoptNum: 1
       }
       this.handleScrollToBottom=this.handleScrollToBottom.bind(this)
       this.elementInfiniteLoad=this.elementInfiniteLoad.bind(this)
@@ -85,7 +83,7 @@ export default class SquareAnswerAtomic extends Component{
             this.setState({isInfiniteLoading: false, isLoading: false,toBottom: true})
             return 
           }
-          io.socket.get('/squareQuest?questId='+this.props.squareQuestion.id+'&page='+this.state.page, {}, (result, jwr) => {
+          io.socket.get('/squareQuest?questId='+this.props.squareQuestion.defaultData.id+'&page='+this.state.page, {}, (result, jwr) => {
           setTimeout(function() {
             this.props.addCurrentSquare(result.question.answer)
             this.setState({isInfiniteLoading: false, isLoading: false,toBottom: false, page: this.state.page+1, totalPages:result.totalPages})
@@ -112,9 +110,9 @@ export default class SquareAnswerAtomic extends Component{
     showList(){
       var rows=[]
       var i=1
-      this.props.squareQuestion.answer.forEach(function(squareAtomic){
+      this.props.squareQuestion.defaultData.answer.forEach(function(squareAtomic){
          rows.push(
-            <SquareAfrica key={i} squareAtomic={squareAtomic} adoptNum={this.state.adoptNum} onAddNum={this.addAdoptNum} onMinusNum={this.minusAdoptNum} pageCategory={this.props.pageCategory}/>
+            <SquareAfrica key={i} squareAtomic={squareAtomic}   pageCategory={this.props.pageCategory}/>
           )
         i++
       }.bind(this))

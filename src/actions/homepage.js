@@ -212,3 +212,10 @@ export function addSquareSelect(state){
 		data: state
 	}
 }
+
+export function deleteSquareSelect(data){
+	return {
+		type: "deleteSquareSelect",
+		data: data
+	}
+}

@@ -6,7 +6,8 @@ import * as actions  from '../actions/homepage'
 //将state.counter绑定到props的counter
 function mapStateToProps(state) {
   return {
-    squareQuestion2: state.squareSelect
+    squareQuestion2: state.currentSquare.defaultData,
+    adoptNum: state.currentSquare.adoptNum
   }
 }
 
