@@ -51,7 +51,6 @@ export default class SquareQuestionDetail extends Component{
 	  	 io.socket.post('/squareType', {questionId: this.props.squareQuestion.id, userId: localStorage.getItem('userId')}, (result, jwr) => {
             console.log(result)
             this.setState({pageCategory: result.pageCategory})
-   
         })
 	  }
 
