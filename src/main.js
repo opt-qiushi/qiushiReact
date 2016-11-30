@@ -52,7 +52,7 @@ import Square from './components/square'
 import SquareBinding from './containers/squareBinding'
 import currentSquare from './store/currentSquare'
 import SquareQuestionDetailBinding from './containers/squareQuestionBinding'
-import squareSelect from './store/squareSelect'
+// import squareSelect from './store/squareSelect'
 
 
 injectTapEventPlugin();
@@ -70,7 +70,6 @@ const reducer = combineReducers({
   collection,
   square,
   currentSquare,
-  squareSelect,
   routing: routerReducer
 })
 

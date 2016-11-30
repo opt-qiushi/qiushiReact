@@ -37,7 +37,7 @@ export default class SquareAnswerAtomic extends Component{
 	render(){
     var rows=[]
     var i=1
-    this.props.squareQuestion.answer.forEach(function(squareAtomic){
+    this.props.squareQuestion.forEach(function(squareAtomic){
          rows.push(
             <SquareAsian key={i} squareAtomic={squareAtomic} />
           )

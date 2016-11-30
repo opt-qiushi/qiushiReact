@@ -7,7 +7,7 @@ import * as actions  from '../actions/homepage'
 //将state.counter绑定到props的counter
 function mapStateToProps(state) {
   return {
-    squareQuestion: state.squareSelect
+    squareQuestion: state.currentSquare.selectData
   }
 }
 //将action的所有方法绑定到props上

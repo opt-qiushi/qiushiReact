@@ -23,16 +23,16 @@ export default class SquareAfrica extends Component{
   changeStateWord(){
       switch(this.state.wordState){
         case 0:
-            if(this.props.adoptNum>3){
+            if(this.props.adoptNum>2){
               this.setState({open: true})
               return 
             }
-            this.props.onAddNum()
+
             this.props.addSquareSelect(this.props.squareAtomic)
             this.setState({wordState:1, word:"已采纳"})
             return 
         case 1:
-            this.props.onMinusNum()
+            this.props.deleteSquareSelect(this.props.squareAtomic)
             this.setState({wordState:0, word:"采纳"})
         default:
             return 
@@ -40,7 +40,12 @@ export default class SquareAfrica extends Component{
   }
 
   adoptAnswer(){
+<<<<<<< HEAD
+    if(this.props.pageCategory !=2){
+=======
+    /* 记得改回1 */
     if(this.props.pageCategory !=1){
+>>>>>>> origin/devJUE
       return
     }
     switch(this.state.wordState){

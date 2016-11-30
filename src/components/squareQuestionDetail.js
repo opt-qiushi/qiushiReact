@@ -47,13 +47,18 @@ export default class SquareQuestionDetail extends Component{
 
 	  componentDidMount(){
 	  	 io.socket.get('/squareType', {questionId: this.props.squareQuestion.id, userId: localStorage.getItem('userId')}, (result, jwr) => {
+	  	 	console.log(result)
             this.setState({pageCategory: result.pageCategory})
-   
         })
 	  }
 
 	  hasAdoptArea(){
+<<<<<<< HEAD
+	  	if(this.state.pageCategory==2 || this.state.pageCategory==4 || this.state.pageCategory==5)
+=======
+	  	/* 这里记得改回1 */
 	  	if(this.state.pageCategory==1 || this.state.pageCategory==4 || this.state.pageCategory==5)
+>>>>>>> origin/devJUE
 	  	return <SquareSelectPool pageCategory={this.state.pageCategory} />
 	  	else return
 	  }
