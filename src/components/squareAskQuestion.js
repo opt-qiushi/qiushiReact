@@ -53,7 +53,6 @@ export default class SquareAskQuestion extends Component{
 				console.log(result)
 				if(result.data === "success"){
 					this.setState({open:true,openContent:'提问成功'})
-					console.log(this.props.history)
 					// window.history.pushState('/squareQuestionDetail')
 				}else{
 					this.setState({open:true,openContent:'网络错误，请重试'})

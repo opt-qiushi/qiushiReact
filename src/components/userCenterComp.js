@@ -62,7 +62,7 @@ export default class UserCenterComp extends Component{
         })
     }
     voiceTest(){
-        this.props.history.push("/upload")
+        this.props.history.push("/square")
     }
     myFans(){
         setTimeout(function(){

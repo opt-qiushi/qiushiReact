@@ -3,6 +3,7 @@ import './SquareAnsweringMethod.css'
 import io from '../../server'
 import FlatButton from 'material-ui/FlatButton'
 import TextField from 'material-ui/TextField';
+import UploadVoice from './uploadVoice.js'
 const labelStyle = {
 	color: "white"
 }
@@ -23,7 +24,6 @@ export default class SquareAnsweringMethod extends Component{
 		this.handleSendAnswer=this.handleSendAnswer.bind(this)
 	}
 	handleSendAnswer(){
-		console.log(this.props.squareQuestion.id,this.state.content)
 		io.socket.post('/squareAnswer', {questId: this.props.squareQuestion.id, from: localStorage.getItem('userId'),answer:this.state.content}, (result, jwr) => {
             console.log(result)
             io.socket.get('/squareQuest?questId='+this.props.squareQuestion.id+'&page=1', {}, (result, jwr) => {
@@ -71,10 +71,8 @@ export default class SquareAnsweringMethod extends Component{
 					)
 			case 2:
 				return (
-						<div className="voiceArea">
-							<img src="./img/"/>
-							<span className="voice-title">点击开始录音，做多可录60S</span>
-						</div>
+					<UploadVoice questionId={this.props.squareQuestion.id}/>
+						
 					)
 			default:
 				return
