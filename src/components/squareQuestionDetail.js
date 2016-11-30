@@ -36,7 +36,8 @@ export default class SquareQuestionDetail extends Component{
 	constructor(props){
 		super(props)
 		this.state={
-			pageCategory: 2
+			pageCategory: 2,
+			isAnswering:false
 		}
 		this.hasAdoptArea=this.hasAdoptArea.bind(this)
 		this.buttonField=this.buttonField.bind(this)
@@ -46,7 +47,9 @@ export default class SquareQuestionDetail extends Component{
 
 
 	  componentDidMount(){
-	  	 io.socket.get('/squareType', {questionId: this.props.squareQuestion.id, userId: localStorage.getItem('userId')}, (result, jwr) => {
+	  		console.log(this.props.squareQuestion.id,localStorage.getItem('userId'))
+	  	 io.socket.post('/squareType', {questionId: this.props.squareQuestion.id, userId: localStorage.getItem('userId')}, (result, jwr) => {
+            console.log(result)
             this.setState({pageCategory: result.pageCategory})
    
         })
@@ -82,6 +85,10 @@ export default class SquareQuestionDetail extends Component{
 
 	  render(){
 		const {squareQuestion}=this.props
+		var row = []
+		if(this.state.isAnswering){
+			row.push()
+		}
 		return (
 			<div>
 			<div style={allStyle.placeHolder}></div>

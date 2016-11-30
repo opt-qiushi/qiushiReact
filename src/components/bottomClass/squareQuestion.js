@@ -30,14 +30,18 @@ export default class SquareQuestion extends Component{
     }
     var deadline = Date.parse(this.props.squareQuestion.deadLine);
     var nowTime = Date.now();
+    var lastTimeSecond=parseInt((deadline-nowTime)/1000)
     var lastTime = (deadline-nowTime)/(1000*60);
-    var lastTimeHour = lastTime/60;
-    var lastTimeMinute = lastTime%60;
+    var lastTimeHour = parseInt(lastTime/60);
+    var lastTimeMinute = parseInt(lastTime%60);
     var showTime = '';
-    if(lastTime<=0){
+    if(lastTime<=0 || isNaN(lastTime)){
       showTime = "0分钟"
     }else if(lastTime>0){
-      if(lastTimeHour<=0) showTime = lastTimeMinute + '分钟'
+      if(lastTimeHour<=0) {
+        if(lastTimeMinute==0) showTime = lastTimeSecond+"秒"
+        else showTime = lastTimeMinute + '分钟'
+      }
       else showTime = lastTimeHour + "小时" + lastTimeMinute + '分钟'
     }
 

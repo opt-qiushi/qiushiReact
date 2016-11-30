@@ -108,11 +108,11 @@ export default class SquareAskQuestion extends Component{
 		          style={rightSelectStyle}
 		          menuStyle={menuStyle}
 		        >
-		          <MenuItem value={3} primaryText="3" />
-		          <MenuItem value={6} primaryText="6" />
-		          <MenuItem value={9} primaryText="9" />
-		          <MenuItem value={12} primaryText="12" />
-		          <MenuItem value={24} primaryText="24" />
+		          <MenuItem value={30} primaryText="3" />
+		          <MenuItem value={60} primaryText="6" />
+		          <MenuItem value={90} primaryText="9" />
+		          <MenuItem value={120} primaryText="12" />
+		          <MenuItem value={240} primaryText="24" />
 		        </SelectField>
 		        <Dialog
 			          title="提示"

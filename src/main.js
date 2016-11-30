@@ -45,7 +45,8 @@ import collection from './store/collection'
 import MyFans from './containers/myFans'
 import SquareAskQuestion from './components/squareAskQuestion'
 import SquareQuestionDetail from './components/squareQuestionDetail'
-import UploadImg from './components/bottomClass/uploadImg'
+// import UploadImg from './components/bottomClass/uploadImg'
+import SquareAnswering from './containers/squareAnswering'
 import io from './server'
 import square from './store/square'
 import Square from './components/square'
@@ -114,7 +115,7 @@ const routes = (
       <Route path="square" component={SquareBinding}/>
       <Route path="squareAskQuestion" component={SquareAskQuestion}/>
       <Route path="squareQuestionDetail" component={SquareQuestionDetailBinding}/>
-      <Route path="upload" component={UploadImg}/>
+      <Route path="upload" component={SquareAnswering}/>
   </Route>
 );
 
