@@ -56,12 +56,12 @@ export default class SquareQuestion extends Component{
     }
     
     
-    // var fromHeadImgUrl = questions.from.avatar || questions.from.headimgurl || ""; 
+    var headImg = squareQuestion.from.avatar || squareQuestion.from.headimgurl || '';
 		return (
 			<div  ref="duihuakuang" className="squareStructure" onTouchTap={this.enterQuestionDetail}>
                 <div className="squareHead">
                     <span className="squareHeadAvatar" >
-                      <img src={squareQuestion.from.avatar}  />
+                      <img src={headImg}  />
                     </span>
                     <span className="squareHead-1-0">
                       {squareQuestion.from.name}
@@ -74,7 +74,7 @@ export default class SquareQuestion extends Component{
                     <span className="squareHead-2-0">
                       <img src="./img/squareAddQuestion.png" className="squareRewardImg"/>赏金{squareQuestion.reward}元
                     </span>
-                    <span className="squareHead-1-1">
+                    <span className="squareHead-1-2">
                       {squareQuestion.answerNum}　回答
                     </span>
                 </div>

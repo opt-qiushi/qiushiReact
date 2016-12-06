@@ -21,7 +21,7 @@
 
 .squareAnswerHead-1-0 {
 	float: left;
-	font-size: 14px;
+	font-size: 13px;
 	padding-left: 10px;
 	color: #999;
 	/*padding-top: 10px;*/
@@ -37,6 +37,7 @@
 	float:right;
 	margin-right: 15px;
 	font-family: 'HanHei SC', 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+	border-radius: 5px;
 	/*padding-top: 10px;*/
 }
 
@@ -50,6 +51,7 @@
 	float:right;
 	margin-right: 15px;
 	font-family: 'HanHei SC', 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+	border-radius: 5px;
 	/*padding-top: 10px;*/
 }
 
@@ -108,15 +110,15 @@
 }
 
 .squareAnswerHeadAvatar{
-	width: 40px;
-	height:40px;
+	width: 32px;
+	height:32px;
 	border-radius: 50%;
 	float: left;
 }
 
 .squareAnswerHeadAvatar img{
-	width: 40px;
-	height:40px;
+	width: 32px;
+	height:32px;
 	border-radius: 50%;
 }
 
@@ -125,6 +127,7 @@
 	float: left;
 	font-size: 13px;
 	padding-left: 10px;
+	margin-top: -9px;
 }
 
 li.placeholder {background: rgb(255,240,120);}

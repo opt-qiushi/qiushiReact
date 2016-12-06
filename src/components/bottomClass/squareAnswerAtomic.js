@@ -28,8 +28,8 @@ export default class SquareAnswerAtomic extends Component{
         isInfiniteLoading: false,
         isLoading: false,
         toBottom: false,
-        page: 2,
-        totalPages: 2,
+        page: 1,
+        totalPages: 1,
         word: "采纳",
       }
       this.handleScrollToBottom=this.handleScrollToBottom.bind(this)
@@ -79,7 +79,7 @@ export default class SquareAnswerAtomic extends Component{
               isInfiniteLoading: true,
               isLoading: true
           })
-          if(this.state.page > this.state.totalPages){
+          if(this.state.page >= this.state.totalPages){
             this.setState({isInfiniteLoading: false, isLoading: false,toBottom: true})
             return 
           }

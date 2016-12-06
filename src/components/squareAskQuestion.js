@@ -17,6 +17,12 @@ const selectStyle = {
 }
 const menuStyle = {
 }
+const textareaStyle = {
+	borderLeft:"1px solid rgb(224,224,224)",
+	borderRight:"1px solid rgb(224,224,224)",
+	borderTop:"1px solid rgb(224,224,224)"
+
+}
 const rightSelectStyle = {
 	width: "30%",
 	float: "right"
@@ -24,22 +30,23 @@ const rightSelectStyle = {
 export default class SquareAskQuestion extends Component{
 	constructor(props){
 		super(props)
-		this.state = {value1:100,value2:30,content:'',open:false,openContent:'请输入您的问题'}
+		this.state = {value1:100,value2:30,content:'',open:false,openContent:'抱歉，问题不能为空',isRedirect:false}
 		this.handleSendQuestion = this.handleSendQuestion.bind(this)
 		this.handleChangeContent = this.handleChangeContent.bind(this)
 		this.handleClose=this.handleClose.bind(this)
-		this.handleChange1=this.handleChange1.bind(this)
-		this.handleChange2=this.handleChange2.bind(this)
+		this.openRewardProtocol=this.openRewardProtocol.bind(this)
+		// this.handleChange1=this.handleChange1.bind(this)
+		// this.handleChange2=this.handleChange2.bind(this)
 	}
 
-	// handleChange1 = (event, index, value1) => this.setState({value1});
-	// handleChange2 = (event, index, value2) => this.setState({value2});
-	handleChange1(event, index, value1){
-		this.setState(value1)
-	}
-	handleChange2(event, index, value2){
-		this.setState(value2)
-	}
+	handleChange1 = (event, index, value1) => this.setState({value1});
+	handleChange2 = (event, index, value2) => this.setState({value2});
+	// handleChange1(event, index, value1){
+	// 	this.setState(value1)
+	// }
+	// handleChange2(event, index, value2){
+	// 	this.setState(value2)
+	// }
 	handleChangeContent(event){
 		this.setState({content: event.target.value})
 	}
@@ -47,14 +54,14 @@ export default class SquareAskQuestion extends Component{
 		var userId = localStorage.getItem('userId');
 		var content = this.state.content.trim();
 		if(content === ''){
-			window.history.pushState({},'/square')
-			// this.setState({open:true})
+			// window.history.pushState({},'/square')
+			this.setState({open:true,openContent:'抱歉，问题不能为空'})
 		}else{
 			console.log("OK")
 			io.socket.post("/squareQuestion", {from:userId,question:content,reward:this.state.value1,duration:this.state.value2},(result,jwr)=>{
 				console.log(result)
 				if(result.data === "success"){
-					this.setState({open:true,openContent:'提问成功'})
+					this.setState({open:true,openContent:'提问成功',isRedirect:true})
 					// window.history.pushState('/squareQuestionDetail')
 				}else{
 					this.setState({open:true,openContent:'网络错误，请重试'})
@@ -66,11 +73,18 @@ export default class SquareAskQuestion extends Component{
 	}
 	handleClose(){
 		this.setState({open:false})
-
-		this.props.history.push("/square")
+		if(this.state.isRedirect == true){
+			this.props.history.push("/square")
+		}
+		
 		// setTimeout(function(){
   //           this.props.history.push("/Wode")
   //       }.bind(this),500)
+	}
+	openRewardProtocol(){
+		var row = <div><div>123456</div><div>456789</div><div>ABCDEF</div></div>;
+		// row.push(<div><div>123456</div><div>456789</div><div>ABCDEF</div></div>)
+		this.setState({open:true,openContent:row})
 	}
 	render(){
 		const actionButton = [
@@ -83,17 +97,18 @@ export default class SquareAskQuestion extends Component{
 			<div className="square-ask-question">
 				<div>
 					<FlatButton backgroundColor="#0A964C"
-	      			hoverColor="#999999" label="发送" labelStyle={labelStyle} style={btnStyle} onTouchTap={this.handleSendQuestion}/>
+	      			hoverColor="#999999" label="发布" labelStyle={labelStyle} style={btnStyle} onTouchTap={this.handleSendQuestion}/>
       			</div>
 				<TextField
 				  floatingLabelText="请输入你的问题"
-			      hintText=""
+			      hintText="回答者在时限内回答问题，需选择合适的忽地啊的态度看附件是开发的接口费 第三方科技是打飞机 少的地方就上课就分手的"
 			      multiLine={true}
 			      rows={6}
 			      rowsMax={6}
 			      fullWidth={true}
 			      value={this.state.content}
 			      onChange={this.handleChangeContent}
+			      textareaStyle={textareaStyle}
 			    /><br />
 			    <SelectField
 		          floatingLabelText="悬赏积分"
@@ -114,12 +129,15 @@ export default class SquareAskQuestion extends Component{
 		          style={rightSelectStyle}
 		          menuStyle={menuStyle}
 		        >
-		          <MenuItem value={30} primaryText="3" />
+		          <MenuItem value={30} primaryText="3(小时)" />
 		          <MenuItem value={60} primaryText="6" />
 		          <MenuItem value={90} primaryText="9" />
 		          <MenuItem value={120} primaryText="12" />
 		          <MenuItem value={240} primaryText="24" />
 		        </SelectField>
+		        <div className="reward-protocol" onTouchTap={this.openRewardProtocol}>
+		        	悬赏规则>>>
+		        </div>
 		        <Dialog
 			          title="提示"
 			          actions={actionButton}

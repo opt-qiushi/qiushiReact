@@ -130,7 +130,7 @@ export default class UploadImg extends Component{
   var appServer = 'https://www.opt.com.cn/getSTS';
   var bucket = 'qiushi-oss';
   var region = 'oss-cn-hangzhou';
-  var endpoint = 'https://qiushi-oss.oss-cn-hangzhou.aliyuncs.com';
+  var endpoint = 'http://qiushi-oss.oss-cn-hangzhou.aliyuncs.com';
   var urllib = window.OSS.urllib;
   var Buffer = window.OSS.Buffer;
   var OSS = window.OSS.Wrapper;
@@ -144,9 +144,9 @@ export default class UploadImg extends Component{
     data: { prefix:toServer}
   }).then(function (result) {
     var creds = JSON.parse(result.data);
+    console.log(creds)
     var opt = {maxAge:60*15}
     cookie.save('creds',creds,opt)
-    
     var client = new OSS({
       region: region,
       accessKeyId: creds.AccessKeyId,
@@ -154,7 +154,7 @@ export default class UploadImg extends Component{
       stsToken: creds.SecurityToken,
       bucket: bucket,
       endpoint: endpoint,
-      secure:true
+      // secure:true
     });
     // const Now = new Date().getTime() + 60*1000*15;
     // return func(client,name,j);

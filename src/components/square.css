@@ -1,23 +1,18 @@
 .squareToAskQuestion{
-	position: fixed;
+	/*position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 60px;
-	background: white;
-/*	margin-left: 10%;
+	background: white;*/
 	height: 40px;
-	background: #0A964C;
-	color: white;
-	line-height: 40px;
-	text-align: center;
-	border-radius: 30px;*/
+	margin-top: 20px;
 }
 .squareToAskQuestion-inner{
 	display: inline-block;
 	width: 80%;
 	margin-left: 10%;
-	margin-top: 20px;
+	/*margin-top: 20px;*/
 	height: 40px;
 	background: #0A964C;
 	color: white;
@@ -25,6 +20,18 @@
 	text-align: center;
 	border-radius: 30px;
 }
-.askButtonPlaceholder{
-	height: 60px;
+.squareToAskQuestion-inner-disabled{
+	display: inline-block;
+	width: 80%;
+	margin-left: 10%;
+	/*margin-top: 20px;*/
+	height: 40px;
+	background: #999;
+	color: white;
+	line-height: 40px;
+	text-align: center;
+	border-radius: 30px;
 }
+/*.askButtonPlaceholder{
+	height: 60px;
+}*/

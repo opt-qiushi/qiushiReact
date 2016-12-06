@@ -58,7 +58,7 @@ export default class Square extends Component{
       toBottom: false,
       page: 1,
       totalPages: 1,
-      stage: 2,
+      stage: 0,
       loading: true
     }
     this.handleScrollToBottom=this.handleScrollToBottom.bind(this)
@@ -186,22 +186,24 @@ export default class Square extends Component{
     // var fromHeadImgUrl = questions.from.avatar || questions.from.headimgurl || ""; 
 		return (
 			<div >
-        <div className="askButtonPlaceholder"></div>
-    {/*<Paper key={i} style={style} zDepth={2} children={<SquareQuestion readyAsk="1" history={this.props.history} questions={messageAtomic} />} />*/}
+        <div className="squareToAskQuestion" onTouchTap={this.askQuestion}><span className="squareToAskQuestion-inner">发布悬赏</span></div>
+       {/* <div className="askButtonPlaceholder"></div>
+    <Paper key={i} style={style} zDepth={2} children={<SquareQuestion readyAsk="1" history={this.props.history} questions={messageAtomic} />} />*/}
         <Tabs tabItemContainerStyle={allStyle.tabStyle} inkBarStyle={allStyle.inkBarStyle} >
+        <Tab label="进行中" style={allStyle.tabButtonStyle} onActive={this.showSolving} >
+            {this.loading()}
+            {this.showList()}
+            
+        </Tab>
           <Tab label="已解答" style={allStyle.tabButtonStyle} onActive={this.showSolved} >
             {this.loading()}
             {this.showList()}
             
           </Tab>
-          <Tab label="进行中" style={allStyle.tabButtonStyle} onActive={this.showSolving} >
-            {this.loading()}
-            {this.showList()}
-            
-          </Tab>
+          
         </Tabs>
         {this.showLoading()}
-        <div className="squareToAskQuestion" onTouchTap={this.askQuestion}><span className="squareToAskQuestion-inner">立即提问</span></div>
+        
       </div>
 			)
 	}

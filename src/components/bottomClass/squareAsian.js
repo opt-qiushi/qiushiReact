@@ -49,7 +49,7 @@ export default class SquareAsian extends Component{
   //           }
   //           this.props.onAddNum()
   //           this.props.addSquareSelect(this.props.squareAtomic)
-  //           this.setState({wordState:1, word:"已采纳"})
+  //           this.setState({wordState:1, word:"取消"})
   //           return 
   //       case 1:
   //           this.props.onMinusNum()
@@ -105,18 +105,21 @@ export default class SquareAsian extends Component{
             primary={false}
             onTouchTap={this.handleClose} />
         ]
-
+    var headImg = squareAtomic.from.avatar || squareAtomic.from.headimgurl || '';
     return (
         <div>
         <div className="squareAnswerHead">
                     <span className="squareAnswerHeadAvatar" >
-                      <img src={squareAtomic.from.avatar}  />
+                      <img src={headImg}  />
                     </span>
                     <span className="squareAnswerHead-1-0">
                       {squareAtomic.from.name}
                     </span>
                     {/*this.adoptAnswer()*/}
-                    {this.putTop()}
+                    {/*
+                      *注释置顶，弃置排名
+                      *this.putTop()
+                    */}
                     <br/>
                     <span className="squareAnswerHead-2-0">
                       {GMTtoTime2(squareAtomic.createdAt)}

@@ -8,12 +8,17 @@ import SquareSelectPool from '../containers/squareSelectPool2'
 import Dialog from 'material-ui/Dialog'
 
 const allStyle={
+	// squareToAnswer:{
+	// 	position: 'fixed',
+	// 	top: 0,
+	// 	left: 0,
+	// 	width: '100%',
+	// 	height: '60px',
+	// 	backgroundColor: 'white'
+	// },
 	squareToAnswer:{
-		position: 'fixed',
-		top: 0,
-		left: 0,
-		width: '100%',
-		height: '60px',
+		marginTop:'20px',
+		height: '40px',
 		backgroundColor: 'white'
 	},
 	inner:{
@@ -40,7 +45,8 @@ export default class SquareQuestionDetail extends Component{
 			pageCategory: 2,
 			isAnswering:false,
 			open: false,
-			open2: false
+			open2: false,
+			adoptFlag: false
 		}
 		this.hasAdoptArea=this.hasAdoptArea.bind(this)
 		this.buttonField=this.buttonField.bind(this)
@@ -97,9 +103,13 @@ export default class SquareQuestionDetail extends Component{
 	  }
 
 	  buttonField(){
-	  	if(this.state.pageCategory==1)
+	  	if(this.state.pageCategory==1 && this.props.adoptNum >0)
 
 	  	return <div style={allStyle.squareToAnswer} onTouchTap={this.adoptQuestion}><span className="squareToAskQuestion-inner">提交采纳</span></div>
+
+	  	else if(this.state.pageCategory==1)
+
+	  	return <div style={allStyle.squareToAnswer} ><span className="squareToAskQuestion-inner-disabled">提交采纳</span></div>
 
 	  	else if(this.state.pageCategory==2 && this.props.squareQuestion.state==0)
 
@@ -129,11 +139,12 @@ export default class SquareQuestionDetail extends Component{
 		]
 		return (
 			<div>
-			<div style={allStyle.placeHolder}></div>
+			{this.buttonField()}
+			{/*<div style={allStyle.placeHolder}></div>*/}
 			<SquareQuestion style={allStyle.questionBox} squareQuestion={squareQuestion} />
 			{this.hasAdoptArea()}
 			<SquareAnswerPool squareQuestion={squareQuestion} pageCategory={this.state.pageCategory} />
-			{this.buttonField()}
+			
 			<Dialog
                       title="提示"
                       actions={actionButton}

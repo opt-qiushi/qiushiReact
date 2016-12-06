@@ -152,7 +152,10 @@ export default class UploadVoice extends Component{
       case 1:
         return (
           <div className="voiceArea">
-            <img src="./img/startRecord.png" onTouchTap={this.stopRecord}/>
+          <div className="voice-img-container">
+              <img src="./img/startRecord.png" onTouchTap={this.stopRecord}/>
+          </div>
+            {/*<img src="./img/startRecord.png" onTouchTap={this.stopRecord}/>*/}
             <div className="voice-title">再次点击结束录音，做多可录60S</div>
           </div>);
       case 2:

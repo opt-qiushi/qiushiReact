@@ -15,6 +15,8 @@ class SlideBar extends Component {
 		switch(info){
 			case '求士':
 				return this.props.onQiushi()
+			case '广场':
+				return this.props.onSquare()
 			case '关注':
 				return this.props.onGuanzhu()
 			case '动态':

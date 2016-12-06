@@ -45,7 +45,7 @@ import collection from './store/collection'
 import MyFans from './containers/myFans'
 import SquareAskQuestion from './components/squareAskQuestion'
 import SquareQuestionDetail from './components/squareQuestionDetail'
-// import UploadImg from './components/bottomClass/uploadImg'
+import UploadImg from './components/bottomClass/uploadImg'
 import SquareAnswering from './containers/squareAnswering'
 import io from './server'
 import square from './store/square'
@@ -98,8 +98,8 @@ const Wode = React.createClass({
 const routes = (
   <Route path="/" component={App}>
       <IndexRoute component={Qiushi} />
-      <Route path="qiushi1" component={Qiushi} />
-      <Route path="guanzhu" component={SquareBinding} />
+      <Route path="qiushi" component={Qiushi} />
+      <Route path="guanzhu" component={Guanzhu} />
       <Route path="dongtai" component={Dongtai} />
       <Route path="wode" component={UserCenter} />
       <Route path="vipDetail" component={PersonDetail} />
@@ -116,6 +116,7 @@ const routes = (
       <Route path="squareAskQuestion" component={SquareAskQuestion}/>
       <Route path="squareQuestionDetail" component={SquareQuestionDetailBinding}/>
       <Route path="upload" component={SquareAnswering}/>
+      <Route path="uploadimg" component={UploadImg}/>
   </Route>
 );
 

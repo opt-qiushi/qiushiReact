@@ -7,12 +7,15 @@ import FlatButton from 'material-ui/FlatButton'
 
 const allStyle={
   outBox:{
-    height: '60px',
+    height: '30px',
     textAlign: 'center',
-    fontSize: '40px',
-    color:'black'
+    fontSize: '16px',
+    color:'white',
+    marginTop:'24px'
   },
+  lockErea:{
 
+  }
 }
 
 export default class SquareSelectPool extends Component{
@@ -37,13 +40,18 @@ export default class SquareSelectPool extends Component{
     else if(this.props.pageCategory==5){
       var temp=this.props.squareQuestion.lockedAnswerList.length
       var row=[]
-      for(var i=0;i<temp;i++){
-        row.push(
-            <div key={i} style={allStyle.outBox} onTouchTap={this.unlock} >
-              请解锁该问题
-            </div>
-            )
-      }
+      // for(var i=0;i<temp;i++){
+      //   row.push(
+      //       <div key={i} style={allStyle.outBox} onTouchTap={this.unlock} >
+      //         请解锁该问题
+      //       </div>
+      //       )
+      // }
+      row.push(
+        <div key={1} style={allStyle.outBox} onTouchTap={this.unlock} >
+          一元解锁最佳答案
+        </div>
+        )
       return row
     }
   }
@@ -84,18 +92,21 @@ export default class SquareSelectPool extends Component{
     ]
 		return (
         <div>
-          <div className="pool-head">赏金池</div>
+          <div className="squareEnd"></div>
+          <div className="pool-head-container">
+            <div className="pool-head">最佳回答</div>
+          </div>
           <div className="pool-head-desc">（被采纳的答案会被设定收费收听，并获得一定比例赏金）</div>
           {this.showWater()}
           <Dialog
-                      title="提示"
-                      actions={actionButton}
-                      modal={false}
-                      open={this.state.open}
-                      onRequestClose={this.handleClose}
-                      >
-                      您是否解锁该问题？
-                    </Dialog>
+            title="提示"
+            actions={actionButton}
+            modal={false}
+            open={this.state.open}
+            onRequestClose={this.handleClose}
+            >
+            您是否解锁该问题？
+          </Dialog>
         </div>
 			)
 	}

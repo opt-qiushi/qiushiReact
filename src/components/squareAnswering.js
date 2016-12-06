@@ -10,12 +10,8 @@ import SquareAnsweringMethod from '../containers/SquareAnsweringMethod'
 
 const allStyle={
 	squareToAnswer:{
-		position: 'fixed',
-		top: 0,
-		left: 0,
-		width: '100%',
-		height: '60px',
-		backgroundColor: 'white'
+		marginTop:'20px',
+		height: '40px',
 	},
 	inner:{
 		display: 'inline-block',
@@ -72,10 +68,9 @@ export default class SquareQuestionDetail extends Component{
 		}
 		return (
 			<div>
-			<div style={allStyle.placeHolder}></div>
+			{this.buttonField()}
 			<SquareQuestion style={allStyle.questionBox} squareQuestion={squareQuestion} />
 		    <SquareAnsweringMethod onChangeValue={this.changeValue}  history={this.props.history} /> 
-			{this.buttonField()}
 			</div>
 		)
 	}

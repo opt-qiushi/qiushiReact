@@ -29,7 +29,7 @@ export default class SquareAfrica extends Component{
             }
 
             this.props.addSquareSelect(this.props.squareAtomic)
-            this.setState({wordState:1, word:"已采纳"})
+            this.setState({wordState:1, word:"取消"})
             return 
         case 1:
             this.props.deleteSquareSelect(this.props.squareAtomic)
@@ -69,6 +69,7 @@ export default class SquareAfrica extends Component{
             primary={true}
             onTouchTap={this.handleClose} />
         ]
+    var headImg = squareAtomic.from.avatar || squareAtomic.from.headimgurl ||'';
     return (
         <div>
         <div className="squareAnswerHead">

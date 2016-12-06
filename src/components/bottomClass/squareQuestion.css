@@ -21,9 +21,10 @@
 
 .squareHead-1-0 {
 	float: left;
-	font-size: 14px;
+	font-size: 13px;
 	padding-left: 10px;
 	color: #999;
+	margin-top: -2px;
 	/*padding-top: 10px;*/
 }
 
@@ -33,6 +34,16 @@
 	float:right;
 	margin-right: 10px;
 	font-family: 'HanHei SC', 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+	margin-top: -2px;
+	/*padding-top: 10px;*/
+}
+.squareHead-1-2 {
+	font-size: 13px;
+	color: #999;
+	float:right;
+	margin-right: 10px;
+	font-family: 'HanHei SC', 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+	margin-top: -9px;
 	/*padding-top: 10px;*/
 }
 
@@ -49,6 +60,7 @@
 .squareBody p{
     margin-top: 10px;
     margin-bottom: 0;
+    margin-left:42px;
 }
 
 .squareBottom{
@@ -120,15 +132,15 @@
 }
 
 .squareHeadAvatar{
-	width: 40px;
-	height:40px;
+	width: 32px;
+	height:32px;
 	border-radius: 50%;
 	float: left;
 }
 
 .squareHeadAvatar img{
-	width: 40px;
-	height:40px;
+	width: 32px;
+	height:32px;
 	border-radius: 50%;
 }
 .square-question{
@@ -146,14 +158,17 @@
 	margin-bottom: 10px;
 }
 .squareHead-2-0{
-	color: #fa1717;
+	/*color: #fa1717;*/
+	color: #0a964c;
 	float: left;
-	font-size: 14px;
+	font-size: 13px;
 	padding-left: 10px;
+	margin-top: -9px;
 }
 .squareRewardImg{
-	width: 18px;
-    height: 20px;
+	width: 15px;
+    height: 16px;
     padding-top: 3px;
-    margin-right: 3px;
+    margin-right: 4px;
+
 }

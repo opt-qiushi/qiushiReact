@@ -4,8 +4,11 @@
 	font-size: 12px;
 }
 .pool-head{
-	color:#999;
+	display: inline-block;
+	color:#0A964C;
+	padding-top: 12px;
+	border-bottom: 5px solid #0a964c;
+}
+.pool-head-container{
 	text-align: center;
-	padding-top: 5px;
-	border-top: 5px solid #F0F0F0;
 }
