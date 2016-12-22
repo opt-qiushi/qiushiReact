@@ -27,6 +27,7 @@ function render(){
     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
         <SlideBar value={store.getState()}
            onQiushi={() => store.dispatch(changeQiushi())}
+           onSquare={() => store.dispatch(changeSquare())}
            onGuanzhu={() => store.dispatch(changeGuanzhu())}
            onDongtai={() => store.dispatch(changeDongtai())}
            onWode={() => store.dispatch(changeWode())} />

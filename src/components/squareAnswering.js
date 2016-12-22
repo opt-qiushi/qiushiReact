@@ -37,7 +37,7 @@ export default class SquareQuestionDetail extends Component{
 			canBeAnswer: 0,
 			isAnswering:false
 		}
-		this.buttonField=this.buttonField.bind(this)
+		// this.buttonField=this.buttonField.bind(this)
 		this.submitAnswer=this.submitAnswer.bind(this)
 		this.changeValue=this.changeValue.bind(this)
 	}
@@ -52,12 +52,12 @@ export default class SquareQuestionDetail extends Component{
 	  }
 
 
-	  buttonField(){
-	  	if(this.state.canBeAnswer==1)
+	  // buttonField(){
+	  // 	if(this.state.canBeAnswer==1)
 
-	  	return <div style={allStyle.squareToAnswer} onTouchTap={this.submitAnswer}><span className="squareToAskQuestion-inner">提交答案</span></div>
-	  	else return
-	  }
+	  // 	return <div style={allStyle.squareToAnswer} onTouchTap={this.submitAnswer}><span className="squareToAskQuestion-inner">提交答案</span></div>
+	  // 	else return
+	  // }
 
 
 	  render(){
@@ -68,7 +68,7 @@ export default class SquareQuestionDetail extends Component{
 		}
 		return (
 			<div>
-			{this.buttonField()}
+			{/*this.buttonField()*/}
 			<SquareQuestion style={allStyle.questionBox} squareQuestion={squareQuestion} />
 		    <SquareAnsweringMethod onChangeValue={this.changeValue}  history={this.props.history} /> 
 			</div>

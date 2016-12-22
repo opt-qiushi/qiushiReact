@@ -11,7 +11,9 @@ const allStyle={
     textAlign: 'center',
     fontSize: '16px',
     color:'white',
-    marginTop:'24px'
+    width:'189px',
+    margin:"24px auto",
+    background:'#0a964c'
   },
   lockErea:{
 
@@ -94,9 +96,9 @@ export default class SquareSelectPool extends Component{
         <div>
           <div className="squareEnd"></div>
           <div className="pool-head-container">
-            <div className="pool-head">最佳回答</div>
+            <div className="pool-head">最佳答案</div>
           </div>
-          <div className="pool-head-desc">（被采纳的答案会被设定收费收听，并获得一定比例赏金）</div>
+          {/*<div className="pool-head-desc">（提问者选择的最佳答案，并获得一定比例赏金）</div>*/}
           {this.showWater()}
           <Dialog
             title="提示"

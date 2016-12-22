@@ -7,7 +7,6 @@ const initState = {
 		reward:"-",
 		answerNum:"-",
 		question:"-",
-		answer:[]
 	},
 	selectData: [],
 	adoptNum: 0
@@ -23,8 +22,8 @@ export default function currentSquare(state = initState, action){
 					temp
 				)
 		case "addCurrentSquare":
-			var temp=state.defaultData.answer.concat(action.data)
-			state.defaultData.answer=temp
+			var temp=state.defaultData.answerList.concat(action.data)
+			state.defaultData.answerList=temp
 			return state
 		// case "adjustDataset":
 		// 	var temp=state.answer.splice(action.data.to, 0, state.answer.splice(action.data.from, 1)[0])

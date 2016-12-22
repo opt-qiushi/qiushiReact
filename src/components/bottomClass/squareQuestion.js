@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import GMTtoTime from './gmtToTime'
+import GMTtoTime2 from './gmtToTime2'
 import './squareQuestion.css'
 import io from '../../server'
 import FlatButton from 'material-ui/FlatButton'
@@ -25,8 +26,9 @@ export default class SquareQuestion extends Component{
   }
 
   showTime(){
-    if(this.props.squareQuestion.state==2){
-      return 
+    if(this.props.squareQuestion.state==2 || this.props.squareQuestion.state == 1){
+      var createAt = GMTtoTime(this.props.squareQuestion.askTime)
+      return createAt
     }
     var deadline = Date.parse(this.props.squareQuestion.deadLine);
     var nowTime = Date.now();
@@ -51,39 +53,38 @@ export default class SquareQuestion extends Component{
 	render(){
     var rows= []
     const {squareQuestion}=this.props
-    if(this.props.readyAsk && squareQuestion.state==0){
+    if(this.props.readyAsk && squareQuestion.state==0 && squareQuestion.from.id != localStorage.getItem('userId')){
       rows.push(<div className="square-answer-line" key="1"><FlatButton style={FlatButtonStyle} hoverColor="#0A964C" rippleColor="#0A964C" backgroundColor="#FFF" labelStyle={{color:"#0A964C"}} label="立即回答" /></div>)
     }
     
     
-    var headImg = squareQuestion.from.avatar || squareQuestion.from.headimgurl || '';
+    var headImg = squareQuestion.from.avatar || squareQuestion.from.headimgurl || './img/vipDetail/hosthead.png';
 		return (
 			<div  ref="duihuakuang" className="squareStructure" onTouchTap={this.enterQuestionDetail}>
                 <div className="squareHead">
-                    <span className="squareHeadAvatar" >
+                    <div className="squareHeadAvatar" >
                       <img src={headImg}  />
-                    </span>
-                    <span className="squareHead-1-0">
-                      {squareQuestion.from.name}
-                    </span>
-                    <span className="squareHead-1-1">
-                      {this.showTime()}
-                      
-                    </span>
-                    <br/>
-                    <span className="squareHead-2-0">
-                      <img src="./img/squareAddQuestion.png" className="squareRewardImg"/>赏金{squareQuestion.reward}元
-                    </span>
-                    <span className="squareHead-1-2">
-                      {squareQuestion.answerNum}　回答
-                    </span>
+                    </div>
+                    <div className="squareHead-1">
+                      <div className="squareHead-1-0">
+                        {squareQuestion.from.name}
+                      </div>
+                      <span className="squareHead-1-1">
+                        <img src="./img/squareAddQuestion.png" className="squareRewardImg"/>赏金{squareQuestion.reward}元
+                      </span>
+                    </div>
                 </div>
                 <div className="squareBody">
-                  <p className="square-question">
-                    Q：{squareQuestion.question}
-                  </p>
+                    <span className="square-question-q">Q：</span>{squareQuestion.question}
                 </div>
-                {rows}
+                <div className="squareFoot">
+                  <span className="squareHead-2">
+                      {this.showTime()}
+                  </span>
+                  <span className="squareHead-3">
+                    {squareQuestion.answerNum}　回答
+                  </span>
+                </div>
                 <div className="squareEnd"></div>
             </div>
 			)

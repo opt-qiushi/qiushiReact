@@ -1,28 +1,51 @@
 .selectMode{
-	margin-top: 110px;
-	width: 80%;
-	margin-left: 10%;
+	margin-top: 150px;
+	width: 70%;
+	margin-left: 15%;
 }
 .selectMode-left{
-	width: 40%;
-	height: 63px;
+	width: 100px;
+	height: 100px;
 	float: left;
 	text-align: center;
 	background: #0a964c;
 	border-radius: 10%;
+	color: white;
+}
+.selectMode-left{
+	width: 100px;
+	height: 100px;
+	float: left;
+	text-align: center;
+	background: #0a964c;
+	border-radius: 10%;
+	color: white;
+}
+.selectMode-left>img{
+    width: 38px;
+    height: 40px;
+    margin-top: 18px;
+}
+.selectMode-right>img{
+	width: 33px;
+    height: 40px;
+    margin-top: 18px;
 }
 .selectMode-right{
 	text-align: center;
-	width: 40%;
-	height: 63px;
+	width: 100px;
+	height: 100px;
 	float: right;
 	background: #0a964c;
 	border-radius: 10%;
+	color: white;
 }
 /*.selectMode-left img{
 	width: 60px;
 }*/
-
+.square-text-answer-area{
+	padding:0 10px;
+}
 .voiceArea{
 	margin-top: 110px;
 	text-align: center;
@@ -30,3 +53,7 @@
 .voice-title{
 	color: #0A964C;
 } 
+.selectModeDescribtion{
+	font-size: 14px;
+	margin-top: 10px;
+}

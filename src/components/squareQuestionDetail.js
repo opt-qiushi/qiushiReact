@@ -105,7 +105,7 @@ export default class SquareQuestionDetail extends Component{
 	  buttonField(){
 	  	if(this.state.pageCategory==1 && this.props.adoptNum >0)
 
-	  	return <div style={allStyle.squareToAnswer} onTouchTap={this.adoptQuestion}><span className="squareToAskQuestion-inner">提交采纳</span></div>
+	  	return <div style={allStyle.squareToAnswer} onTouchTap={this.adoptQuestion}><span className="squareToAskQuestion-stable">提交采纳</span></div>
 
 	  	else if(this.state.pageCategory==1)
 
@@ -113,7 +113,7 @@ export default class SquareQuestionDetail extends Component{
 
 	  	else if(this.state.pageCategory==2 && this.props.squareQuestion.state==0)
 
-	  	return <div style={allStyle.squareToAnswer} onTouchTap={this.answerQuestion}><span className="squareToAskQuestion-inner">我要回答</span></div>
+	  	return <div style={allStyle.squareToAnswer} onTouchTap={this.answerQuestion}><span className="squareToAskQuestion-stable">我要回答</span></div>
 
 	  	else return
 	  }

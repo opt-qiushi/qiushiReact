@@ -116,6 +116,7 @@
     "react-dom": "^15.4.0",
     "react-drag-and-drop": "^2.1.0",
     "react-draggable": "^2.2.2",
+    "react-hammerjs": "^0.5.0",
     "react-infinite": "^0.9.2",
     "react-redux": "^4.0.0",
     "react-refresh-infinite-tableview": "^1.0.2",

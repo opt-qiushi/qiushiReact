@@ -23,7 +23,7 @@
 	float: left;
 	font-size: 13px;
 	padding-left: 10px;
-	color: #999;
+	color: #0a964c;
 	/*padding-top: 10px;*/
 }
 
@@ -66,8 +66,8 @@
 }
 
 .squareAnswerBody p{
-    margin-top: 10px;
-    margin-bottom: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 .squareAnswer-A{
 	position: relative;
@@ -112,14 +112,14 @@
 .squareAnswerHeadAvatar{
 	width: 32px;
 	height:32px;
-	border-radius: 50%;
 	float: left;
 }
 
 .squareAnswerHeadAvatar img{
 	width: 32px;
 	height:32px;
-	border-radius: 50%;
+	border-radius: 20%;
+	border:1px solid #e0e0e0;
 }
 
 .squareAnswerHead-2-0{
@@ -134,4 +134,32 @@ li.placeholder {background: rgb(255,240,120);}
 li.placeholder:before {
   content: "Drop here";
   color: rgb(225,210,90);
+}
+.square-voice-area{
+	position: relative;
+    display: inline-block;
+    width: 155px;
+    height: 35px;
+    border-radius: 17px 0 17px 0;
+    background-color: #b7e59d;
+    margin-top: -6px;
+    /*border: 1px solid #c2dfb2;*/
+}
+.square-voice-area>img{
+    position: absolute;
+    left: 5px;
+    top: 9px;
+    height: 15px;
+    width: 12px;
+}
+.square-voice-a{
+	display: inline-block;
+	vertical-align: top;
+	font-family: "PingHei";
+}
+.square-voice-duration{
+	display: inline-block;
+	vertical-align: top;
+	font-family: "PingHei";
+	margin-left: 10px;
 }

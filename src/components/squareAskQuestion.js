@@ -10,7 +10,9 @@ const btnStyle = {
 	float:"right"
 }
 const labelStyle = {
-	color: "white"
+	color: "white",
+	verticalAlign: "baseline",
+	fontSize:"15px"
 }
 const selectStyle = {
 	width: "30%"
@@ -53,21 +55,18 @@ export default class SquareAskQuestion extends Component{
 	handleSendQuestion(){
 		var userId = localStorage.getItem('userId');
 		var content = this.state.content.trim();
-		if(content === ''){
-			// window.history.pushState({},'/square')
-			this.setState({open:true,openContent:'抱歉，问题不能为空'})
+		if(content.length<5){
+			this.setState({open:true,openContent:'抱歉，问题字数小于五个字'})
+		}else if(content.length>1000){
+			this.setState({open:true,openContent:'抱歉，问题字数超出一千字'})
 		}else{
-			console.log("OK")
 			io.socket.post("/squareQuestion", {from:userId,question:content,reward:this.state.value1,duration:this.state.value2},(result,jwr)=>{
-				console.log(result)
 				if(result.data === "success"){
 					this.setState({open:true,openContent:'提问成功',isRedirect:true})
-					// window.history.pushState('/squareQuestionDetail')
 				}else{
 					this.setState({open:true,openContent:'网络错误，请重试'})
 				}
 			})
-			console.log("TED")
 		}
 		
 	}
@@ -82,7 +81,11 @@ export default class SquareAskQuestion extends Component{
   //       }.bind(this),500)
 	}
 	openRewardProtocol(){
-		var row = <div><div>123456</div><div>456789</div><div>ABCDEF</div></div>;
+		var row = <div><div>1、提出问题，支付赏金后，选择问答时长，等待其他答主开始抢答。</div>
+		<div>2、答案征集结束后，你可以选中三个最满意的回答，答主们平分赏金，并在后续共同分享解锁收益。</div>
+		<div>3、若答案征集结束后，答案数低于3个时，你可以申请删除问题，并全额退款。</div>
+		<div>4、若答案征集结束后，你未选择满意的回答，则所有参与抢答的答主平分赏金。</div>
+		</div>;
 		// row.push(<div><div>123456</div><div>456789</div><div>ABCDEF</div></div>)
 		this.setState({open:true,openContent:row})
 	}
@@ -97,11 +100,10 @@ export default class SquareAskQuestion extends Component{
 			<div className="square-ask-question">
 				<div>
 					<FlatButton backgroundColor="#0A964C"
-	      			hoverColor="#999999" label="发布" labelStyle={labelStyle} style={btnStyle} onTouchTap={this.handleSendQuestion}/>
+	      			hoverColor="#999999" label="发 布" labelStyle={labelStyle} style={btnStyle} onClick={this.handleSendQuestion}/>
       			</div>
 				<TextField
 				  floatingLabelText="请输入你的问题"
-			      hintText="回答者在时限内回答问题，需选择合适的忽地啊的态度看附件是开发的接口费 第三方科技是打飞机 少的地方就上课就分手的"
 			      multiLine={true}
 			      rows={6}
 			      rowsMax={6}
@@ -129,14 +131,14 @@ export default class SquareAskQuestion extends Component{
 		          style={rightSelectStyle}
 		          menuStyle={menuStyle}
 		        >
-		          <MenuItem value={30} primaryText="3(小时)" />
-		          <MenuItem value={60} primaryText="6" />
-		          <MenuItem value={90} primaryText="9" />
-		          <MenuItem value={120} primaryText="12" />
-		          <MenuItem value={240} primaryText="24" />
+		          <MenuItem value={30} primaryText="3 h" />
+		          <MenuItem value={60} primaryText="6 h" />
+		          <MenuItem value={90} primaryText="9 h" />
+		          <MenuItem value={120} primaryText="12 h" />
+		          <MenuItem value={240} primaryText="24 h" />
 		        </SelectField>
 		        <div className="reward-protocol" onTouchTap={this.openRewardProtocol}>
-		        	悬赏规则>>>
+		        	悬赏规则 >
 		        </div>
 		        <Dialog
 			          title="提示"

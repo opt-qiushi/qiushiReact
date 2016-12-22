@@ -10,14 +10,16 @@ export default class SquareAsian extends Component{
     this.state={
       word:"采纳",
       wordState: 0,
-      open: false
+      open: false,
+      duration: '',
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.handleClose=this.handleClose.bind(this)
     this.isLock=this.isLock.bind(this)
     this.handleOpen=this.handleOpen.bind(this)
     this.changeNumber=this.changeNumber.bind(this)
     this.putTop=this.putTop.bind(this)
+    this.voiceControl=this.voiceControl.bind(this)
+    // this.handleSubmit = this.handleSubmit.bind(this)
     // this.changeStateWord=this.changeStateWord.bind(this)
     
   }
@@ -35,7 +37,16 @@ export default class SquareAsian extends Component{
   handleClose(){
     this.setState({open: false})
   }
-
+  componentDidMount(){
+    var target = this.refs.audioTag;
+    var intervalKey = setInterval(function(){
+      if(target.readyState == 4){
+        var duration = parseInt(target.duration) + '"'
+        this.setState({duration:duration})
+        clearInterval(intervalKey)
+      }
+    }.bind(this),1000)
+  }
   changeNumber(){
     this.props.changeNumber(this.props.squareAtomic)
   }
@@ -79,22 +90,59 @@ export default class SquareAsian extends Component{
   //           )
   //   }
   // }
-  handleSubmit(){
-    console.log("调用解锁接口")
-  }
+  // handleSubmit(){
+  //   console.log("调用解锁接口")
+  // }
   handleOpen(){
     this.setState({open:true})
   }
-  isLock(){
+  isLock(answerArea){
     if(this.props.pageCategory == 5){
       return <span onTouchTap={this.handleOpen}>请点击解锁</span>
     }else{
-      return <span>A: {this.props.squareAtomic.answer}</span>
+      // return <span>A: {this.props.squareAtomic.answer}</span>
+      return answerArea
     }
     
   }
+  voiceControl(){
+    var target = this.refs.audioTag;
+    var img = this.refs.audioImg;
+    target.onended = function() {
+      img.src = "./img/voice-icon.png"
+    }.bind(this);
+    if(!target.paused){
+      target.pause()
+      img.src="./img/voice-icon.png"
+    }else{
+      var allAudio = document.querySelectorAll('audio')
+      var allImg = document.querySelectorAll('img[src="./img/voice-icon-move.gif"]')
+      for(let i=0;i<allAudio.length;i++){
+        allAudio[i].pause();
+      }
+      for(let i=0;i<allImg.length;i++){
+        allImg[i].src="./img/voice-icon.png"
+      }
+      target.play()
+      img.src = "./img/voice-icon-move.gif"
+    }
+  }
   render(){
     const {squareAtomic,pageCategory}=this.props
+    var answerArea = []
+    var voiceList = squareAtomic.voiceList;
+    if(voiceList.length>0){
+      for(let i=0;i<voiceList.length;i++){
+        answerArea.push(
+          <div key={i}>
+            <div onTouchTap={this.voiceControl}><span className="square-voice-a">A：</span><span className="square-voice-area"><img src="./img/voice-icon.png" ref="audioImg"/></span><span className="square-voice-duration">{this.state.duration}</span></div>
+            <audio src={voiceList[i]} preload="metadata" ref="audioTag"></audio>
+          </div>
+        )
+      }
+    }else{
+      answerArea.push(<div key='1'><span className="square-question-q">A：</span>{squareAtomic.answer}</div>)
+    }
     const actionButton = [
         <FlatButton
             label="确定"
@@ -128,7 +176,7 @@ export default class SquareAsian extends Component{
                 </div>
                 <div className="squareAnswerBody">
                   <p className="squareAnswer-question">
-                    {this.isLock()}
+                    {this.isLock(answerArea)}
                   </p>
                 </div>
                 <div className="squareAnswerEnd"></div>

@@ -11,7 +11,7 @@ import questionDetail from './store/questionDetail'
 import commentDetail from './store/commentDetail'
 import SlideBar from './components/SlideBar'
 import Category from './containers/category'
-import {changeQiushi, changeGuanzhu, changeDongtai, changeWode} from './actions/homepage'
+import {changeQiushi, changeSquare,changeGuanzhu, changeDongtai, changeWode} from './actions/homepage'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
@@ -45,7 +45,7 @@ import collection from './store/collection'
 import MyFans from './containers/myFans'
 import SquareAskQuestion from './components/squareAskQuestion'
 import SquareQuestionDetail from './components/squareQuestionDetail'
-import UploadImg from './components/bottomClass/uploadImg'
+import PayTest from './components/bottomClass/payTest'
 import SquareAnswering from './containers/squareAnswering'
 import io from './server'
 import square from './store/square'
@@ -97,9 +97,10 @@ const Wode = React.createClass({
 // })
 const routes = (
   <Route path="/" component={App}>
-      <IndexRoute component={Qiushi} />
+      {/*<IndexRoute component={Qiushi} />*/}
+      <IndexRoute component={SquareBinding} />
       <Route path="qiushi" component={Qiushi} />
-      <Route path="guanzhu" component={Guanzhu} />
+      <Route path="square" component={SquareBinding}/>
       <Route path="dongtai" component={Dongtai} />
       <Route path="wode" component={UserCenter} />
       <Route path="vipDetail" component={PersonDetail} />
@@ -112,11 +113,11 @@ const routes = (
       <Route path="applyRule" component={ApplyRule}/>
       <Route path="collection" component={Collection} />
       <Route path="myFans" component={MyFans}/>
-      <Route path="square" component={SquareBinding}/>
+      <Route path="guanzhu" component={Guanzhu} />
       <Route path="squareAskQuestion" component={SquareAskQuestion}/>
       <Route path="squareQuestionDetail" component={SquareQuestionDetailBinding}/>
       <Route path="upload" component={SquareAnswering}/>
-      <Route path="uploadimg" component={UploadImg}/>
+      <Route path="payTest" component={PayTest}/>
   </Route>
 );
 

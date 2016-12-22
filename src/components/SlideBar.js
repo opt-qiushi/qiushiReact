@@ -32,12 +32,15 @@ class SlideBar extends Component {
 		const { value, onQiushi, onGuanzhu, onDongtai, onWode }=this.props
 		return (
 			<div className="slideBar" >
-				<Link to="/qiushi/">
+				<Link to="/qiushi">
 					<IconStyle imgUrl={value.iconInfo[0].img} colorInfo={value.iconInfo[0].color} title="求士" onTouch={this.handleClick} />
 				</Link>
-				<Link to="/guanzhu">
-      				<IconStyle imgUrl={value.iconInfo[1].img} colorInfo={value.iconInfo[1].color} title="关注" onTouch={this.handleClick} />
+				<Link to="/square">
+      				<IconStyle imgUrl={value.iconInfo[1].img} colorInfo={value.iconInfo[1].color} title="广场" onTouch={this.handleClick} />
       			</Link>
+				{/*<Link to="/guanzhu">
+	      				<IconStyle imgUrl={value.iconInfo[1].img} colorInfo={value.iconInfo[1].color} title="关注" onTouch={this.handleClick} />
+	      			</Link>*/}
       			<Link to="/dongtai">
       				<IconStyle imgUrl={value.iconInfo[2].img} colorInfo={value.iconInfo[2].color}  title="动态" onTouch={this.handleClick} />
       			</Link>
@@ -62,12 +65,12 @@ SlideBar.defaultProps = {
 		visitFlag: 0,
 		iconInfo: [
 			{
-				img: 'img/index-on.png',
-				color: colors.OPTGREEN
+				img: 'img/index.png',
+				color: colors.GRAYWHITE
 			},
 			{
-				img: 'img/focus.png',
-				color: colors.GRAYWHITE
+				img: 'img/square-on.png',
+				color: colors.OPTGREEN
 			},
 			{
 				img: 'img/dynamic.png',

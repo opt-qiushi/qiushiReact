@@ -105,7 +105,8 @@ export default class QuestionAtomic2 extends Component{
                   <p className="sign-green">
                     Q: {questions.question}
                   </p>
-                  {/*<p>A: {this.props.dynamicQuestion.answer}</p>*/}
+                  {/*答案显示*/}
+                  <p>A: {this.props.dynamicQuestion.answer}</p>
                 </div>
                 {/*<div className="dynamicStatistic">
                                     <img src="./img/question_detail_addCollect.png" alt="收藏数" />

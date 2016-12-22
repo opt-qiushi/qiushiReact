@@ -4,6 +4,9 @@ export function changeQiushi(){
 	return {type: flags.QIUSHI}
 }
 
+export function changeSquare(){
+	return {type: flags.SQUARE}
+}
 export function changeGuanzhu(){
 	return {type: flags.GUANZHU}
 }

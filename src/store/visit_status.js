@@ -1,4 +1,4 @@
-import {QIUSHI, GUANZHU, DONGTAI, WODE, SHOUYE, NOTSHOUYE} from '../constants/homepage' 
+import {QIUSHI, SQUARE,GUANZHU, DONGTAI, WODE, SHOUYE, NOTSHOUYE} from '../constants/homepage' 
 import * as colors from '../constants/color'
 
 const initState = {
@@ -9,12 +9,12 @@ const initState = {
 	questionId: "",
 	iconInfo: [
 		{
-			img: 'img/index-on.png',
-			color: colors.OPTGREEN
+			img: 'img/index.png',
+			color: colors.GRAYWHITE
 		},
 		{
-			img: 'img/focus.png',
-			color: colors.GRAYWHITE
+			img: 'img/square-on.png',
+			color: colors.OPTGREEN
 		},
 		{
 			img: 'img/dynamic.png',
@@ -38,7 +38,7 @@ export default function status(state = initState, action){
 						color: colors.OPTGREEN
 					},
 					{
-						img: 'img/focus.png',
+						img: 'img/square.png',
 						color: colors.GRAYWHITE
 					},
 					{
@@ -51,7 +51,28 @@ export default function status(state = initState, action){
 					}
 				]
 		      })
-
+		case SQUARE:
+			return Object.assign({}, state, {
+		        visitFlag: 1,
+		        iconInfo: [
+					{
+						img: 'img/index.png',
+						color: colors.GRAYWHITE
+					},
+					{
+						img: 'img/square-on.png',
+						color: colors.OPTGREEN
+					},
+					{
+						img: 'img/dynamic.png',
+						color: colors.GRAYWHITE
+					},
+					{
+						img: 'img/my.png',
+						color: colors.GRAYWHITE
+					}
+				]
+		      })
 		case GUANZHU:
 			return Object.assign({}, state, {
 		        visitFlag: 1,
@@ -84,7 +105,7 @@ export default function status(state = initState, action){
 						color: colors.GRAYWHITE
 					},
 					{
-						img: 'img/focus.png',
+						img: 'img/square.png',
 						color: colors.GRAYWHITE
 					},
 					{
@@ -107,7 +128,7 @@ export default function status(state = initState, action){
 						color: colors.GRAYWHITE
 					},
 					{
-						img: 'img/focus.png',
+						img: 'img/square.png',
 						color: colors.GRAYWHITE
 					},
 					{

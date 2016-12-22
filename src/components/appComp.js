@@ -16,9 +16,9 @@ const bottomStyle={
 export default class AppComp extends Component{
   componentWillMount(){
     function getQueryString(name) {
-          var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-          var r = window.location.search.substr(1).match(reg);
-          if (r != null) return unescape(r[2]); return null;
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return unescape(r[2]); return null;
     }
     var userId=cookie.load('userId')
     // var guestId=cookie.load('guestId')
@@ -55,11 +55,12 @@ export default class AppComp extends Component{
   }
 
   render() {
-    const {status, changeQiushi,changeGuanzhu,changeDongtai,changeWode, notShouye} = this.props
+    const {status, changeQiushi,changeSquare,changeGuanzhu,changeDongtai,changeWode, notShouye} = this.props
     var rows=[]
     if(status.isHome){
       rows.push(<SlideBar key="1" value={status}
            onQiushi={changeQiushi}
+           onSquare={changeSquare}
            onGuanzhu={changeGuanzhu}
            onDongtai={changeDongtai}
            onWode={changeWode} />)

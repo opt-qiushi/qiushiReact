@@ -2,21 +2,19 @@
 	margin-top: 110px;
 	text-align: center;
 }
+.voiceArea img{
+	width: 40px;
+	height: 40px;
+}
 .voice-title{
-	margin-top: 10px;
+	margin-top: 24px;
 	color: #0A964C;
 	text-align: center;
+	font-size: 13px;
 }
 .voice-submit{
 	margin-top: 10px;
 	text-align: center;
-}
-@keyframes soundWave{
-	0%{width: 50px;height: 50px}
-	25%{width: 60px;height: 60px}
-	50%{width: 70px;height: 70px}
-	75%{width: 80px;height: 80px}
-	100%{width: 90px;height: 90px}
 }
 .voice-img-container{
 	display: inline-block;
@@ -24,37 +22,43 @@
 	position: relative;
   	/*animation: 2s soundWave infinite;*/
 }
-.voice-img-container>img{
-	width: 50px;
-	height: 50px;
-}
-
 .voice-img-container:after { 
 	content: ''; 
 	position: absolute; 
-	width: 120px; height: 120px; border-radius: 50%; 
+	width: 100px; height: 100px; border-radius: 50%; 
 	box-shadow: 0 0 1px 2px #0a964c; 
 	top: 50%; left: 50%;
-	margin-top: -60px; 
-	margin-left: -60px; 
+	margin-top: -50px; 
+	margin-left: -50px; 
 	z-index: 3;
 	opacity: 0; 
-	animation: halo 1s infinite ease-out; 
+	animation: halo 2s infinite ease-out;
+	-webkit-animation: halo 2s infinite ease-out;
+	animation-delay: .3s;
+	-webkit-animation-delay:.3s;
 }
 .voice-img-container:before { 
 	content: ''; 
 	position: absolute; 
-	width: 120px; height: 120px; border-radius: 50%; 
+	width: 100px; height: 100px; border-radius: 50%; 
 	box-shadow: 0 0 1px 2px #0a964c; 
 	top: 50%; left: 50%;
-	margin-top: -60px; 
-	margin-left: -60px; 
+	margin-top: -50px; 
+	margin-left: -50px; 
 	z-index: 3;
 	opacity: 0; 
-	animation: halo 1s infinite ease-out; 
+	animation: halo 2s infinite ease-out;
+	-webkit-animation: halo 2s infinite ease-out;
+	animation-delay: 1.2s;
+	-webkit-animation-delay:1.2s;
 }
 @-webkit-keyframes halo { 
-	0% { opacity: 0;-webkit-transform: scale(0.1); }
-	50% {opacity: 1; }
-	100%{opacity: 0;-webkit-transform: scale(1.2); } 
+	0% { opacity: 0;-webkit-transform: scale(0.1);transform: scale(0.1); }
+	50% {opacity: 1;-webkit-transform: scale(0.8);transform: scale(0.8); }
+	100%{opacity: 0;-webkit-transform: scale(1);transform: scale(1); } 
+}
+@keyframes halo{
+	0% { opacity: 0;-webkit-transform: scale(0.1);transform: scale(0.1); }
+	50% {opacity: 1;-webkit-transform: scale(0.8);transform: scale(0.8); }
+	100%{opacity: 0;-webkit-transform: scale(1);transform: scale(1); } 
 }

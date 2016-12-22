@@ -50,7 +50,7 @@ export default class UserCenterComp extends Component{
         this.handlePersonalDetail=this.handlePersonalDetail.bind(this)
         this.myCollection=this.myCollection.bind(this)
         this.myFans=this.myFans.bind(this)
-        this.voiceTest=this.voiceTest.bind(this)
+        this.payTest=this.payTest.bind(this)
     }
 
     componentWillMount(){
@@ -61,8 +61,8 @@ export default class UserCenterComp extends Component{
               this.props.getUserInformation(result)
         })
     }
-    voiceTest(){
-        this.props.history.push("/square")
+    payTest(){
+        this.props.history.push("/payTest/")
     }
     myFans(){
         setTimeout(function(){
@@ -160,7 +160,7 @@ export default class UserCenterComp extends Component{
                      onTouchTap={this.myFeedback} />
                 <Divider />
     			</List>
-                <div style={{height:30 + 'px',marginTop: 50}} onTouchTap={this.voiceTest}></div>
+                <div style={{height:40 + 'px',marginTop: 40 + 'px'}} onTouchTap={this.payTest}></div>
             </div>
             )
 	}

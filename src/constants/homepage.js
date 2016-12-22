@@ -1,4 +1,5 @@
 export const QIUSHI = 'QIUSHI'
+export const SQUARE = 'SQUARE'
 export const GUANZHU = 'GUANZHU'
 export const WODE = 'WODE'
 export const DONGTAI = 'DONGTAI'
